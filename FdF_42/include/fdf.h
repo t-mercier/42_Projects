@@ -38,40 +38,38 @@
 **		linked list
 */
 
-typedef struct s_grid {
-	int x;
-	int y;
-	int 		x0;
+typedef struct	s_index {
+	int			x0;
 	int 		y0;
 	int 		x1;
 	int 		y1;
+} t_index;
+
+typedef struct s_map {
+	t_index i;
+	int			x0;
+	int 		y0;
+	int 		x1;
+	int 		y1;
+	int 		u0;
+	int 		u1;
+	int 		v0;
+	int 		v1;
 	int 		dx;
 	int 		sx;
 	int 		dy;
 	int 		sy;
-	int 		p;
-} t_grid;
+} t_map;
 
-typedef struct	s_map {
+typedef struct	s_fdf {
 
 	mlx_image_t	*img;
 	mlx_t 		*mlx;
 	int 		x;
 	int 		y;
 	int 		z;
-	int 		u0;
-	int 		u1;
-	int 		v0;
-	int 		v1;
-	int 		x0;
-	int 		y0;
-	int 		x1;
-	int 		y1;
-	int 		z0;
-	int 		z1;
-
 	uint32_t	color;
-} t_map;
+} t_fdf;
 
 
 /*
@@ -103,7 +101,7 @@ void	*check_malloc(void	*ptr);
 char	*process_map(const char *file);
 
 int		process_file(const char *file);
-void	size_map(t_map *map, char *line);
+void	size_map(t_fdf *map, char *line);
 void	background(mlx_t	*mlx);
 //void	drawline(t_init	*map);
 void exit_message(char *s, int code);
@@ -115,6 +113,6 @@ void exit_message(char *s, int code);
 //void	free_struct(t_map *map);
 //void	malloc_map(t_map *map, int x, int y);
 //char	**open_read_file(char **av);
-void line(mlx_image_t *img, t_draw *i, uint32_t color);
+void line(mlx_image_t *img, t_map *p, uint32_t color);
 
 #endif

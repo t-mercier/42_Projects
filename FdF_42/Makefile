@@ -33,7 +33,7 @@ CFLAGS = -g3 -fsanitize=address
 LIBFT		=	libs/libft.a
 LIBMLX		=	libs/libmlx42.a
 LIBS		=	$(LIBFT) $(LIBMLX)
-GLFW		=	-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+GLFW		=	-lglfw -framework Cocoa -framework OpenGL -framework IOKit
 
 ################### PROGRAM
 NAME 		=	fdf
@@ -64,7 +64,7 @@ clean:
 				@printf "$(LIGHT_RED)\n-> push_swap obj files removed.\n"
 
 fclean:			clean
-				@$(MAKE) -C libs fclean
+				@$(MAKE) fclean -C libs
 				@rm -rf $(NAME)
 				@printf "\n$(LIGHT_RED)-> $(NAME) removed.\n\n"
 

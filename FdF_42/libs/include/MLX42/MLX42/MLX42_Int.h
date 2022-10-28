@@ -20,7 +20,7 @@
 # if defined(__APPLE__)
 #  define GL_SILENCE_DEPRECATION
 # endif
-# include "/usr/local/include/GLFW/glfw3.h"
+# include <GLFW/glfw3.h>
 # include <stdlib.h>
 # include <memory.h>
 # include <stdio.h>

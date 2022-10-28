@@ -20,86 +20,87 @@ void isometric_conversion(int x, int y, int z, int *u, int *v)
 	 *v = sqrt(2 / 3) * z - 1 / sqrt(6) * (x + y);
 }
 
-void line(mlx_image_t *img, t_map *i)
-{
-	int dx;
-	int dy;
-	int grtr_d;
-	int smlr_d;
-	int d;
-		if (i->x0 > img->width || i->x1 > img->width || \
-	i->y0 > img->height || i->y1 > img->height)
-		return ;
-	dx = i->x1 - i->x0;
-	dy = i->y1 - i->y0;
-	grtr_d = 2 * dy - 2 * dx;
-	smlr_d = 2 * dy;// when d < 0
-	d = (2 * dy) - dx;
-	while (i->x0 < i->x1)
-	{
-		mlx_put_pixel(img, i->x, i->y, BLUE);
-		if(d < 0) {
-			d = smlr_d+d;
-		}
-		else
-		{
-			d = grtr_d+d;
-			i->y0 = i->y0 + 1;
-		}
-		i->x0 = i->x0 + 1;
-	}
-}
-
-//void *line(mlx_image_t *img, t_draw *i, uint32_t color)
+//void line(mlx_image_t *img, t_fdf *i)
 //{
-//	int error;
-//	int e2;
-//
-//	if (i->x0 > img->width || i->x1 > img->width || \
+//	int dx;
+//	int dy;
+//	int grtr_d;
+//	int smlr_d;
+//	int d;
+//		if (i->x0 > img->width || i->x1 > img->width || \
 //	i->y0 > img->height || i->y1 > img->height)
-//		return NULL;
-//	i->sx = -1;
-//	if (i->x0 < i->x1)
-//		i->sx = 1;
-//	i->dx = abs(i->x1 - i->x0);
-//	i->dy = -abs(i->y1 - i->y0);
-//	i->sy = -1;
-//	if (i->y0 < i->y1)
-//		i->sy = 1;
-//	error = i->dx + i->dy;
-//
-//	while (1)
+//		return ;
+//	dx = i->x1 - i->x0;
+//	dy = i->y1 - i->y0;
+//	grtr_d = 2 * dy - 2 * dx;
+//	smlr_d = 2 * dy;// when d < 0
+//	d = (2 * dy) - dx;
+//	while (i->x0 < i->x1)
 //	{
-//		if (i->x0 == i->x1 && i->y0 == i->y1)
-//			break;
-//		e2 = 2 * error;
-//		if (e2 >= i->dy)
-//		{
-//			if (i->x0 == i->x1)
-//				break;
-//			error += i->dy;
-//			i->x0 += i->sx;
+//		mlx_put_pixel(img, i->x, i->y, BLUE);
+//		if(d < 0) {
+//			d = smlr_d+d;
 //		}
-//		if (e2 <= i->dx)
+//		else
 //		{
-//			if (i->y0 == i->y1)
-//				break;
-//			error += i->dx;
-//			i->y0 += i->sy;
+//			d = grtr_d+d;
+//			i->y0 = i->y0 + 1;
 //		}
-//		mlx_put_pixel(img, abs(i->x0), abs(i->y0), color);
+//		i->x0 = i->x0 + 1;
 //	}
-//	return NULL;
 //}
+
+void line(mlx_image_t *img, t_map *p, uint32_t color)
+{
+	int error;
+	int e2;
+
+	if (p->u0 > img->width || p->u1 > img->width || \
+	p->v0 > img->height || p->v1 > img->height)
+		return ;
+	p->sx = -1;
+	if (p->u0 < p->u1)
+		p->sx = 1;
+	p->dx = abs(p->u1 - p->u0);
+	p->dy = -abs(p->v1 - p->v0);
+	p->sy = -1;
+	if (p->v0 < p->v1)
+		p->sy = 1;
+	error = p->dx + p->dy;
+
+	while (1)
+	{
+		mlx_put_pixel(img, abs(p->u0), abs(p->v0), color);
+		if (p->u0 == p->u1 && p->v0 == p->v1)
+			break;
+		e2 = 2 * error;
+		if (e2 >= p->dy)
+		{
+			if (p->u0 == p->u1)
+				break;
+			error += p->dy;
+			p->u0 += p->sx;
+		}
+		if (e2 <= p->dx)
+		{
+			if (p->v0 == p->v1)
+				break;
+			error += p->dx;
+			p->v0 += p->sy;
+		}
+	}
+	return ;
+}
 
 int32_t	main(int ac, char **av)
 {
 	t_vector	*map;
 	t_vector	*row;
-	t_map		m;
-	t_grid 		i;
+	t_fdf		m;
+	t_map 		p;
 	int x;
 	int y;
+	int cur;
 	int			fd;
 
 	if (ac != 2)
@@ -118,45 +119,44 @@ int32_t	main(int ac, char **av)
 		exit_message("ERROR [ Empty map ]\n", 1);
 	map = open_read_file(fd);
 	close(fd);
-	x = 0;
-	y = 0;
-	int z = 0;
-	while (y < map->len)
+	t_index i;
+	i.x1 = 1;
+	i.y1 = 1;
+	while (i.y0 < map->len)
 	{
 		row = ((t_vector **)map->data)[y];
-		while (x < row->len)
+		while (i.x0 < row->len)
 		{
-			z = ((int *)row->data)[x];
-			isometric_conversion(x, y, z, &i.u0, &i.v0);
-			if (row->len > i.x1)
+			cur = ((int *)row->data)[x];
+			p.x0 = i.x0 * GRIDSIZE;
+			p.y0 = i.y0 * GRIDSIZE;
+			isometric_conversion(p.x0, p.y0, cur, &p.u0, &p.v0);
+			if (i.x1 < row->len)
 			{
-				printf("1er IF | i.x0 %d\n", i.x0);
-				printf("1er IF | row len %zu\n", row->len);
-				i.z1 = ((int *)row->data)[i.x1];
-				isometric_conversion(i.x1, i.y1, i.z1, &i.u1, &i.v1);
-				j.y0 = i.v0 * GRIDSIZE;
-				j.y1 = i.v1 * GRIDSIZE;
-				j.x0 = i.u0 * GRIDSIZE;
-				j.x1 = i.u1 * GRIDSIZE;
-				j.dx = abs(j.x0 - j.x1);
-				j.dy = abs(j.y0 - j.y1);
-				line(m.img, &j, BLUE);
+				int zx = ((int *)row->data)[i.x1];
+				p.x1 = i.x1 * GRIDSIZE;
+				p.y1 = i.y0 * GRIDSIZE;
+				p.u0 += OFFSET;
+				p.v0 += OFFSET;
+				p.u1 += OFFSET;
+				p.v1 += OFFSET;
+				isometric_conversion(p.x1, p.y1, zx, &p.u1, &p.v1);
+				line(m.img, &p, BLUE);
 			}
-			if (map->len > i.y1)
+			if (i.y1 < map->len)
 			{
-				printf("2e IF | i.y1 %d\n", i.y1);
-				printf("2e IF | map len %zu\n", map->len);
-
-				row = ((t_vector **)map->data)[i.y1];
-				i.z1 = ((int *)row->data)[i.x0];
-				isometric_conversion(i.x0, i.y1, i.z1, &i.u0, &i.v1);
-				j.y0 = i.v0 * GRIDSIZE;
-				j.y1 = i.v1 * GRIDSIZE;
-				j.x0 = i.u0 * GRIDSIZE;
-				j.x1 = i.u1 * GRIDSIZE;
-				j.dx = abs(i.x0 - i.x1);
-				j.dy = abs(i.y0 - i.y1);
-				line(m.img, &j, BLUE);
+				t_vector *next_row = ((t_vector **)map->data)[i.y1];
+				int zy = ((int *)next_row->data)[i.x1];
+				p.x1 = i.x0 * GRIDSIZE;
+				p.y1 = i.y1 * GRIDSIZE;
+				p.u0 += OFFSET;
+				p.v0 += OFFSET;
+				p.u1 += OFFSET;
+				p.v1 += OFFSET;
+				isometric_conversion(p.x1, i.y1, zy, &p.u1, &p.v1);
+				line(m.img, &p, BLUE);
+//				j.dx = abs(i.x0 - i.x1);
+//				j.dy = abs(i.y0 - i.y1);
 			}
 			i.x0++;
 			i.x1++;
