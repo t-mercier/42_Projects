@@ -89,7 +89,6 @@ void line(mlx_image_t *img, t_map *p, uint32_t color)
 			p->v0 += p->sy;
 		}
 	}
-	return ;
 }
 
 int32_t	main(int ac, char **av)
