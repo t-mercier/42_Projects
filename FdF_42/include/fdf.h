@@ -45,20 +45,20 @@ typedef struct	s_index {
 	int 		y1;
 } t_index;
 
+typedef struct s_draw {
+	int 		u0;
+	int 		v0;
+	int 		u1;
+	int 		v1;
+} t_draw;
+
 typedef struct s_map {
-	t_index i;
 	int			x0;
 	int 		y0;
 	int 		x1;
 	int 		y1;
-	int 		u0;
-	int 		u1;
-	int 		v0;
-	int 		v1;
-	int 		dx;
-	int 		sx;
-	int 		dy;
-	int 		sy;
+	int 		x2;
+	int 		y2;
 } t_map;
 
 typedef struct	s_fdf {
@@ -113,6 +113,6 @@ void exit_message(char *s, int code);
 //void	free_struct(t_map *map);
 //void	malloc_map(t_map *map, int x, int y);
 //char	**open_read_file(char **av);
-void line(mlx_image_t *img, t_map *p, uint32_t color);
+void line(mlx_image_t *img, t_draw *p, uint32_t color);
 
 #endif

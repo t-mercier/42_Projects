@@ -16,80 +16,46 @@
 
 void isometric_conversion(int x, int y, int z, int *u, int *v)
 {
-	 *u = sqrt(2) / 2 * (x - y);
-	 *v = sqrt(2 / 3) * z - 1 / sqrt(6) * (x + y);
+	double a = 15;
+	double b = 60;
+	*u = x * cos(a / 180) + y * cos((a + b) / 180) + z * cos((a - b) / 180);
+	*v = x * sin(a / 180) + y * sin((a + b) / 180) + z * sin((a - b) / 180);
 }
 
-//void line(mlx_image_t *img, t_fdf *i)
-//{
-//	int dx;
-//	int dy;
-//	int grtr_d;
-//	int smlr_d;
-//	int d;
-//		if (i->x0 > img->width || i->x1 > img->width || \
-//	i->y0 > img->height || i->y1 > img->height)
-//		return ;
-//	dx = i->x1 - i->x0;
-//	dy = i->y1 - i->y0;
-//	grtr_d = 2 * dy - 2 * dx;
-//	smlr_d = 2 * dy;// when d < 0
-//	d = (2 * dy) - dx;
-//	while (i->x0 < i->x1)
-//	{
-//		mlx_put_pixel(img, i->x, i->y, BLUE);
-//		if(d < 0) {
-//			d = smlr_d+d;
-//		}
-//		else
-//		{
-//			d = grtr_d+d;
-//			i->y0 = i->y0 + 1;
-//		}
-//		i->x0 = i->x0 + 1;
-//	}
-//}
-
-void line(mlx_image_t *img, t_map *p, uint32_t color)
+void line(mlx_image_t *img, t_draw *d, uint32_t color)
 {
-	int error;
 	int e2;
 
-	if (p->u0 > img->width || p->u1 > img->width || \
-	p->v0 > img->height || p->v1 > img->height)
+	if (d->u0 > img->width || d->u1 > img->width || \
+	d->v0 > img->height || d->v1 > img->height)
 		return ;
-	p->sx = -1;
-	if (p->u0 < p->u1)
-		p->sx = 1;
-	p->dx = abs(p->u1 - p->u0);
-	p->dy = -abs(p->v1 - p->v0);
-	p->sy = -1;
-	if (p->v0 < p->v1)
-		p->sy = 1;
-	error = p->dx + p->dy;
+	int dx = abs(d->u1 - d->u0);
+	int sx = d->u0 < d->u1 ? 1 : -1;
+	int dy = -abs(d->v1 - d->v0);
+	int sy = d->v0 < d->v1 ? 1 : -1;
+	int error = dx + dy;
 
 	while (1)
 	{
-		mlx_put_pixel(img, abs(p->u0), abs(p->v0), color);
-		if (p->u0 == p->u1 && p->v0 == p->v1)
-			break;
+		mlx_put_pixel(img, abs(d->u0), abs(d->v0), color);
+		if (d->u0 == d->u1 && d->v0 == d->v1)
+			break ;
 		e2 = 2 * error;
-		if (e2 >= p->dy)
+		if (e2 >= dy)
 		{
-			if (p->u0 == p->u1)
+			if (d->u0 == d->u1)
 				break;
-			error += p->dy;
-			p->u0 += p->sx;
+			error += dy;
+			d->u0 += sx;
 		}
-		if (e2 <= p->dx)
+		if (e2 <= dx)
 		{
-			if (p->v0 == p->v1)
+			if (d->v0 == d->v1)
 				break;
-			error += p->dx;
-			p->v0 += p->sy;
+			error += dx;
+			d->v0 += sy;
 		}
 	}
-	return ;
 }
 
 int32_t	main(int ac, char **av)
@@ -98,8 +64,6 @@ int32_t	main(int ac, char **av)
 	t_vector	*row;
 	t_fdf		m;
 	t_map 		p;
-	int x;
-	int y;
 	int cur;
 	int			fd;
 
@@ -120,43 +84,46 @@ int32_t	main(int ac, char **av)
 	map = open_read_file(fd);
 	close(fd);
 	t_index i;
+	t_draw d;
+	i.x0 = 0;
+	i.y0 = 0;
 	i.x1 = 1;
 	i.y1 = 1;
+	ft_memset(&p, 0, sizeof(t_map));
 	while (i.y0 < map->len)
 	{
-		row = ((t_vector **)map->data)[y];
+		row = ((t_vector **)map->data)[i.y0];
 		while (i.x0 < row->len)
 		{
-			cur = ((int *)row->data)[x];
+//			ft_memset(&d, 0, sizeof(t_draw));
+			cur = ((int *)row->data)[i.x0];
 			p.x0 = i.x0 * GRIDSIZE;
 			p.y0 = i.y0 * GRIDSIZE;
-			isometric_conversion(p.x0, p.y0, cur, &p.u0, &p.v0);
+			isometric_conversion(p.x0, p.y0, cur, &d.u0, &d.v0);
 			if (i.x1 < row->len)
 			{
 				int zx = ((int *)row->data)[i.x1];
 				p.x1 = i.x1 * GRIDSIZE;
 				p.y1 = i.y0 * GRIDSIZE;
-				p.u0 += OFFSET;
-				p.v0 += OFFSET;
-				p.u1 += OFFSET;
-				p.v1 += OFFSET;
-				isometric_conversion(p.x1, p.y1, zx, &p.u1, &p.v1);
-				line(m.img, &p, BLUE);
+				isometric_conversion(p.x1, p.y1, zx, &d.u1, &d.v1);
+				d.u0 += OFFSET;
+				d.v0 += OFFSET;
+				d.u1 += OFFSET;
+				d.v1 += OFFSET;
+				line(m.img, &d, BLUE);
 			}
 			if (i.y1 < map->len)
 			{
-				t_vector *next_row = ((t_vector **)map->data)[i.y1];
-				int zy = ((int *)next_row->data)[i.x1];
-				p.x1 = i.x0 * GRIDSIZE;
-				p.y1 = i.y1 * GRIDSIZE;
-				p.u0 += OFFSET;
-				p.v0 += OFFSET;
-				p.u1 += OFFSET;
-				p.v1 += OFFSET;
-				isometric_conversion(p.x1, i.y1, zy, &p.u1, &p.v1);
-				line(m.img, &p, BLUE);
-//				j.dx = abs(i.x0 - i.x1);
-//				j.dy = abs(i.y0 - i.y1);
+				row = ((t_vector **)map->data)[i.y1];
+				int zy = ((int *)row->data)[i.x0];
+				p.x2 = i.x0 * GRIDSIZE;
+				p.y2 = i.y1 * GRIDSIZE;
+				isometric_conversion(p.x2, p.y2, zy, &d.u1, &d.v1);
+				d.u0 += OFFSET;
+				d.v0 += OFFSET;
+				d.u1 += OFFSET;
+				d.v1 += OFFSET;
+				line(m.img, &d, BLUE);
 			}
 			i.x0++;
 			i.x1++;
