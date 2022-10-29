@@ -14,26 +14,53 @@
 #define WIDTH 1000
 #define HEIGHT 1000
 
-int	min(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
-
 void conversion(int x, int y, int z, int *u, int *v)
 {
-	*u = (x - y) * (int)cos(0.523599);
-	*v = -z + (x + y) * (int)sin(0.523599);
+	double a = 15;
+	double b = 60;
+	*u = x * cos(a / 180) + y * cos((a + b) / 180) + z * cos((a - b) / 180);
+	*v = x * sin(a / 180) + y * sin((a + b) / 180) + z * sin((a - b) / 180);
+
 }
 
-void	view(t_fdf *grid, t_vector *map)
-{
-	t_vector *row = ((t_vector **)map->data)[0];
-	grid->view.zoom = min(WIDTH / (row->len) / 1.5, HEIGHT / (map->len) / 1.5);
-	grid->view.z_divisor = 10;
-}
-
+//
+//
+//
+//void line(mlx_image_t *img, t_draw *d, uint32_t color)
+//{
+//	int e2;
+//
+//	if (d->u0 > img->width || d->u1 > img->width || \
+//	d->v0 > img->height || d->v1 > img->height)
+//		return ;
+//	int dx = abs(d->u1 - d->u0);
+//	int sx = d->u0 < d->u1 ? 1 : -1;
+//	int dy = -abs(d->v1 - d->v0);
+//	int sy = d->v0 < d->v1 ? 1 : -1;
+//	int error = dx + dy;
+//
+//	while (1)
+//	{
+//		mlx_put_pixel(img, abs(d->u0), abs(d->v0), color);
+//		if (d->u0 == d->u1 && d->v0 == d->v1)
+//			break ;
+//		e2 = 2 * error;
+//		if (e2 >= dy)
+//		{
+//			if (d->u0 == d->u1)
+//				break;
+//			error += dy;
+//			d->u0 += sx;
+//		}
+//		if (e2 <= dx)
+//		{
+//			if (d->v0 == d->v1)
+//				break;
+//			error += dx;
+//			d->v0 += sy;
+//		}
+//	}
+//}
 void line(mlx_image_t *image, int x0, int y0, int x1, int y1, uint32_t color) {
 
 	if (x0 > image->width || x1 > image->width || y0 > image->height ||
@@ -75,8 +102,8 @@ void	projection(t_vector *map, t_fdf *m)
 	j = 0;
 	while (j < map->len)
 	{
-		t_vector *x_y0 = ((t_vector **)map->data)[j];
 		i = 0;
+		t_vector *x_y0 = ((t_vector **)map->data)[j];
 		while (i < x_y0->len)
 		{
 			int cur = ((int *)x_y0->data)[i];
@@ -99,7 +126,7 @@ void	projection(t_vector *map, t_fdf *m)
 				int zy = ((int *)x_y1->data)[i];
 				p.x2 = i * TILESIZE;
 				p.y2 = (j + 1) * TILESIZE;
-				conversion(p.x2, p.y2, zy, &d.u1, &d.v1);
+				conversion(p.x1, p.y1, zy, &d.u1, &d.v1);
 				line(m->img, d.u0 + OFFSET, d.v0 + OFFSET,
 					 d.u0 + OFFSET, d.v1 + OFFSET, BLUE);
 			}

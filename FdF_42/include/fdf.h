@@ -71,7 +71,12 @@ typedef struct	s_fdf {
 	uint32_t	color;
 } t_fdf;
 
-
+//void	view(t_fdf *grid, t_vector *map)
+//{
+//	t_vector *row = ((t_vector **)map->data)[0];
+//	grid->view.zoom = min(WIDTH / (row->len) / 1.5, HEIGHT / (map->len) / 1.5);
+//	grid->view.z_divisor = 10;
+//}
 /*
 **			[ SRC ]
 ** --------------------------------*/
@@ -87,6 +92,7 @@ typedef struct	s_fdf {
 /* ---------------------------------
 **			2_trace.c
 */
+//void conversion(int *x, int *y, int z);
 void conversion(int x, int y, int z, int *u, int *v);
 /* ---------------------------------
 **			3_algo.c
