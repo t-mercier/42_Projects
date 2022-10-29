@@ -141,7 +141,6 @@ int32_t	main(int ac, char **av)
 	t_vector	*map;
 	t_vector	*row;
 	t_fdf		m;
-	int cur;
 	int			fd;
 
 	if (ac != 2)
