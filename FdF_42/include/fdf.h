@@ -38,12 +38,14 @@
 **		linked list
 */
 
-typedef struct	s_index {
-	int			x0;
-	int 		y0;
-	int 		x1;
-	int 		y1;
-} t_index;
+
+typedef struct s_view
+{
+	double	zoom;
+	float	z_divisor;
+	int		x_pos;
+	int		y_pos;
+}	t_view;
 
 typedef struct s_draw {
 	int 		u0;
@@ -65,6 +67,7 @@ typedef struct	s_fdf {
 
 	mlx_image_t	*img;
 	mlx_t 		*mlx;
+	t_view		view;
 	uint32_t	color;
 } t_fdf;
 
