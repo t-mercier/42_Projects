@@ -114,7 +114,7 @@ void	projection(t_vector *map, t_fdf *m)
 				p.y1 = j * TILESIZE;
 				conversion(p.x1, p.y1, zx, &d.u1, &d.v1);
 				line(m->img, d.u0 + OFFSET, d.v0 + OFFSET,
-					 d.u1 + OFFSET, d.v1 + OFFSET, BLUE);
+					 d.u1 + OFFSET, d.v0 + OFFSET, BLUE);
 			}
 			if (j + 1 < map->len)
 			{
@@ -124,7 +124,7 @@ void	projection(t_vector *map, t_fdf *m)
 				p.y2 = (j + 1) * TILESIZE;
 				conversion(p.x2, p.y2, zy, &d.u1, &d.v1);
 				line(m->img, d.u0 + OFFSET, d.v0 + OFFSET,
-					 d.u1 + OFFSET, d.v1 + OFFSET, BLUE);
+					 d.u0 + OFFSET, d.v1 + OFFSET, BLUE);
 			}
 			i++;
 		}
