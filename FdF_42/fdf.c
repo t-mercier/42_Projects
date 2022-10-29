@@ -16,8 +16,8 @@
 
 void conversion(int x, int y, int z, int *u, int *v)
 {
-	double a = 15;
-	double b = 60;
+	double a = 30;
+	double b = 120;
 	*u = x * cos(a / 180) + y * cos((a + b) / 180) + z * cos((a - b) / 180);
 	*v = x * sin(a / 180) + y * sin((a + b) / 180) + z * sin((a - b) / 180);
 }
