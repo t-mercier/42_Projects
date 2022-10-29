@@ -95,11 +95,11 @@ void	projection(t_vector *map, t_fdf *m)
 	int		j;
 	int		i;
 
-	i = 0;
 	j = 0;
 	while (j < map->len)
 	{
 		t_vector *x_y0 = ((t_vector **)map->data)[j];
+		i = 0;
 		while (i < x_y0->len)
 		{
 			int cur = ((int *)x_y0->data)[i];
@@ -126,7 +126,7 @@ void	projection(t_vector *map, t_fdf *m)
 				line(m->img, d.u0 + OFFSET, d.v0 + OFFSET,
 					 d.u0 + OFFSET, d.v1 + OFFSET, BLUE);
 			}
-			i += 2;
+			i++;
 		}
 		j++;
 	}

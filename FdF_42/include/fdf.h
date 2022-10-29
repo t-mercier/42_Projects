@@ -29,7 +29,7 @@
 # define BLACK 0x000000FF
 # define BLUE 0x0000FFFF
 # define YELLOW 0xFFFF00FF
-# define OFFSET 50
+# define OFFSET 20
 # define TILESIZE 50
 
 /*
