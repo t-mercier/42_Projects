@@ -19,7 +19,6 @@ t_vector *open_read_file(int fd)
 	t_vector	*map;
 	t_vector	*row;
 	int 		n;
-
 	map = vector_init(sizeof(t_vector *));
 	while (1)
 	{
@@ -34,8 +33,20 @@ t_vector *open_read_file(int fd)
 			vector_append(row, &n);
 		}
 		vector_append(map, &row);
-		free (line);
+		free(line);
+//		free(split);
 	}
+//	for (int j = 0; j < map->len; j++)
+//	{
+//		t_vector *row2 = ((t_vector **) map->data)[j];
+//		for (int i = 0; i < row2->len; i++)
+//		{
+//			int zx = ((int *) row2->data)[i];
+//			fprintf(stderr, "%d ", zx);
+//		}
+//		fprintf(stderr, "\n");
+//	}
+	close(fd);
 	return (map);
 }
 

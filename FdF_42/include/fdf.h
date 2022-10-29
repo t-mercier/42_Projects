@@ -30,7 +30,7 @@
 # define BLUE 0x0000FFFF
 # define YELLOW 0xFFFF00FF
 # define OFFSET 50
-# define GRIDSIZE 20
+# define TILESIZE 50
 
 /*
 **		[ STRUCTURES ]
@@ -52,22 +52,19 @@ typedef struct s_draw {
 	int 		v1;
 } t_draw;
 
-typedef struct s_map {
+typedef struct s_point {
 	int			x0;
 	int 		y0;
 	int 		x1;
 	int 		y1;
 	int 		x2;
 	int 		y2;
-} t_map;
+} t_point;
 
 typedef struct	s_fdf {
 
 	mlx_image_t	*img;
 	mlx_t 		*mlx;
-	int 		x;
-	int 		y;
-	int 		z;
 	uint32_t	color;
 } t_fdf;
 
@@ -87,7 +84,7 @@ typedef struct	s_fdf {
 /* ---------------------------------
 **			2_trace.c
 */
-void isometric_conversion(int x, int y, int z, int *u, int *v);
+void conversion(int x, int y, int z, int *u, int *v);
 /* ---------------------------------
 **			3_algo.c
 */
@@ -105,6 +102,7 @@ void	size_map(t_fdf *map, char *line);
 void	background(mlx_t	*mlx);
 //void	drawline(t_init	*map);
 void exit_message(char *s, int code);
+void	projection(t_vector *map, t_fdf *m);
 
 //int		parse_map(char *argv[], t_map *map);
 //void	make_raster(t_draw *draw, t_map *map, t_br *br, mlx_image_t *g_img);
@@ -113,6 +111,6 @@ void exit_message(char *s, int code);
 //void	free_struct(t_map *map);
 //void	malloc_map(t_map *map, int x, int y);
 //char	**open_read_file(char **av);
-void line(mlx_image_t *img, t_draw *p, uint32_t color);
-
+//void line(mlx_image_t *img, t_draw *p, uint32_t color);
+void line(mlx_image_t *image, int x0, int y0, int x1, int y1, uint32_t color);
 #endif
