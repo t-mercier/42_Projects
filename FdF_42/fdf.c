@@ -103,17 +103,17 @@ void	projection(t_vector *map, t_fdf *m)
 	while (j < map->len)
 	{
 		i = 0;
-		t_vector *x_y0 = ((t_vector **)map->data)[j];
-		while (i < x_y0->len)
+		t_vector *row = ((t_vector **)map->data)[j];
+		while (i < row->len)
 		{
-			int cur = ((int *)x_y0->data)[i];
+			int cur = ((int *)row->data)[i];
 			ft_memset(&d, 0, sizeof(t_draw));
 			p.x0 = i * TILESIZE;
 			p.y0 = j * TILESIZE;
 			conversion(p.x0, p.y0, cur, &d.u0, &d.v0);
-			if (i + 1 < x_y0->len)
+			if (i + 1 < row->len)
 			{
-				int zx = ((int *)x_y0->data)[i + 1];
+				int zx = ((int *)row->data)[i + 1];
 				p.x1 = (i + 1) * TILESIZE;
 				p.y1 = j * TILESIZE;
 				conversion(p.x1, p.y1, zx, &d.u1, &d.v1);
@@ -122,11 +122,11 @@ void	projection(t_vector *map, t_fdf *m)
 			}
 			if (j + 1 < map->len)
 			{
-				t_vector *x_y1 = ((t_vector **)map->data)[j + 1];
-				int zy = ((int *)x_y1->data)[i];
+				t_vector *nrow = ((t_vector **)map->data)[j + 1];
+				int zy = ((int *)nrow->data)[i];
 				p.x2 = i * TILESIZE;
 				p.y2 = (j + 1) * TILESIZE;
-				conversion(p.x1, p.y1, zy, &d.u1, &d.v1);
+				conversion(p.x2, p.y2, zy, &d.u1, &d.v1);
 				line(m->img, d.u0 + OFFSET, d.v0 + OFFSET,
 					 d.u0 + OFFSET, d.v1 + OFFSET, BLUE);
 			}
