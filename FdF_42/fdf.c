@@ -126,7 +126,7 @@ void	projection(t_vector *map, t_fdf *m)
 				line(m->img, d.u0 + OFFSET, d.v0 + OFFSET,
 					 d.u0 + OFFSET, d.v1 + OFFSET, BLUE);
 			}
-			i++;
+			i += 2;
 		}
 		j++;
 	}
