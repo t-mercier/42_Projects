@@ -21,7 +21,7 @@
 # include <math.h>
 
 # define EXIT_FAILURE 1
-# define WIN_HEIGHT 720
+# define WIN_HEIGHT 1080
 # define WIN_WIDTH 1080
 # define GREEN 0x39BD00FF
 # define RED 0xFF0000FF
@@ -29,8 +29,18 @@
 # define BLACK 0x000000FF
 # define BLUE 0x0000FFFF
 # define YELLOW 0xFFFF00FF
-# define OFFSET 20
+
+#ifndef X_OFFSET
+# define X_OFFSET 30
+#endif
+
+#ifndef Y_OFFSET
+# define Y_OFFSET 30
+#endif
+
+#ifndef TILESIZE
 # define TILESIZE 50
+#endif
 
 /*
 **		[ STRUCTURES ]

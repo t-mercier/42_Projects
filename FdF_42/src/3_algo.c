@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
+
 
 int32_t	to_isometric_2d(double x, double y,double z, double *u, double*v)
 {

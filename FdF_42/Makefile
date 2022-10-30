@@ -33,7 +33,7 @@ CFLAGS = -g3 -fsanitize=address
 LIBFT		=	libs/libft.a
 LIBMLX		=	libs/libmlx42.a
 LIBS		=	$(LIBFT) $(LIBMLX)
-GLFW		=	-lglfw -framework Cocoa -framework OpenGL -framework IOKit
+GLFW		=	-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 
 ################### PROGRAM
 NAME 		=	fdf
