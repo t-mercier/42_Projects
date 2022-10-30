@@ -21,25 +21,36 @@
 # include <math.h>
 
 # define EXIT_FAILURE 1
-# define WIN_HEIGHT 1080
-# define WIN_WIDTH 1080
+//# define WIN_HEIGHT 2500
+//# define WIN_WIDTH 2500
 # define GREEN 0x39BD00FF
 # define RED 0xFF0000FF
 # define WHITE 0xFFFFFFFF
 # define BLACK 0x000000FF
 # define BLUE 0x0000FFFF
 # define YELLOW 0xFFFF00FF
+# define DEFAULT 0x00000000
+//#define WIDTH 700
+//#define HEIGHT 700
 
 #ifndef X_OFFSET
-# define X_OFFSET 30
+# define X_OFFSET 50
 #endif
 
 #ifndef Y_OFFSET
-# define Y_OFFSET 30
+# define Y_OFFSET 50
 #endif
 
-#ifndef TILESIZE
-# define TILESIZE 50
+#ifndef TILE_H
+# define TILE_H 50
+#endif
+
+#ifndef TILE_W
+# define TILE_W 50
+#endif
+
+#ifndef MAX_H
+# define MAX_H 80
 #endif
 
 /*
@@ -48,38 +59,70 @@
 **		linked list
 */
 
-
-typedef struct s_view
+typedef struct	s_pixel
 {
-	double	zoom;
-	float	z_divisor;
-	int		x_pos;
-	int		y_pos;
-}	t_view;
+	int			x;
+	int			y;
+	int			color;
+}				t_pixel;
 
-typedef struct s_draw {
-	int 		u0;
-	int 		v0;
-	int 		u1;
-	int 		v1;
-} t_draw;
-
-typedef struct s_point {
+typedef struct	s_point
+{
+	int			color;
+	int			h;
 	int			x0;
 	int 		y0;
 	int 		x1;
 	int 		y1;
 	int 		x2;
 	int 		y2;
-} t_point;
+}				t_point;
+
+typedef struct s_view
+{
+	double		zoom;
+	float		z_divisor;
+	int			x_pos;
+	int			y_pos;
+}				t_view;
+
+typedef struct 	s_draw {
+	int 		u0;
+	int 		v0;
+	int 		u1;
+	int 		v1;
+} 				t_draw;
+
+
+typedef struct	s_flag
+{
+	t_vector	pos;
+	int			proj;
+	int			zoom;
+	int			angle_mod;
+	int			height_mod;
+	int			exit_value;
+	bool		disp_helper;
+}				t_flag;
+
+typedef struct	s_disp
+{
+	int			colortheme;
+	int			bg_color;
+	int			text_color;
+	int			usage_color;
+	size_t		(*get_col)(size_t h);
+}				t_disp;
 
 typedef struct	s_fdf {
-
-	mlx_image_t	*img;
-	mlx_t 		*mlx;
-	t_view		view;
-	uint32_t	color;
-} t_fdf;
+				t_vector	*map;
+				t_flag		flag;
+				t_disp		disp;
+				mlx_image_t	*img;
+				mlx_t 		*mlx;
+				t_view		view;
+				uint32_t	color;
+} 				t_fdf;
 
 //void	view(t_fdf *grid, t_vector *map)
 //{

@@ -11,21 +11,68 @@
 /* ************************************************************************** */
 
 #include "include/fdf.h"
-#define WIDTH 1500
-#define HEIGHT 700
 
 
+//
+//void	init_fdf(t_fdf *fdf)
+//{
+//	fdf->mlx->width = 1200;
+//	fdf->mlx->height = 800;
+//	fdf->flag.height_mod = 4;
+//	fdf->flag.zoom = 11;
+//	fdf->flag.angle_mod = 30;
+//	fdf->flag.pos.x = fdf->mlx.win_size.x / 2;
+//	fdf->flag.pos.y = fdf->mlx.win_size.y / 2;
+//	get_next_colorcheme(&fdf->disp);
+//}
+
+//static void	move(t_fdf *fdf, int key)
+//{
+//	if (key == MLX_KEY_ESCAPE)
+//		mlx_close_window(mlx);
+//
+//}
+//
+//int			key_hook(int keycode, t_fdf *fdf)
+//{
+//	if (keycode == ESC_KEY)
+//		fdf_exit(fdf);
+//	move(fdf, keycode);
+//	draw_win(fdf);
+//	return (0);
+//}
+//
+//int			move_hook(int keycode, t_fdf *fdf)
+//{
+//	if (keycode == UP_KEY || keycode == W_KEY)
+//		fdf->flag.pos.y -= 20;
+//	if (keycode == DOWN_KEY || keycode == S_KEY)
+//		fdf->flag.pos.y += 20;
+//	if (keycode == LEFT_KEY || keycode == A_KEY)
+//		fdf->flag.pos.x -= 20;
+//	if (keycode == RIGHT_KEY || keycode == D_KEY)
+//		fdf->flag.pos.x += 20;
+//	if (keycode == CM_KEY || keycode == Q_KEY)
+//		fdf->flag.angle_mod += 3;
+//	if (keycode == PT_KEY || keycode == E_KEY)
+//		fdf->flag.angle_mod -= 3;
+//	draw_win(fdf);
+//	return (0);
+//}
 
 void conversion(int x, int y, int z, int *u, int *v)
 {
-	double a = 30;
-	double b = 120;
+	double a = 45;
+	double b = 180;
 
 
-	x += X_OFFSET;
-	y += Y_OFFSET;
 	*u = x * cos(a / 180) + y * cos((a + b) / 180) + z * cos((a - b) / 180);
 	*v = x * sin(a / 180) + y * sin((a + b) / 180) + z * sin((a - b) / 180);
+
+//	*u = (x - y) * cos(0.523598776);
+//	*v = (-z + y + x) * sin(0.523598776);
+	*u += X_OFFSET;
+	*v += Y_OFFSET;
 
 }
 
@@ -77,16 +124,16 @@ void	projection(t_vector *map, t_fdf *m)
 		{
 			int cur = ((int *)row->data)[i];
 			ft_memset(&d, 0, sizeof(t_draw));
-			p.x0 = i * TILESIZE;
-			p.y0 = j * TILESIZE;
-			cur *= TILESIZE / 4;
+			p.x0 = i * TILE_W;
+			p.y0 = j * TILE_H;
+			cur *= TILE_H / 4;
 			conversion(p.x0, p.y0, cur, &d.u0, &d.v0);
 			if (i < row->len)
 			{
 				int zx = ((int *)row->data)[i + 1];
-				p.x1 = (i + 1) * TILESIZE;
-				p.y1 = j * TILESIZE;
-				zx *= TILESIZE / 4;
+				p.x1 = (i + 1) * TILE_W;
+				p.y1 = j * TILE_H;
+				zx *= TILE_H / 4;
 				conversion(p.x1, p.y1, zx, &d.u1, &d.v1);
 				line(m->img, d.u0, d.v0, d.u1, d.v1, BLUE);
 			}
@@ -94,9 +141,9 @@ void	projection(t_vector *map, t_fdf *m)
 			{
 				t_vector *nrow = ((t_vector **)map->data)[j + 1];
 				int zy = ((int *)nrow->data)[i];
-				p.x1 = i * TILESIZE;
-				p.y1 = (j + 1) * TILESIZE;
-				zy *= TILESIZE / 4;
+				p.x1 = i * TILE_W;
+				p.y1 = (j + 1) * TILE_H;
+				zy *= TILE_H / 4;
 				conversion(p.x1, p.y1, zy, &d.u1, &d.v1);
 				line(m->img, d.u0, d.v0, d.u1, d.v1, BLUE);
 			}
@@ -124,11 +171,11 @@ int32_t	main(int ac, char **av)
 	if (fd < 0)
 		exit_message("ERROR [ Empty map ]\n", 1);
 	map = open_read_file(fd);
-	m.mlx = mlx_init(WIDTH, HEIGHT, "FDF", true);
+	m.mlx = mlx_init(2500, 1500, "FDF", true);
 	if (!m.mlx)
 		exit(EXIT_FAILURE);
-	m.img = mlx_new_image(m.mlx, WIDTH, HEIGHT);   // Creates a new image.
-	mlx_image_to_window(m.mlx, m.img, 0, 0);// Draw the image at coordinate (0, 0).
+	m.img = mlx_new_image(m.mlx, 2000, 1000);   // Creates a new image.
+	mlx_image_to_window(m.mlx, m.img,  700, 100);// Draw the image at coordinate (0, 0).
 	projection(map, &m);
 	mlx_key_hook(m.mlx, &my_keyhook, NULL);
 	mlx_loop(m.mlx);
