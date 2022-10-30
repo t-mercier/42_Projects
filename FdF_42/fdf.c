@@ -11,117 +11,196 @@
 /* ************************************************************************** */
 
 #include "include/fdf.h"
+#include "libs/include/libft.h"
 
-void	conversion(int x, int y, int z, int *_x, int *_y)
+static int _min(int a, int b)
 {
-	*_x = (x - y) * cos(0.523599);
-	*_y = -z + (x + y) * sin(0.523599);
+	if (a < b)
+		return (a);
+	else
+		return (b);
+}
+static int hexa_to_deci(char *hex)
+{
+	int y = 0;
+	int n = 0;
+	int x;
+	size_t len;
+
+	len = ft_strlen(hex) - 1;
+	while (len--)
+	{
+		if (*(hex + len) >= '0' && *(hex + len) <= '9')
+			x = *(hex + len) - '0';
+		else
+			x = *(hex + len) - 'A' + 10;
+		n = (int) (n + x * pow(16, y));
+	}
+	return n;
 }
 
-t_point	dimensions(t_point p, t_fdf *map)
+t_vector *open_read_file(int fd)
 {
-	p.x *= map->view.zoom;
-	p.y *= map->view.zoom;
-	p.z *= map->view.zoom / map->view.z_divisor;
-	p.x -= (map->x_max * map->view.zoom) / 2;
-	p.y -= (map->y_max * map->view.zoom) / 2;
-	conversion(&(p.x), &(p.y), p.z);
-	p.x += WIDTH / 2 + map->view.x_pos;
-	p.y += HEIGHT / 2 + map->view.y_pos;
-	return (p);
+	static char	**split;
+	char		*line;
+	int 		c;
+	int 		n;
+	t_vector	*map;
+	t_vector	*row;
+	t_vector	*color;
+	map = vector_init(sizeof(t_vector *));
+	while (1)
+	{
+		row = vector_init(sizeof(int));
+		color = vector_init(sizeof(int));
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		split = ft_split(line, ' ');
+		while (*split)
+		{
+			n = ft_atoi(*split++);
+			vector_append(row, &n);
+			if (ft_strchr(*split, 'x'))
+				c = hexa_to_deci(ft_strchr(*split, 'x') + 1);
+			else
+				c = WHITE;
+			vector_append(color, &c);
+			vector_append(row, &color);
+		}
+		vector_append(map, &row);
+		free(line);
+	}
+	close(fd);
+	return (map);
 }
 
-//void conversion(int x, int y, int z, int *u, int *v)
-//{
-//	double a = 30;
-//	double b = 180;
-//
-//
-//	*u = x * cos(a / 180) + y * cos((a + b) / 180) + z * cos((a - b) / 180);
-//	*v = x * sin(a / 180) + y * sin((a + b) / 180) + z * sin((a - b) / 180);
-//
-////	*u = (x - y) * cos(0.523598776);
-////	*v = (-z + y + x) * sin(0.523598776);
-//	*u += X_OFFSET;
-//	*v += Y_OFFSET;
-//
-//}
+void	set_camera(t_fdf *g, t_vector *y, t_vector *x)
+{
+	g->view.zoom = _min(WIDTH / x->len / 1.5, HEIGHT / y->len / 1.5);
+	g->view.z_axis = 10;
+}
 
+void	conversion(t_pixel *p, int z)
+{
+	int x;
+	int y;
 
-void line(mlx_image_t *image, int x0, int y0, int x1, int y1, uint32_t color) {
+	x = p->x;
+	y = p->y;
+	p->x = (x - y) * cos(0.523599);
+	p->y = -z + (x + y) * sin(0.523599);
+}
 
-	if (x0 > image->width || x1 > image->width || y0 > image->height ||
-		y1 > image->height)
+void trace(mlx_image_t *image, t_pixel p0, t_pixel p1, uint32_t color) {
+
+	if (p0.x > image->width || p1.x > image->width ||
+		p0.y > image->height || p1.y > image->height)
 		return;
-	int dx = abs(x1 - x0);
-	int sx = x0 < x1 ? 1 : -1;
-	int dy = -abs(y1 - y0);
-	int sy = y0 < y1 ? 1 : -1;
+	int dx = abs(p1.x - p0.x);
+	int sx = p0.x < p1.x ? 1 : -1;
+	int dy = -abs(p1.y - p0.y);
+	int sy = p0.y < p1.y ? 1 : -1;
 	int error = dx + dy;
 
 	while (1) {
-		mlx_put_pixel(image, abs(x0), abs(y0), color);
-		if (x0 == x1 && y0 == y1)
+		mlx_put_pixel(image, abs(p0.x), abs(p0.y), color);
+		if (p0.x == p1.x && p0.y == p1.y)
 			break;
 		int e2 = 2 * error;
 		if (e2 >= dy) {
-			if (x0 == x1)
+			if (p0.x == p1.x)
 				break;
 			error += dy;
-			x0 += sx;
+			p0.x += sx;
 		}
 		if (e2 <= dx) {
-			if (y0 == y1)
+			if (p0.y == p1.y)
 				break;
 			error += dx;
-			y0 += sy;
+			p0.y += sy;
 		}
 	}
 }
 
+t_pixel	line(t_pixel p, t_fdf *g, t_vector *x, t_vector *y)
+{
+	p.x *= (int)g->view.zoom;
+	p.y *= (int)g->view.zoom;
+	p.z *= (int)(g->view.zoom / g->view.z_axis);
+	p.x -= (int)(((double)x->len * g->view.zoom) / 2);
+	p.y -= (int)(((double)y->len * g->view.zoom) / 2);
+	conversion(&p, p.z);
+	p.x += WIDTH / 2 + g->view.x;
+	p.y += HEIGHT / 2 + g->view.y;
+	return (p);
+}
+
 void	projection(t_vector *map, t_fdf *m)
 {
-	t_draw	d;
-	t_point	p;
+	t_pixel	p0;
+	t_pixel	p1;
+	t_pixel	p2;
 	int		j;
 	int		i;
 
 	j = 0;
+	ft_memset(&p0, 0, sizeof(t_pixel));
+	ft_memset(&p1, 0, sizeof(t_pixel));
 	while (j < map->len)
 	{
 		i = 0;
 		t_vector *row = ((t_vector **)map->data)[j];
+		t_vector *color = ((t_vector **)row->data)[i];
 		while (i < row->len)
 		{
-			int cur = ((int *)row->data)[i];
-			ft_memset(&d, 0, sizeof(t_draw));
-			p.x0 = i * TILE_W;
-			p.y0 = j * TILE_H;
-			cur *= TILE_H / 4;
-			conversion(p.x0, p.y0, cur, &d._x0, &d._y0);
+			p0.z = ((int *)row->data)[i];
 			if (i < row->len)
 			{
-				int zx = ((int *)row->data)[i + 1];
-				p.x1 = (i + 1) * TILE_W;
-				p.y1 = j * TILE_H;
-				zx *= TILE_H / 4;
-				conversion(p.x1, p.y1, zx, &d._x1, &d._y1);
-				line(m->img, d._x0, d._y0, d._x1, d._y1, BLUE);
+				p1.x = i + 1;
+				p1.y = j;
+				p1.z = ((int *)row->data)[i + 1];
+				p1.c = ((int *)color->data)[i + 1];
+				trace(m->img, line(p0, m, map, row),
+					 line(p1, m, map, row), p1.c);
 			}
 			if (j < map->len - 1)
 			{
-				t_vector *nrow = ((t_vector **)map->data)[j + 1];
-				int zy = ((int *)nrow->data)[i];
-				p.x1 = i * TILE_W;
-				p.y1 = (j + 1) * TILE_H;
-				zy *= TILE_H / 4;
-				conversion(p.x1, p.y1, zy, &d._x1, &d._y1);
-				line(m->img, d._x0, d._y0, d._x1, d._y1, BLUE);
+				p2.x = i;
+				p2.y = j + 1;
+				t_vector *nr = ((t_vector **)map->data)[j + 1];
+				t_vector *nc = ((t_vector **)nr->data)[j + 1];
+				p2.z = ((int *)nr->data)[i];
+				p2.c = ((int *)nc->data)[i];
+				trace(m->img, line(p0, m, map, row),
+					 line(p2, m, map, row), p2.c);
 			}
 			i++;
 		}
 		j++;
 	}
+}
+
+void error(void)
+{
+	char    *s;
+
+	s = ft_strdup(mlx_strerror(mlx_errno));
+	ft_putendl_fd(s, STDERR_FILENO);
+	exit(EXIT_FAILURE);
+}
+
+void exit_message(char *s, int code)
+{
+	ft_putendl_fd(s, STDERR_FILENO);
+	exit(code);
+}
+
+void	ft_key_hook(mlx_key_data_t keydata, void* param)
+{
+	(void) param;
+	if (keydata.key == MLX_KEY_Q && keydata.action == MLX_PRESS)
+		exit(EXIT_SUCCESS);
 }
 
 int32_t	main(int ac, char **av)
@@ -146,11 +225,10 @@ int32_t	main(int ac, char **av)
 	if (!m.mlx)
 		exit(EXIT_FAILURE);
 	m.img = mlx_new_image(m.mlx, 2000, 1000);   // Creates a new image.
-	mlx_image_to_window(m.mlx, m.img,  700, 100);// Draw the image at coordinate (0, 0).
+	mlx_image_to_window(m.mlx, m.img,  700, 100); // Draw the image at coordinate (0, 0).
 	projection(map, &m);
-	mlx_key_hook(m.mlx, &my_keyhook, NULL);
+	mlx_key_hook(m.mlx, &ft_key_hook, NULL);
 	mlx_loop(m.mlx);
-//	mlx_key_hook(mlx, key_hook, mlx);
 //	mlx_delete_image(mlx, img); // Once the application request an exit, cleanup
 	mlx_terminate(m.mlx);
 	return (EXIT_SUCCESS);

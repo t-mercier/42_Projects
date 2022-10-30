@@ -30,8 +30,8 @@
 # define BLUE 0x0000FFFF
 # define YELLOW 0xFFFF00FF
 # define DEFAULT 0x00000000
-//#define WIDTH 700
-//#define HEIGHT 700
+#define WIDTH 700
+#define HEIGHT 700
 
 #ifndef X_OFFSET
 # define X_OFFSET 50
@@ -59,69 +59,36 @@
 **		linked list
 */
 
+//typedef struct	s_pixel
+//{
+//	int			h;
+//	int			x;
+//	int			y;
+//	int 		z;
+//	int			color;
+//}				t_pixel;
+
 typedef struct	s_pixel
 {
-	int			x;
-	int			y;
-	int			color;
+	int 		x;
+	int 		y;
+	int 		z;
+	int 		c; // color
 }				t_pixel;
-
-typedef struct	s_point
-{
-	int			color;
-	int			h;
-	int			x0;
-	int 		y0;
-	int 		x1;
-	int 		y1;
-	int 		x2;
-	int 		y2;
-}				t_point;
 
 typedef struct s_view
 {
 	double		zoom;
-	float		z_divisor;
-	int			x_pos;
-	int			y_pos;
+	float		z_axis;
+	int			x;
+	int			y;
 }				t_view;
 
-typedef struct 	s_draw {
-	int 		u0;
-	int 		v0;
-	int 		u1;
-	int 		v1;
-} 				t_draw;
-
-
-typedef struct	s_flag
-{
-	t_vector	pos;
-	int			proj;
-	int			zoom;
-	int			angle_mod;
-	int			height_mod;
-	int			exit_value;
-	bool		disp_helper;
-}				t_flag;
-
-typedef struct	s_disp
-{
-	int			colortheme;
-	int			bg_color;
-	int			text_color;
-	int			usage_color;
-	size_t		(*get_col)(size_t h);
-}				t_disp;
-
 typedef struct	s_fdf {
-				t_vector	*map;
-				t_flag		flag;
-				t_disp		disp;
+				t_vector	*vec;
 				mlx_image_t	*img;
 				mlx_t 		*mlx;
 				t_view		view;
-				uint32_t	color;
 } 				t_fdf;
 
 //void	view(t_fdf *grid, t_vector *map)
@@ -146,12 +113,16 @@ typedef struct	s_fdf {
 **			2_trace.c
 */
 //void conversion(int *x, int *y, int z);
-void conversion(int x, int y, int z, int *u, int *v);
+//void conversion(int x, int y, int z, int *u, int *v);
+void	conversion(t_pixel *p, int z);
+t_pixel	tracer(t_pixel p, t_fdf *grid, t_vector *row, t_vector *map);
+void trace(mlx_image_t *image, t_pixel p0, t_pixel p1, uint32_t color);
+
 /* ---------------------------------
 **			3_algo.c
 */
 void	error(void);
-void	my_keyhook(mlx_key_data_t keydata, void* param);
+void	ft_key_hook(mlx_key_data_t keydata, void* param);
 /* ---------------------------------
 **			4_utils.c
 */
@@ -174,5 +145,5 @@ void	projection(t_vector *map, t_fdf *m);
 //void	malloc_map(t_map *map, int x, int y);
 //char	**open_read_file(char **av);
 //void line(mlx_image_t *img, t_draw *p, uint32_t color);
-void line(mlx_image_t *image, int x0, int y0, int x1, int y1, uint32_t color);
+//void line(mlx_image_t *image, int x0, int y0, int x1, int y1, uint32_t color);
 #endif

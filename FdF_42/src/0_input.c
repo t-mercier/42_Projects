@@ -12,30 +12,9 @@
 
 #include "../include/fdf.h"
 
-t_vector *open_read_file(int fd)
-{
-	static char	**split;
-	char		*line;
-	t_vector	*map;
-	t_vector	*row;
-	int 		n;
-	map = vector_init(sizeof(t_vector *));
-	while (1)
-	{
-		row = vector_init(sizeof(int));
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		split = ft_split(line, ' ');
-		while (*split)
-		{
-			n = ft_atoi(*split++);
-			vector_append(row, &n);
-		}
-		vector_append(map, &row);
-		free(line);
-//		free(split);
-	}
+
+
+
 //	for (int j = 0; j < map->len; j++)
 //	{
 //		t_vector *row2 = ((t_vector **) map->data)[j];
@@ -46,7 +25,4 @@ t_vector *open_read_file(int fd)
 //		}
 //		fprintf(stderr, "\n");
 //	}
-	close(fd);
-	return (map);
-}
 
