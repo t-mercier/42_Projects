@@ -18,8 +18,8 @@
 
 void conversion(int x, int y, int z, int *u, int *v)
 {
-	double a = 15;
-	double b = 60;
+	double a = 30;
+	double b = 120;
 
 
 	x += X_OFFSET;
@@ -79,14 +79,14 @@ void	projection(t_vector *map, t_fdf *m)
 			ft_memset(&d, 0, sizeof(t_draw));
 			p.x0 = i * TILESIZE;
 			p.y0 = j * TILESIZE;
-//			cur *= TILESIZE / 3;
+			cur *= TILESIZE / 4;
 			conversion(p.x0, p.y0, cur, &d.u0, &d.v0);
 			if (i < row->len)
 			{
 				int zx = ((int *)row->data)[i + 1];
 				p.x1 = (i + 1) * TILESIZE;
 				p.y1 = j * TILESIZE;
-//				zx *= TILESIZE / 3;
+				zx *= TILESIZE / 4;
 				conversion(p.x1, p.y1, zx, &d.u1, &d.v1);
 				line(m->img, d.u0, d.v0, d.u1, d.v1, BLUE);
 			}
@@ -96,7 +96,7 @@ void	projection(t_vector *map, t_fdf *m)
 				int zy = ((int *)nrow->data)[i];
 				p.x1 = i * TILESIZE;
 				p.y1 = (j + 1) * TILESIZE;
-//				zy *= TILESIZE / 3;
+				zy *= TILESIZE / 4;
 				conversion(p.x1, p.y1, zy, &d.u1, &d.v1);
 				line(m->img, d.u0, d.v0, d.u1, d.v1, BLUE);
 			}
