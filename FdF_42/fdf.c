@@ -62,7 +62,7 @@
 
 void conversion(int x, int y, int z, int *u, int *v)
 {
-	double a = 45;
+	double a = 30;
 	double b = 180;
 
 
