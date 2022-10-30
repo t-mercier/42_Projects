@@ -30,8 +30,8 @@
 # define BLUE 0x0000FFFF
 # define YELLOW 0xFFFF00FF
 # define DEFAULT 0x00000000
-//#define WIDTH 700
-//#define HEIGHT 700
+#define WIDTH 700
+#define HEIGHT 700
 
 #ifndef X_OFFSET
 # define X_OFFSET 50
@@ -68,14 +68,11 @@ typedef struct	s_pixel
 
 typedef struct	s_point
 {
-	int			color;
 	int			h;
 	int			x0;
 	int 		y0;
 	int 		x1;
 	int 		y1;
-	int 		x2;
-	int 		y2;
 }				t_point;
 
 typedef struct s_view
@@ -87,10 +84,10 @@ typedef struct s_view
 }				t_view;
 
 typedef struct 	s_draw {
-	int 		u0;
-	int 		v0;
-	int 		u1;
-	int 		v1;
+	int 		_x0;
+	int 		_y0;
+	int 		_x1;
+	int 		_y1;
 } 				t_draw;
 
 
