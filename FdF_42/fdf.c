@@ -12,69 +12,40 @@
 
 #include "include/fdf.h"
 
-
-//
-//void	init_fdf(t_fdf *fdf)
-//{
-//	fdf->mlx->width = 1200;
-//	fdf->mlx->height = 800;
-//	fdf->flag.height_mod = 4;
-//	fdf->flag.zoom = 11;
-//	fdf->flag.angle_mod = 30;
-//	fdf->flag.pos.x = fdf->mlx.win_size.x / 2;
-//	fdf->flag.pos.y = fdf->mlx.win_size.y / 2;
-//	get_next_colorcheme(&fdf->disp);
-//}
-
-//static void	move(t_fdf *fdf, int key)
-//{
-//	if (key == MLX_KEY_ESCAPE)
-//		mlx_close_window(mlx);
-//
-//}
-//
-//int			key_hook(int keycode, t_fdf *fdf)
-//{
-//	if (keycode == ESC_KEY)
-//		fdf_exit(fdf);
-//	move(fdf, keycode);
-//	draw_win(fdf);
-//	return (0);
-//}
-//
-//int			move_hook(int keycode, t_fdf *fdf)
-//{
-//	if (keycode == UP_KEY || keycode == W_KEY)
-//		fdf->flag.pos.y -= 20;
-//	if (keycode == DOWN_KEY || keycode == S_KEY)
-//		fdf->flag.pos.y += 20;
-//	if (keycode == LEFT_KEY || keycode == A_KEY)
-//		fdf->flag.pos.x -= 20;
-//	if (keycode == RIGHT_KEY || keycode == D_KEY)
-//		fdf->flag.pos.x += 20;
-//	if (keycode == CM_KEY || keycode == Q_KEY)
-//		fdf->flag.angle_mod += 3;
-//	if (keycode == PT_KEY || keycode == E_KEY)
-//		fdf->flag.angle_mod -= 3;
-//	draw_win(fdf);
-//	return (0);
-//}
-
-void conversion(int x, int y, int z, int *u, int *v)
+void	conversion(int x, int y, int z, int *_x, int *_y)
 {
-	double a = 30;
-	double b = 180;
-
-
-	*u = x * cos(a / 180) + y * cos((a + b) / 180) + z * cos((a - b) / 180);
-	*v = x * sin(a / 180) + y * sin((a + b) / 180) + z * sin((a - b) / 180);
-
-//	*u = (x - y) * cos(0.523598776);
-//	*v = (-z + y + x) * sin(0.523598776);
-	*u += X_OFFSET;
-	*v += Y_OFFSET;
-
+	*_x = (x - y) * cos(0.523599);
+	*_y = -z + (x + y) * sin(0.523599);
 }
+
+t_point	dimensions(t_point p, t_fdf *map)
+{
+	p.x *= map->view.zoom;
+	p.y *= map->view.zoom;
+	p.z *= map->view.zoom / map->view.z_divisor;
+	p.x -= (map->x_max * map->view.zoom) / 2;
+	p.y -= (map->y_max * map->view.zoom) / 2;
+	conversion(&(p.x), &(p.y), p.z);
+	p.x += WIDTH / 2 + map->view.x_pos;
+	p.y += HEIGHT / 2 + map->view.y_pos;
+	return (p);
+}
+
+//void conversion(int x, int y, int z, int *u, int *v)
+//{
+//	double a = 30;
+//	double b = 180;
+//
+//
+//	*u = x * cos(a / 180) + y * cos((a + b) / 180) + z * cos((a - b) / 180);
+//	*v = x * sin(a / 180) + y * sin((a + b) / 180) + z * sin((a - b) / 180);
+//
+////	*u = (x - y) * cos(0.523598776);
+////	*v = (-z + y + x) * sin(0.523598776);
+//	*u += X_OFFSET;
+//	*v += Y_OFFSET;
+//
+//}
 
 
 void line(mlx_image_t *image, int x0, int y0, int x1, int y1, uint32_t color) {
@@ -127,15 +98,15 @@ void	projection(t_vector *map, t_fdf *m)
 			p.x0 = i * TILE_W;
 			p.y0 = j * TILE_H;
 			cur *= TILE_H / 4;
-			conversion(p.x0, p.y0, cur, &d.u0, &d.v0);
+			conversion(p.x0, p.y0, cur, &d._x0, &d._y0);
 			if (i < row->len)
 			{
 				int zx = ((int *)row->data)[i + 1];
 				p.x1 = (i + 1) * TILE_W;
 				p.y1 = j * TILE_H;
 				zx *= TILE_H / 4;
-				conversion(p.x1, p.y1, zx, &d.u1, &d.v1);
-				line(m->img, d.u0, d.v0, d.u1, d.v1, BLUE);
+				conversion(p.x1, p.y1, zx, &d._x1, &d._y1);
+				line(m->img, d._x0, d._y0, d._x1, d._y1, BLUE);
 			}
 			if (j < map->len - 1)
 			{
@@ -144,8 +115,8 @@ void	projection(t_vector *map, t_fdf *m)
 				p.x1 = i * TILE_W;
 				p.y1 = (j + 1) * TILE_H;
 				zy *= TILE_H / 4;
-				conversion(p.x1, p.y1, zy, &d.u1, &d.v1);
-				line(m->img, d.u0, d.v0, d.u1, d.v1, BLUE);
+				conversion(p.x1, p.y1, zy, &d._x1, &d._y1);
+				line(m->img, d._x0, d._y0, d._x1, d._y1, BLUE);
 			}
 			i++;
 		}
