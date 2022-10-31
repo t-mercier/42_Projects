@@ -13,9 +13,22 @@
 #include "../include/fdf.h"
 
 
-int32_t	to_isometric_2d(double x, double y,double z, double *u, double*v)
+void	set_camera(t_fdf *g, t_vector *y, t_vector *x)
 {
-	*u = (x - z) / sqrt(2);
-	*v = (x + 2 * y + z) / sqrt(6);
-	return 0;
+	g->view.zoom = _min(WIDTH / x->len / 1.5, HEIGHT / y->len / 1.5);
+	g->view.z_axis = 10;
+}
+
+
+void	ft_key_hook(mlx_key_data_t keydata, void* param)
+{
+	(void) param;
+	if (keydata.key == MLX_KEY_Q && keydata.action == MLX_PRESS)
+		exit(EXIT_SUCCESS);
+}
+
+void ft_hook(void* param)
+{
+	const mlx_t* mlx = param;
+	printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
 }

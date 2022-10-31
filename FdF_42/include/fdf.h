@@ -59,21 +59,18 @@
 **		linked list
 */
 
+typedef struct s_data
+{
+	int			c;
+	int			z;
+} 				t_data;
+
 typedef struct	s_pixel
 {
 	int			x;
 	int			y;
-	int			color;
+	int 		z;
 }				t_pixel;
-
-typedef struct	s_point
-{
-	int			h;
-	int			x0;
-	int 		y0;
-	int 		x1;
-	int 		y1;
-}				t_point;
 
 typedef struct s_view
 {
@@ -90,31 +87,8 @@ typedef struct 	s_draw {
 	int 		_y1;
 } 				t_draw;
 
-
-typedef struct	s_flag
-{
-	t_vector	pos;
-	int			proj;
-	int			zoom;
-	int			angle_mod;
-	int			height_mod;
-	int			exit_value;
-	bool		disp_helper;
-}				t_flag;
-
-typedef struct	s_disp
-{
-	int			colortheme;
-	int			bg_color;
-	int			text_color;
-	int			usage_color;
-	size_t		(*get_col)(size_t h);
-}				t_disp;
-
 typedef struct	s_fdf {
 				t_vector	*map;
-				t_flag		flag;
-				t_disp		disp;
 				mlx_image_t	*img;
 				mlx_t 		*mlx;
 				t_view		view;

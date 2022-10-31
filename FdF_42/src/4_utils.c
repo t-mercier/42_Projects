@@ -12,11 +12,7 @@
 
 #include "../include/fdf.h"
 
-void ft_hook(void* param)
-{
-	const mlx_t* mlx = param;
-	printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
-}
+
 
 void	*check_malloc(void	*ptr)
 {
@@ -26,28 +22,6 @@ void	*check_malloc(void	*ptr)
 	return 0;
 }
 
-//void	my_keyhook(mlx_key_data_t keydata, void* param)
-//{
-//	(void) param;
-//	if (keydata.key == MLX_KEY_Q && keydata.action == MLX_PRESS)
-//		exit(EXIT_SUCCESS);
-//}
-//
-//
-//void error(void)
-//{
-//	char    *s;
-//
-//	s = ft_strdup(mlx_strerror(mlx_errno));
-//	ft_putendl_fd(s, STDERR_FILENO);
-//	exit(EXIT_FAILURE);
-//}
-//
-//void exit_message(char *s, int code)
-//{
-//	ft_putendl_fd(s, STDERR_FILENO);
-//	exit(code);
-//}
 
 void exit_success_message(char *s)
 {
@@ -55,7 +29,18 @@ void exit_success_message(char *s)
 	exit(EXIT_SUCCESS);
 }
 
-int get_rgba(int r, int g, int b, int a)
+
+void error(void)
 {
-	return (r << 24 | g << 16 | b << 8 | a);
+	char    *s;
+
+	s = ft_strdup(mlx_strerror(mlx_errno));
+	ft_putendl_fd(s, STDERR_FILENO);
+	exit(EXIT_FAILURE);
+}
+
+void exit_message(char *s, int code)
+{
+	ft_putendl_fd(s, STDERR_FILENO);
+	exit(code);
 }

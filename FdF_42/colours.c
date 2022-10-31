@@ -40,3 +40,8 @@ int get_a(int rgba)
 	// Move 0 bytes to the right and mask out the first byte.
 	return (rgba & 0xFF);
 }
+
+int get_rgba(int r, int g, int b, int a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
+}
