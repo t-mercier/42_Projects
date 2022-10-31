@@ -32,7 +32,7 @@ int32_t	main(int ac, char **av)
 	if (fd < 0)
 		exit_message("ERROR [ Empty map ]\n", 1);
 	map = open_read_file(fd);
-	m.mlx = mlx_init(2500, 1500, "FDF", true);
+	m.mlx = mlx_init(2000, 1000, "FDF", true);
 	if (!m.mlx)
 		exit(EXIT_FAILURE);
 	m.img = mlx_new_image(m.mlx, 2000, 1000);   // Creates a new image.

@@ -13,6 +13,14 @@
 #include "../include/fdf.h"
 
 
+static bool _min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	else
+		return (b);
+}
+
 void	set_camera(t_fdf *g, t_vector *y, t_vector *x)
 {
 	g->view.zoom = _min(WIDTH / x->len / 1.5, HEIGHT / y->len / 1.5);

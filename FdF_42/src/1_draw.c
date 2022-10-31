@@ -29,18 +29,21 @@ int32_t	to_isometric_2d(double x, double y,double z, double *u, double*v)
 }
 
 
-void	conversion(t_pixel *p, int z)
+void	convert(t_pixel p, t_draw *d, int z)
 {
-	int x;
-	int y;
+	double a = 115;
+	double b = 320;
+	int x = p.x;
+	int y = p.y;
 
-	x = p->x;
-	y = p->y;
-	p->x = (x - y) * cos(0.523599);
-	p->y = -z + (x + y) * sin(0.523599);
+	x *= TILE_W;
+	y *= TILE_H;
+	d->x = x * cos(a / 180) + y * cos((a + b) / 180) + z * cos((a - b) / 180);
+	d->y = x * sin(a / 180) + y * sin((a + b) / 180) + z * sin((a - b) / 180);
+
 }
 
-void trace(mlx_image_t *image, t_pixel p0, t_pixel p1, uint32_t color) {
+void trace(mlx_image_t *image, t_draw p0, t_draw p1, uint32_t color) {
 
 	if (p0.x > image->width || p1.x > image->width ||
 		p0.y > image->height || p1.y > image->height)
@@ -71,16 +74,18 @@ void trace(mlx_image_t *image, t_pixel p0, t_pixel p1, uint32_t color) {
 	}
 }
 
-t_pixel	line(t_pixel p, t_fdf *g, t_vector *x, t_vector *y)
+t_pixel	iso(t_pixel p, t_fdf *g, t_vector *map, t_vector *row)
 {
-	p.x *= (int)g->view.zoom;
-	p.y *= (int)g->view.zoom;
-	p.z *= (int)(g->view.zoom / g->view.z_axis);
-	p.x -= (int)(((double)x->len * g->view.zoom) / 2);
-	p.y -= (int)(((double)y->len * g->view.zoom) / 2);
-	conversion(&p, p.z);
-	p.x += WIDTH / 2 + g->view.x;
-	p.y += HEIGHT / 2 + g->view.y;
+//	p.x *= (int)g->view.zoom;
+//	p.y *= (int)g->view.zoom;
+//	p.z.p *= (int)(g->view.zoom / g->view.z_axis);
+//	p.x -= (int)(((double)row->len * g->view.zoom) / 2);
+//	p.y -= (int)(((double)map->len * g->view.zoom) / 2);
+//	convert(&p, p.z.p);
+//	p.x += WIDTH / 2 + g->view.x;
+//	p.y += HEIGHT / 2 + g->view.y;
+
+
 	return (p);
 }
 
@@ -89,9 +94,11 @@ void	projection(t_vector *map, t_fdf *m)
 {
 	t_pixel	p0;
 	t_pixel	p1;
-	t_pixel	p2;
+	t_draw	d0;
+	t_draw	d1;
 	int		j;
 	int		i;
+	int 	color;
 
 	j = 0;
 	ft_memset(&p0, 0, sizeof(t_pixel));
@@ -99,30 +106,39 @@ void	projection(t_vector *map, t_fdf *m)
 	while (j < map->len)
 	{
 		i = 0;
+		ft_memset(&d0, 0, sizeof(t_draw));
+		ft_memset(&d1, 0, sizeof(t_draw));
 		t_vector *row = ((t_vector **)map->data)[j];
-		t_vector *color = ((t_vector **)row->data)[i];
 		while (i < row->len)
 		{
-			p0.z = ((int *)row->data)[i];
-			if (i < row->len)
+			p0.x = i;
+			p0.y = j;
+			p0.z = ((t_data *)row->data)[i];
+			convert(p0, &d0, p0.z.p);
+			d0.x += X_OFFSET;
+			d0.y += Y_OFFSET;
+			if (i + 1 < row->len)
 			{
 				p1.x = i + 1;
 				p1.y = j;
-				p1.z = ((int *)row->data)[i + 1];
-				p1.c = ((int *)color->data)[i + 1];
-				trace(m->img, line(p0, m, map, row),
-					  line(p1, m, map, row), p1.c);
+				p1.z = ((t_data *)row->data)[i + 1];
+				color = p1.z.c;
+				convert(p1, &d1, p1.z.p);
+				d1.x += X_OFFSET;
+				d1.y += Y_OFFSET;
+				trace(m->img, d0, d1, color);
 			}
-			if (j < map->len - 1)
+			if (j + 1 < map->len)
 			{
-				p2.x = i;
-				p2.y = j + 1;
+				p1.x = i;
+				p1.y = j + 1;
 				t_vector *nr = ((t_vector **)map->data)[j + 1];
-				t_vector *nc = ((t_vector **)nr->data)[j + 1];
-				p2.z = ((int *)nr->data)[i];
-				p2.c = ((int *)nc->data)[i];
-				trace(m->img, line(p0, m, map, row),
-					  line(p2, m, map, row), p2.c);
+				p1.z = ((t_data *)nr->data)[i];
+				convert(p1, &d1, p1.z.p);
+				color = p1.z.c;
+				d1.x += X_OFFSET;
+				d1.y += Y_OFFSET;
+				trace(m->img, d0, d1, color);
 			}
 			i++;
 		}

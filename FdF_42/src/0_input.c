@@ -46,7 +46,6 @@ t_vector *open_read_file(int fd)
 	t_data 		z;
 	t_vector	*map;
 	t_vector	*row;
-	t_vector	*color;
 	map = vector_init(sizeof(t_vector *));
 	while (1)
 	{

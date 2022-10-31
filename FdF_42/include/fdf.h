@@ -34,11 +34,11 @@
 #define HEIGHT 700
 
 #ifndef X_OFFSET
-# define X_OFFSET 50
+# define X_OFFSET 20
 #endif
 
 #ifndef Y_OFFSET
-# define Y_OFFSET 50
+# define Y_OFFSET 20
 #endif
 
 #ifndef TILE_H
@@ -59,33 +59,30 @@
 **		linked list
 */
 
-typedef struct s_data
-{
-	int			c;
-	int			z;
-} 				t_data;
 
-typedef struct	s_pixel
-{
-	int			x;
-	int			y;
-	int 		z;
+typedef struct	s_data {
+				int	c;
+				int	p;
+}				t_data;
+
+typedef struct	s_draw {
+				int	x;
+				int	y;
+}				t_draw;
+
+typedef struct	s_pixel {
+				int		x;
+				int		y;
+				t_data	z;
 }				t_pixel;
 
 typedef struct s_view
 {
 	double		zoom;
-	float		z_divisor;
-	int			x_pos;
-	int			y_pos;
+	float		z_axis;
+	int			x;
+	int			y;
 }				t_view;
-
-typedef struct 	s_draw {
-	int 		_x0;
-	int 		_y0;
-	int 		_x1;
-	int 		_y1;
-} 				t_draw;
 
 typedef struct	s_fdf {
 				t_vector	*map;
@@ -117,12 +114,18 @@ typedef struct	s_fdf {
 **			2_trace.c
 */
 //void conversion(int *x, int *y, int z);
-void conversion(int x, int y, int z, int *u, int *v);
+void	projection(t_vector *map, t_fdf *m);
+void trace(mlx_image_t *image, t_draw p0, t_draw p1, uint32_t color);
+void	convert(t_pixel p, t_draw *d, int z);
+t_pixel	iso(t_pixel p, t_fdf *g, t_vector *x, t_vector *y);
+
+
+
 /* ---------------------------------
 **			3_algo.c
 */
 void	error(void);
-void	my_keyhook(mlx_key_data_t keydata, void* param);
+void	ft_key_hook(mlx_key_data_t keydata, void* param);
 /* ---------------------------------
 **			4_utils.c
 */
@@ -134,8 +137,7 @@ int		process_file(const char *file);
 void	size_map(t_fdf *map, char *line);
 void	background(mlx_t	*mlx);
 //void	drawline(t_init	*map);
-void exit_message(char *s, int code);
-void	projection(t_vector *map, t_fdf *m);
+void	exit_message(char *s, int code);
 
 //int		parse_map(char *argv[], t_map *map);
 //void	make_raster(t_draw *draw, t_map *map, t_br *br, mlx_image_t *g_img);
@@ -145,5 +147,4 @@ void	projection(t_vector *map, t_fdf *m);
 //void	malloc_map(t_map *map, int x, int y);
 //char	**open_read_file(char **av);
 //void line(mlx_image_t *img, t_draw *p, uint32_t color);
-void line(mlx_image_t *image, int x0, int y0, int x1, int y1, uint32_t color);
 #endif
