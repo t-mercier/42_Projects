@@ -18,18 +18,6 @@ void	conversion(int x, int y, int z, int *_x, int *_y)
 	*_y = -z + (x + y) * sin(0.523599);
 }
 
-t_point	dimensions(t_point p, t_fdf *map)
-{
-	p.x *= map->view.zoom;
-	p.y *= map->view.zoom;
-	p.z *= map->view.zoom / map->view.z_divisor;
-	p.x -= (map->x_max * map->view.zoom) / 2;
-	p.y -= (map->y_max * map->view.zoom) / 2;
-	conversion(&(p.x), &(p.y), p.z);
-	p.x += WIDTH / 2 + map->view.x_pos;
-	p.y += HEIGHT / 2 + map->view.y_pos;
-	return (p);
-}
 
 //void conversion(int x, int y, int z, int *u, int *v)
 //{
