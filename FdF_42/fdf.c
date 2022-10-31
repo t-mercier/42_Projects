@@ -44,31 +44,29 @@ t_vector *open_read_file(int fd)
 	static char	**split;
 	char		*line;
 	int 		c;
-	int 		n;
+	t_data 		z;
 	t_vector	*map;
 	t_vector	*row;
 	t_vector	*color;
 	map = vector_init(sizeof(t_vector *));
 	while (1)
 	{
-		row = vector_init(sizeof(int));
-		color = vector_init(sizeof(int));
+		row = vector_init(sizeof(t_data));
 		line = get_next_line(fd);
 		if (!line)
 			break ;
 		split = ft_split(line, ' ');
 		while (*split)
 		{
-			n = ft_atoi(*split++);
+			z.p = ft_atoi(*split++);
 			vector_append(row, &n);
 			if (ft_strchr(*split, 'x'))
-				c = hexa_to_deci(ft_strchr(*split, 'x') + 1);
+				z.c = hexa_to_deci(ft_strchr(*split, 'x') + 1);
 			else
-				c = WHITE;
-			vector_append(color, &c);
-			vector_append(row, &color);
+				z.c = WHITE;
+			row->color = c;
 		}
-		vector_append(map, &row);
+		vector_append(map, &row, c);
 		free(line);
 	}
 	close(fd);
