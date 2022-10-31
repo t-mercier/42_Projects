@@ -31,15 +31,15 @@ int32_t	to_isometric_2d(double x, double y,double z, double *u, double*v)
 
 void	convert(t_pixel p, t_draw *d, int z)
 {
-	double a = 115;
-	double b = 320;
+	double a = 90;
 	int x = p.x;
 	int y = p.y;
 
 	x *= TILE_W;
 	y *= TILE_H;
-	d->x = x * cos(a / 180) + y * cos((a + b) / 180) + z * cos((a - b) / 180);
-	d->y = x * sin(a / 180) + y * sin((a + b) / 180) + z * sin((a - b) / 180);
+	d->x = x * cos(a) + y * cos(a + 120) + z * cos(a - 120)
+	d->y = x * sin(a) + y * sin(a + 120) + z * sin(a - 120)
+
 
 }
 
