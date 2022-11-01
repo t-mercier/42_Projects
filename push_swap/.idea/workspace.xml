@@ -29,15 +29,12 @@
   <component name="ChangeListManager">
     <list default="true" id="75edb32e-1838-43c5-b86e-ee377a94008a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../FdF_42/fdf.c" beforeDir="false" afterPath="$PROJECT_DIR$/../FdF_42/fdf.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FdF_42/include/fdf.h" beforeDir="false" afterPath="$PROJECT_DIR$/../FdF_42/include/fdf.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FdF_42/libs/include/MLX42/MLX42/MLX42.h" beforeDir="false" afterPath="$PROJECT_DIR$/../FdF_42/libs/include/MLX42/MLX42/MLX42.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FdF_42/libs/include/MLX42/MLX42/MLX42_Input.h" beforeDir="false" afterPath="$PROJECT_DIR$/../FdF_42/libs/include/MLX42/MLX42/MLX42_Input.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FdF_42/libs/include/libft.h" beforeDir="false" afterPath="$PROJECT_DIR$/../FdF_42/libs/include/libft.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FdF_42/libs/libft/ft_atol.c" beforeDir="false" afterPath="$PROJECT_DIR$/../FdF_42/libs/libft/ft_atol.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FdF_42/src/0_input.c" beforeDir="false" afterPath="$PROJECT_DIR$/../FdF_42/src/0_input.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FdF_42/src/1_draw.c" beforeDir="false" afterPath="$PROJECT_DIR$/../FdF_42/src/1_draw.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FdF_42/src/2_view.c" beforeDir="false" afterPath="$PROJECT_DIR$/../FdF_42/src/2_view.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FdF_42/src/4_utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/../FdF_42/src/4_utils.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +187,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667315772646</updated>
-      <workItem from="1667315776856" duration="79000" />
+      <workItem from="1667315776856" duration="471000" />
     </task>
     <servers />
   </component>
