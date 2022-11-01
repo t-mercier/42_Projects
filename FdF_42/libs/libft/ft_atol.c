@@ -35,3 +35,24 @@ long	ft_atol(const char *str)
 	}
 	return (res * sign);
 }
+
+int	hexa_to_deci(char *hex)
+{
+    int		y;
+    int		n;
+    int		x;
+    size_t	len;
+
+    y = 0;
+    n = 0;
+    len = ft_strlen(hex) - 1;
+    while (len--)
+    {
+        if (*(hex + len) >= '0' && *(hex + len) <= '9')
+            x = *(hex + len) - '0';
+        else
+            x = *(hex + len) - 'A' + 10;
+        n = (int)(n + x * pow(16, y));
+    }
+    return (n);
+}

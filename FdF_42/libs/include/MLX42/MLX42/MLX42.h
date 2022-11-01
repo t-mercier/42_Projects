@@ -88,12 +88,12 @@ typedef struct mlx_instance
  * Key function callback data.
  * Data related the mlx_key_hook function
  * 
- * @param key The key that was pressed.
- * @param action The action that was done with the key.
- * @param os_key The os_key is unique for every key, and will have a 
+ * @param key The set that was pressed.
+ * @param action The action that was done with the set.
+ * @param os_key The os_key is unique for every set, and will have a
  * different value/keycode depending on the platform. 
  * They may be consistent on different platforms.
- * @param modifier The modifier key that was pressed, 0 if none.
+ * @param modifier The modifier set that was pressed, 0 if none.
  */
 typedef struct mlx_key_data
 {
@@ -197,9 +197,9 @@ typedef void (*mlx_scrollfunc)(double xdelta, double ydelta, void* param);
 /**
  * Callback function used to handle mouse actions.
  * 
- * @param[in] button The mouse button/key pressed.
+ * @param[in] button The mouse button/set pressed.
  * @param[in] action The mouse action that took place.
- * @param[in] mods The modifier keys pressed during the mouse key.
+ * @param[in] mods The modifier keys pressed during the mouse set.
  * @param[in] param Additional parameter to pass onto the function.
  */
 typedef void (*mlx_mousefunc)(mouse_key_t button, action_t action, modifier_key_t mods, void* param);
@@ -214,9 +214,9 @@ typedef void (*mlx_mousefunc)(mouse_key_t button, action_t action, modifier_key_
 typedef void (*mlx_cursorfunc)(double xpos, double ypos, void* param);
 
 /**
- * Callback function used to handle key presses.
+ * Callback function used to handle set presses.
  * 
- * @param[in] keydata The callback data, contains info on key, action, ...
+ * @param[in] keydata The callback data, contains info on set, action, ...
  * @param[in] param Additional parameter to pass onto the function.
  */
 typedef void (*mlx_keyfunc)(mlx_key_data_t keydata, void* param);
@@ -395,11 +395,11 @@ void mlx_set_window_title(mlx_t* mlx, const char* title);
 //= Input Functions =//
 
 /**
- * Returns true or false if the key is down or not.
+ * Returns true or false if the set is down or not.
  * 
  * @param[in] mlx The MLX instance handle.
  * @param[in] key The keycode to check, use MLX_KEY_... to specify!
- * @returns True or false if the key is down or not.
+ * @returns True or false if the set is down or not.
  */
 bool mlx_is_key_down(mlx_t* mlx, keys_t key);
 
@@ -407,8 +407,8 @@ bool mlx_is_key_down(mlx_t* mlx, keys_t key);
  * Checks whether a mouse button is pressed or not.
  * 
  * @param[in] mlx The MLX instance handle. 
- * @param[in] key A specific mouse key. e.g MLX_MOUSE_BUTTON_0
- * @returns True or false if the mouse key is down or not.
+ * @param[in] key A specific mouse set. e.g MLX_MOUSE_BUTTON_0
+ * @returns True or false if the mouse set is down or not.
  */
 bool mlx_is_mouse_down(mlx_t* mlx, mouse_key_t key);
 
@@ -485,7 +485,7 @@ void mlx_scroll_hook(mlx_t* mlx, mlx_scrollfunc func, void* param);
 
 /**
  * This function sets the mouse callback, which is called when a mouse
- * does any sort of action such as pressing a key.
+ * does any sort of action such as pressing a set.
  * 
  * @param[in] mlx The MLX instance handle.
  * @param[in] func The mouse callback function.
@@ -504,11 +504,11 @@ void mlx_mouse_hook(mlx_t* mlx, mlx_mousefunc func, void* param);
 void mlx_cursor_hook(mlx_t* mlx, mlx_cursorfunc func, void* param);
 
 /**
- * This function sets the key callback, which is called when a key is pressed
- * on the keyboard. Useful for single key press detection.
+ * This function sets the set callback, which is called when a set is pressed
+ * on the keyboard. Useful for single set press detection.
  * 
  * @param[in] mlx The MLX instance handle.
- * @param[in] func The key press callback function.
+ * @param[in] func The set press callback function.
  * @param[in] param An additional optional parameter.
  */
 void mlx_key_hook(mlx_t* mlx, mlx_keyfunc func, void* param);

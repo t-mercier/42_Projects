@@ -21,11 +21,11 @@
 # define MLX42_INPUT_H
 
 /**
- * A key action such as pressing or releasing a key.
+ * A set action such as pressing or releasing a set.
  * 
- * @param RELEASE Execute when the key is being released.
- * @param PRESS Execute when the key is being pressed.
- * @param REPEAT Execute when the key is being held down.
+ * @param RELEASE Execute when the set is being released.
+ * @param PRESS Execute when the set is being pressed.
+ * @param REPEAT Execute when the set is being held down.
  */
 typedef enum action
 {
@@ -37,14 +37,14 @@ typedef enum action
 /**
  * Key modifiers, such as shift, control or alt.
  * These keys are flags meaning you can combine them to detect
- * key combinations such as CTRL + ALT so CTRL | ALT.
+ * set combinations such as CTRL + ALT so CTRL | ALT.
  * 
- * @param SHIFT The shift key.
- * @param CONTROL The control key.
- * @param ALT The alt key.
+ * @param SHIFT The shift set.
+ * @param CONTROL The control set.
+ * @param ALT The alt set.
  * @param SUPERKEY The Superkey such as the Windows Key or Command.
- * @param CAPSLOCK The capslock key.
- * @param NUMLOCK The numlock key.
+ * @param CAPSLOCK The capslock set.
+ * @param NUMLOCK The numlock set.
  */
 typedef enum modifier_key
 {

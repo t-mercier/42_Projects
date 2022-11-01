@@ -12,7 +12,6 @@
 
 #include "../include/fdf.h"
 
-
 void	background(mlx_t	*mlx)
 {
 	mlx = mlx_init(256, 256, "MLX42", true);
@@ -20,25 +19,23 @@ void	background(mlx_t	*mlx)
 		exit(EXIT_FAILURE);
 }
 
-
-int32_t	to_isometric_2d(double x, double y,double z, double *u, double*v)
-{
-	*u = (x - z) / sqrt(2);
-	*v = (x + 2 * y + z) / sqrt(6);
-	return 0;
-}
-
-
 void	convert(t_pixel p, t_draw *d, int z)
 {
-	double a = 90;
-	int x = p.x;
-	int y = p.y;
 
-	x *= TILE_W;
-	y *= TILE_H;
-	d->x = x * cos(a) + y * cos(a + 120) + z * cos(a - 120)
-	d->y = x * sin(a) + y * sin(a + 120) + z * sin(a - 120)
+    float cz = cos(rad(roll));
+    float cy = cos(rad(pitch));
+    float cx = cos(rad(yaw));
+    float sz = sin(rad(roll));
+    float sy = sin(rad(pitch));
+    float sx = sin(rad(yaw));
+    float dx = cy * (sz * y + cz * x) - sy * z;
+    float dy = sx * (cy * z + sy * (sz * y + cz * x)) + cx * (cz * y - sz * x);
+    float dz = cx * (cy * z + sy * (sz * y + cz * x)) - sx * (cz * y - sz * x);
+
+    // *u = dx / dz;
+    // *v = dy / dz;
+    *u = (dx - dz) / sqrt(2);
+    *v = (x + 2 * y + z) / sqrt(6);
 
 
 }
@@ -73,22 +70,6 @@ void trace(mlx_image_t *image, t_draw p0, t_draw p1, uint32_t color) {
 		}
 	}
 }
-
-t_pixel	iso(t_pixel p, t_fdf *g, t_vector *map, t_vector *row)
-{
-//	p.x *= (int)g->view.zoom;
-//	p.y *= (int)g->view.zoom;
-//	p.z.p *= (int)(g->view.zoom / g->view.z_axis);
-//	p.x -= (int)(((double)row->len * g->view.zoom) / 2);
-//	p.y -= (int)(((double)map->len * g->view.zoom) / 2);
-//	convert(&p, p.z.p);
-//	p.x += WIDTH / 2 + g->view.x;
-//	p.y += HEIGHT / 2 + g->view.y;
-
-
-	return (p);
-}
-
 
 void	projection(t_vector *map, t_fdf *m)
 {

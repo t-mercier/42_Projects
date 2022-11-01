@@ -35,12 +35,11 @@ int32_t	main(int ac, char **av)
 	m.mlx = mlx_init(2000, 1000, "FDF", true);
 	if (!m.mlx)
 		exit(EXIT_FAILURE);
-	m.img = mlx_new_image(m.mlx, 2000, 1000);   // Creates a new image.
-	mlx_image_to_window(m.mlx, m.img,  700, 100); // Draw the image at coordinate (0, 0).
+	m.img = mlx_new_image(m.mlx, 2000, 1000);
+	mlx_image_to_window(m.mlx, m.img,  700, 100);
 	projection(map, &m);
 	mlx_key_hook(m.mlx, &ft_key_hook, NULL);
 	mlx_loop(m.mlx);
-//	mlx_delete_image(mlx, img); // Once the application request an exit, cleanup
 	mlx_terminate(m.mlx);
 	return (EXIT_SUCCESS);
 }

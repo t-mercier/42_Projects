@@ -13,6 +13,20 @@
 #include "../include/fdf.h"
 
 
+void ft_scrollhook(double dx, double dy, void* param)
+{
+    // Simple up or down detection.
+    if (dy > 0)
+        puts("Up!");
+    else if (dy < 0)
+        puts("Down!");
+
+    // Can also detect a mousewheel that go along the X (e.g: MX Master 3)
+    if (dx < 0)
+        puts("Sliiiide to the left!");
+    else if (dx > 0)
+        puts("Sliiiide to the right!");
+}
 
 void	*check_malloc(void	*ptr)
 {
@@ -22,15 +36,13 @@ void	*check_malloc(void	*ptr)
 	return 0;
 }
 
-
-void exit_success_message(char *s)
+void    exit_success_message(char *s)
 {
 	ft_putendl_fd(s, STDERR_FILENO);
 	exit(EXIT_SUCCESS);
 }
 
-
-void error(void)
+void    error(void)
 {
 	char    *s;
 
@@ -39,7 +51,7 @@ void error(void)
 	exit(EXIT_FAILURE);
 }
 
-void exit_message(char *s, int code)
+void    exit_message(char *s, int code)
 {
 	ft_putendl_fd(s, STDERR_FILENO);
 	exit(code);
