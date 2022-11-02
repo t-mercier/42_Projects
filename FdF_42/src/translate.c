@@ -43,3 +43,5 @@ void	rotate(t_fdf *fdf, t_pixel p)
 	rotate_y(&p, fdf->set.angle);
 	rotate_z(&p, fdf->set.angle);
 }
+
+// https://en.wikipedia.org/wiki/Rotation_matrix
