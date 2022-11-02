@@ -12,32 +12,28 @@
 
 #include "../include/fdf.h"
 
-void	background(mlx_t	*mlx)
+
+void	scale(t_pixel *p)
 {
-	mlx = mlx_init(256, 256, "MLX42", true);
-	if (!mlx)
-		exit(EXIT_FAILURE);
+	p->t.z = p->x + X_OFFSET;
+	p->t.y = p->y + Y_OFFSET;
+	p->t.x = p->z.p + Z_OFFSET;
 }
 
-void	convert(t_pixel p, t_draw *d, int z)
+void	convert(t_pixel p, t_draw *d, t_view *a, int z)
 {
 
-    float cz = cos(rad(roll));
-    float cy = cos(rad(pitch));
-    float cx = cos(rad(yaw));
-    float sz = sin(rad(roll));
-    float sy = sin(rad(pitch));
-    float sx = sin(rad(yaw));
-    float dx = cy * (sz * y + cz * x) - sy * z;
-    float dy = sx * (cy * z + sy * (sz * y + cz * x)) + cx * (cz * y - sz * x);
-    float dz = cx * (cy * z + sy * (sz * y + cz * x)) - sx * (cz * y - sz * x);
-
-    // *u = dx / dz;
-    // *v = dy / dz;
-    *u = (dx - dz) / sqrt(2);
-    *v = (x + 2 * y + z) / sqrt(6);
-
-
+	float cz = cos(rad(a->roll));
+	float cy = cos(rad(a->pitch));
+	float cx = cos(rad(a->yaw));
+	float sz = sin(rad(a->roll));
+	float sy = sin(rad(a->pitch));
+	float sx = sin(rad(a->yaw));
+	float dx = cy * (sz * p.y + cz * p.x) - sy * z;
+	float dy = sx * (cy * z + sy * (sz * p.y + cz * p.x)) + cx * (cz * p.y - sz * p.x);
+	float dz = cx * (cy * z + sy * (sz * p.y + cz * p.x)) - sx * (cz * p.y - sz * p.x);
+	d->x = dx * cos(α) + dy * cos(α + 120) + dz * cos(α - 120);
+	d->y = dx * sin(α) + dy * sin(α + 120) + d * sin(α - 120);
 }
 
 void trace(mlx_image_t *image, t_draw p0, t_draw p1, uint32_t color) {

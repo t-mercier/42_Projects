@@ -64,16 +64,16 @@ typedef struct xpm
 
 /**
  * An image instance can be summarized as just a simple
- * x, y & z coordinate.
+ * x, y & data coordinate.
  * 
  * Coordinates start from the top left of the screen at 0,0 and increase
  * towards the bottom right.
  * 
- * NOTE: To change the z value, use mlx_set_instance_depth!
+ * NOTE: To change the data value, use mlx_set_instance_depth!
  * 
  * @param x The x location.
  * @param y The y location.
- * @param z The z depth, controls if the image is on the fore or background.
+ * @param z The data depth, controls if the image is on the fore or background.
  * @param enabled If true, the instance is drawn else its not.
  */
 typedef struct mlx_instance

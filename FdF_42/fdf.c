@@ -51,7 +51,7 @@ int32_t	main(int ac, char **av)
 //		while (i.x0 < row->len)
 //		{
 //			int zx = ((int *) row->data)[i.x0];
-//			fprintf(stderr, "z[y%d][x%d] %d ", i.y0, i.x0, zx);
+//			fprintf(stderr, "data[y%d][x%d] %d ", i.y0, i.x0, zx);
 //			i.x0++;
 //		}
 //		fprintf(stderr, "\n");
