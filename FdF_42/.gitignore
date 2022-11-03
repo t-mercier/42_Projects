@@ -1,15 +1,15 @@
 # Prerequisites
-*.d
+*.o
 
 # Object files
-*.o
+*.i
 *.ko
 *.obj
 *.elf
 
 # Linker output
 *.ilk
-*.map
+*.grid
 *.exp
 
 # Precompiled Headers

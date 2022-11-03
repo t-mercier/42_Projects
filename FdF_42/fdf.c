@@ -16,55 +16,55 @@
 
 int32_t	main(int ac, char **av)
 {
-	t_vector	*map;
-	t_vector	*row;
-	t_fdf		m;
+//	t_vector	*map;
+//	t_vector	*row;
+	t_fdf		fdf;
 	int			fd;
 
 	if (ac != 2)
 		exit(EXIT_FAILURE);
 	if (ft_strlen(av[1]) - 4 <= 0)
 		error();
-	ft_memset(&m.mlx, 0, sizeof(mlx_t *));
-	ft_memset(&map, 0, sizeof(struct s_vector *));
-	ft_memset(&row, 0, sizeof(struct s_vector *));
+	ft_memset(&fdf, 0, sizeof(struct s_fdf *));
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
-		exit_message("ERROR [ Empty map ]\n", 1);
-	map = open_read_file(fd);
-	m.mlx = mlx_init(2000, 1000, "FDF", true);
-	if (!m.mlx)
+		exit_message("ERROR [ Empty grid ]\n", 1);
+	fdf.map.grid = open_read_file(fd);
+	fdf.mlx = mlx_init(2000, 1000, "FDF", true);
+	if (!fdf.mlx)
 		exit(EXIT_FAILURE);
-	m.img = mlx_new_image(m.mlx, 2000, 1000);
-	mlx_image_to_window(m.mlx, m.img,  700, 100);
-	projection(map, &m);
-	mlx_key_hook(m.mlx, &ft_key_hook, NULL);
-	mlx_loop(m.mlx);
-	mlx_terminate(m.mlx);
+	fdf.img = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);
+	mlx_image_to_window(fdf.mlx, fdf.img, 0, 0);
+	fdf.set = *calibration(&fdf);
+	draw_map(&fdf);
+	mlx_key_hook(fdf.mlx, &control_hook, &fdf);
+	mlx_loop_hook(fdf.mlx, &control_loop_hook, &fdf);
+	mlx_loop(fdf.mlx);
+	mlx_terminate(fdf.mlx);
 	return (EXIT_SUCCESS);
 }
 
-//	while (i.y0 < map->len)
+//	while (i.y0 < grid->len)
 //	{
-//		row = ((t_vector **) map->data)[i.y0];
-//		fprintf(stderr, "row y%d \n", i.y0);
+//		row = ((t_vector **) grid->item)[i.y0];
+//		fprintf(stderr, "row y%o \n", i.y0);
 //		while (i.x0 < row->len)
 //		{
-//			int zx = ((int *) row->data)[i.x0];
-//			fprintf(stderr, "data[y%d][x%d] %d ", i.y0, i.x0, zx);
+//			int zx = ((int *) row->item)[i.x0];
+//			fprintf(stderr, "item[y%o][x%o] %o ", i.y0, i.x0, zx);
 //			i.x0++;
 //		}
 //		fprintf(stderr, "\n");
 //		i.y0++;
 //	}
 
-//	for (int j = 0; j < map->len; j++)
+//	for (int j = 0; j < grid->len; j++)
 //	{
-//		t_vector *row2 = ((t_vector **) map->data)[j];
+//		t_vector *row2 = ((t_vector **) grid->item)[j];
 //		for (int i = 0; i < row2->len; i++)
 //		{
-//			int zx = ((int *) row2->data)[i];
-//			fprintf(stderr, "%d ", zx);
+//			int zx = ((int *) row2->item)[i];
+//			fprintf(stderr, "%o ", zx);
 //		}
 //		fprintf(stderr, "\n");
 //	}

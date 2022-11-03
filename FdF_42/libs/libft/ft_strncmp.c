@@ -14,7 +14,7 @@
  * not more than n characters of the null-terminated
  * strings s1 and s2.
  * Because strncmp() is designed for comparing strings
- * rather than binary data, characters that appear after
+ * rather than binary item, characters that appear after
  * a `\0' character are not compared.
  * Returns an integer greater than, equal to, or less than 0,
  * according as the string s1 is greater than, equal to,

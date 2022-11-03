@@ -37,7 +37,7 @@
  */
 
 typedef struct s_vector {
-	void	*data;
+	void	*item;
 	size_t	buff;
 	size_t	len;
 	size_t	esz;

@@ -12,8 +12,9 @@
 
 #include "../include/fdf.h"
 
-void	*check_malloc(void	*ptr)
+void	*ft_malloc(void	*ptr, ssize_t esz)
 {
+	ptr = malloc(esz);
 	if (ptr != NULL)
 		return (ptr);
 	perror(NULL);
@@ -33,4 +34,11 @@ void    exit_message(char *s, int code)
 {
 	ft_putendl_fd(s, STDERR_FILENO);
 	exit(code);
+}
+
+bool _min(int a, int b)
+{
+	if (a < b)
+		return a;
+	return b;
 }
