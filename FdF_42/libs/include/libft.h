@@ -57,7 +57,7 @@ long	ft_strtol(char const *str);
 int		ft_atoi(char const *str);
 long	ft_atol(char const *str);
 void	ft_itoa(long n, int radix, char *buff);
-int     hexa_to_deci(char *hex);
+int     ft_hexa_to_deci(char *hex);
 
 /*
 **		int(char) check

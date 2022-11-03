@@ -12,33 +12,32 @@
 
 #include "../include/fdf.h"
 
-t_vector	*open_read_file(int fd)
+t_map 	*open_read_file(t_fdf *fdf, int fd)
 {
     static char	**split;
     char		*line;
-	t_fdf		fdf;
 
-    fdf.map.grid = vector_init(sizeof(t_vector *));
+    fdf->map->grid = vector_init(sizeof(t_vector *));
     while (1)
     {
-        fdf.map.row = vector_init(sizeof(t_data));
+        fdf->map->row = vector_init(sizeof(t_data));
         line = get_next_line(fd);
         if (!line)
             break ;
         split = ft_split(line, ' ');
         while (*split)
         {
-			fdf.map.p.data.z = ft_atoi(*split++);
+			fdf->map->p.data.z = ft_atoi(*split++);
             if (ft_strchr(*split, 'x'))
-				fdf.map.p.data.color = hexa_to_deci(ft_strchr(*split, 'x') + 1);
+				fdf->map->p.data.color = ft_hexa_to_deci(ft_strchr(*split, 'x') + 1);
             else
-				fdf.map.p.data.color = WHITE;
-            vector_append(fdf.map.row, &fdf.map.p.data);
+				fdf->map->p.data.color = WHITE;
+            vector_append(fdf->map->row, &fdf->map->p.data);
         }
-        vector_append(fdf.map.grid, &fdf.map.row);
+        vector_append(fdf->map->grid, &fdf->map->row);
         free(line);
     }
     close(fd);
-    return (fdf.map.grid);
+    return (fdf->map);
 }
 

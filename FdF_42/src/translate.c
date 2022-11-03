@@ -56,12 +56,12 @@ void	rotate(t_pixel *p, double angle)
 
 void		projection(t_xyz *p, t_fdf *fdf)
 {
-	fdf->map.p.x = p->x * fdf->set.zoom;
-	fdf->map.p.y = p->y * fdf->set.zoom;
-	fdf->map.p.z = p->z * fdf->set.zoom / fdf->set.z_divisor;
-	fdf->map.p.x = p->x - (fdf->map.row->len * fdf->set.zoom) / 2;
-	fdf->map.p.y = p->y - (fdf->map.grid->len * fdf->set.zoom) / 2;
-	rotate(&fdf->map.p, fdf->set.angle);
+	fdf->map->p.x = p->x * fdf->set.zoom;
+	fdf->map->p.y = p->y * fdf->set.zoom;
+	fdf->map->p.z = p->z * fdf->set.zoom / fdf->set.z_divisor;
+	fdf->map->p.x = p->x - (fdf->map->row->len * fdf->set.zoom) / 2;
+	fdf->map->p.y = p->y - (fdf->map->grid->len * fdf->set.zoom) / 2;
+	rotate(&fdf->map->p, fdf->set.angle);
 	isometry(p);
 	scale(fdf);
 }
@@ -77,11 +77,11 @@ void	draw_map(t_fdf *fdf)
 
 	j = 0;
 	ft_memset(&p, 0, sizeof(t_pixel));
-	while (j < fdf->map.grid->len)
+	while (j < fdf->map->grid->len)
 	{
 		i = 0;
-		map.row = ((t_vector **)fdf->map.grid->item)[j];
-		while (i < fdf->map.row->len)
+		map.row = ((t_vector **)fdf->map->grid->item)[j];
+		while (i < fdf->map->row->len)
 		{
 			p.data = ((t_data *)map.row->item)[i];
 			p._0.x = i;
@@ -101,7 +101,7 @@ void	draw_map(t_fdf *fdf)
 			}
 			if (j + 1 < map.grid->len)
 			{
-				map.row = ((t_vector **)fdf->map.grid->item)[j + 1];
+				map.row = ((t_vector **)fdf->map->grid->item)[j + 1];
 				p.data = ((t_data *)map.row->item)[i];
 				p._2.x = i;
 				p._2.y = j + 1;

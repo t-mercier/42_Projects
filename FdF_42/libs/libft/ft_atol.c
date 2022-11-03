@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../include/libft.h"
+#include "math.h"
+
 static int	isdigit(int c)
 {
 	return (c > 47 && c < 58);
@@ -36,7 +39,7 @@ long	ft_atol(const char *str)
 	return (res * sign);
 }
 
-int	hexa_to_deci(char *hex)
+int	ft_hexa_to_deci(char *hex)
 {
     int		y;
     int		n;

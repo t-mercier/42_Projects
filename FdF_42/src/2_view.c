@@ -15,21 +15,18 @@
 
 void	scale(t_fdf *fdf)
 {
-	fdf->map.p.x += (fdf->map.row->len - fdf->map.grid->len) * TILE_WIDTH / 2  + fdf->set.x_offset;
-	fdf->map.p.y += (fdf->map.row->len + fdf->map.grid->len) * TILE_HEIGHT / 2  + fdf->set.y_offset;
+	fdf->map->p.x += (fdf->map->row->len - fdf->map->grid->len) * TILE_WIDTH / 2  + fdf->set.x_offset;
+	fdf->map->p.y += (fdf->map->row->len + fdf->map->grid->len) * TILE_HEIGHT / 2  + fdf->set.y_offset;
 }
 
-t_set	*calibration(t_fdf *fdf)
+void	calibration(t_fdf *fdf)
 {
-	t_set	*settings;
-
-	ft_malloc(&settings, sizeof(t_set));
-	settings->zoom = _min(WIDTH / fdf->map.row->len / 2, HEIGHT / fdf->map.grid->len / 2);
-	settings->angle = 0;
-	settings->z_divisor = 1;
-	settings->x_offset = 0;
-	settings->y_offset = 0;
-	return (settings);
+	ft_malloc(&fdf->set, sizeof(t_set));
+	fdf->set.zoom = _min(WIDTH / fdf->map->row->len / 2, HEIGHT / fdf->map->grid->len / 2);
+	fdf->set.angle = 0;
+	fdf->set.z_divisor = 1;
+	fdf->set.x_offset = 0;
+	fdf->set.y_offset = 0;
 }
 
 void	control_offset(t_fdf *fdf)
@@ -66,7 +63,7 @@ void    control_rotation(t_fdf *fdf)
     if ((fdf->press.key == MLX_KEY_LEFT_CONTROL || fdf->press.key == MLX_KEY_RIGHT_CONTROL)
 	&& fdf->press.key == MLX_KEY_DOWN)
 		fdf->set.angle -= 0.04;
-	rotate(&fdf->map.p, fdf->set.angle);
+	rotate(&fdf->map->p, fdf->set.angle);
 }
 
 void	control_hook(t_fdf *fdf)

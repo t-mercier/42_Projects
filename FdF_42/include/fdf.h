@@ -104,7 +104,7 @@ typedef struct s_fdf
 {
 	t_set				set;
 	mlx_key_data_t		press;
-	t_map				map;
+	t_map				*map;
 	mlx_image_t			*img;
 	mlx_t				*mlx;
 }						t_fdf;
@@ -119,12 +119,12 @@ static inline double	rad(double degree_to_radian)
 }
 
 void 	isometry(t_xyz *p);
-t_vector	*open_read_file(int fd);
+t_map	*open_read_file(t_fdf *fdf, int fd);
 void	rotate(t_pixel *p, double angle);
 void	draw_map(t_fdf *fdf);
 void	projection(t_xyz *p, t_fdf *fdf);
 void 	trace(mlx_image_t *image, t_xyz _0, t_xyz _1, int color);
-t_set	*calibration(t_fdf *fdf);
+void	calibration(t_fdf *fdf);
 void	scale(t_fdf *fdf);
 void	control_hook(t_fdf *fdf);
 void	control_loop_hook(t_fdf *fdf);
@@ -136,7 +136,6 @@ void	error(void);
 /* ---------------------------------
 **			4_utils.c
 */
-t_vector	*open_read_file(int fd);
 void	*ft_malloc(void	*ptr, ssize_t esz);
 void	exit_message(char *s, int code);
 
