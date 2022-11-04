@@ -41,6 +41,22 @@ void		projection(t_xyz *p, t_fdf *fdf)
 	isometry(p, fdf);
 }
 
+//void conversion(int x, int y, int z, int *u, int *v)
+//{
+//	double a = 30;
+//	double b = 180;
+//
+//
+//	*u = x * cos(a / 180) + y * cos((a + b) / 180) + z * cos((a - b) / 180);
+//	*v = x * sin(a / 180) + y * sin((a + b) / 180) + z * sin((a - b) / 180);
+//
+//	*u = (x - y) * cos(0.523598776);
+//	*v = (-z + y + x) * sin(0.523598776);
+//	*u += X_OFFSET;
+//	*v += Y_OFFSET;
+//
+//}
+
 void	draw_map(t_fdf *fdf)
 {
 	int			i;
