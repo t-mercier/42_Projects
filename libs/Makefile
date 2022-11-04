@@ -65,7 +65,7 @@ NAME 			=	libft.a
 
 ################### DIRECTORIES
 OBJDIR 			= 	obj
-SRCDIR			=	. ft_printf
+SRCDIR			=	libft linkedlist
 HDRDIR			=	inc
 
 ################### INCLUDES
@@ -74,7 +74,8 @@ INCLUDES		= 	-Iinclude/
 ################### COMPILER
 CC				=	gcc
 
-CFLAGS			=	-Werror -Wall -Wextra -g3
+CFLAGS			=	-g3 -fsanitize=address
+#CFLAGS			=	-Werror -Wall -Wextra -g3 -fsanitize=address
 
 ################### AUTO
 SRC 			=	$(shell find $(SRCDIR) -name "*.c")
@@ -91,7 +92,7 @@ $(NAME): $(OBJ)
 
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(@D)
-	@$(CC) -c $(CYAN) $(INCLUDES)  $< -o $@
+	@$(CC) -c $(CYAN) $(CFLAGS) $(INCLUDES)  $< -o $@
 	@echo "\033[96m	$@\033[0m"
 
 
@@ -99,7 +100,6 @@ $(OBJDIR)/%.o: %.c
 ################### CLEAN
 clean:
 	@if [ -d "$(OBJDIR)" ]; then rm -r $(OBJDIR); fi
-	@rm -rf *.o
 
 fclean: clean
 	@rm -rf $(NAME)

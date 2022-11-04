@@ -23,9 +23,9 @@
 # define EXIT_FAILURE 1
 # define WHITE 0xFFFFFFFF
 
-// Map dimensions
-# define HEIGHT			1080
-# define WIDTH			1920
+// Map settings
+# define HEIGHT			1000
+# define WIDTH			1500
 # define TILE_WIDTH		128
 # define TILE_HEIGHT	64
 
