@@ -1,5 +1,5 @@
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
 
 //t_point	*create_points(int32_t x, int32_t y, int32_t z)

@@ -10,16 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
-
-void	*ft_malloc(void	*ptr, ssize_t esz)
-{
-	ptr = malloc(esz);
-	if (ptr != NULL)
-		return (ptr);
-	perror(NULL);
-	return 0;
-}
+#include "fdf.h"
 
 void    error(void)
 {
@@ -34,11 +25,4 @@ void    exit_message(char *s, int code)
 {
 	ft_putendl_fd(s, STDERR_FILENO);
 	exit(code);
-}
-
-bool _min(int a, int b)
-{
-	if (a < b)
-		return a;
-	return b;
 }

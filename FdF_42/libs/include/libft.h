@@ -21,6 +21,7 @@
 # include <errno.h>
 # include <math.h>
 # include <limits.h>
+# include <stdio.h>
 
 # define EXIT_FAILURE    1
 

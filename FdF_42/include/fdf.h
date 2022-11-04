@@ -26,8 +26,7 @@
 // Map settings
 # define HEIGHT			1000
 # define WIDTH			1500
-# define TILE_WIDTH		128
-# define TILE_HEIGHT	64
+# define TILE_SIZE		50
 
 /*
 **		[ STRUCTURES ]
@@ -46,9 +45,7 @@ typedef struct s_xyz
 	int					x;
 	int					y;
 	int					z;
-	size_t				color;
-	t_data				data;
-	double 				angle;
+	int 				color;
 } t_xyz;
 
 typedef struct s_axis
@@ -67,8 +64,8 @@ typedef struct s_set
 	int 				zoom;
 	double				angle;
 	float				z_divisor;
-	float				x_offset;
-	float				y_offset;
+	int				x_offset;
+	int				y_offset;
 }						t_set;
 
 typedef struct s_rotate
@@ -93,18 +90,29 @@ typedef struct s_pixel
 	t_xyz	 			i; // isometry
 }						t_pixel;
 
-typedef struct	s_map
+typedef struct s_map
 {
-	t_pixel 			p;
-	t_vector			*grid;
-	t_vector			*row;
+	int 				zoom;
+	double				angle;
+	float				z_divisor;
+	int				x_offset;
+	int				y_offset;
+	size_t				height;
+	size_t				width;
+	t_pixel 		p;
 }t_map;
 
 typedef struct s_fdf
 {
+
+	t_xyz 				p;
+	t_xyz 				d;
+	t_xyz 				u;
+	t_xyz 				v;
+	t_map	 			map;
 	t_set				set;
 	mlx_key_data_t		press;
-	t_map				*map;
+	t_vector			*grid;
 	mlx_image_t			*img;
 	mlx_t				*mlx;
 }						t_fdf;
@@ -118,17 +126,17 @@ static inline double	rad(double degree_to_radian)
 	return (degree_to_radian * (M_PI / 180));
 }
 
-void 	isometry(t_xyz *p);
-t_map	*open_read_file(t_fdf *fdf, int fd);
-void	rotate(t_pixel *p, double angle);
+void 	isometry(t_xyz *p, t_fdf *fdf);
+t_vector 	*open_read_file(t_fdf *fdf, int fd);
+void	rotate(t_xyz *p);
 void	draw_map(t_fdf *fdf);
 void	projection(t_xyz *p, t_fdf *fdf);
-void 	trace(mlx_image_t *image, t_xyz _0, t_xyz _1, int color);
+void 	trace(mlx_image_t *img, t_xyz _0, t_xyz _1, int color);
 void	calibration(t_fdf *fdf);
 void	scale(t_fdf *fdf);
 void	control_hook(t_fdf *fdf);
 void	control_loop_hook(t_fdf *fdf);
-bool	_min(int a, int b);
+int	_min(int a, int b);
 /* ---------------------------------
 **			3_algo.c
 */

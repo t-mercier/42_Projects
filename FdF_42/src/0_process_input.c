@@ -10,34 +10,39 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
-t_map 	*open_read_file(t_fdf *fdf, int fd)
+t_vector	*open_read_file(t_fdf *fdf, int fd)
 {
     static char	**split;
     char		*line;
+	t_vector	*row;
+	t_data		data;
 
-    fdf->map->grid = vector_init(sizeof(t_vector *));
+
+	fdf->grid = vector_init(sizeof(t_vector *));
     while (1)
     {
-        fdf->map->row = vector_init(sizeof(t_data));
         line = get_next_line(fd);
         if (!line)
             break ;
+		row = vector_init(sizeof(t_data));
         split = ft_split(line, ' ');
         while (*split)
         {
-			fdf->map->p.data.z = ft_atoi(*split++);
+			data.z = ft_atoi(*split++);
             if (ft_strchr(*split, 'x'))
-				fdf->map->p.data.color = ft_hextodeci(ft_strchr(*split, 'x') + 1);
+				data.color = ft_hextodeci(ft_strchr(*split, 'x') + 1);
             else
-				fdf->map->p.data.color = WHITE;
-            vector_append(fdf->map->row, &fdf->map->p.data);
+				data.color = WHITE;
+            vector_append(row, &data);
         }
-        vector_append(fdf->map->grid, &fdf->map->row);
+        vector_append(fdf->grid, &row);
         free(line);
     }
+	fdf->map.width = row->len;
+	fdf->map.height = fdf->grid->len;
     close(fd);
-    return (fdf->map);
+    return (fdf->grid);
 }
 

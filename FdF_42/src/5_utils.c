@@ -10,26 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
-
-
-void    error(void)
-{
-	char    *s;
-
-	s = ft_strdup(mlx_strerror(mlx_errno));
-	ft_putendl_fd(s, STDERR_FILENO);
-	exit(EXIT_FAILURE);
-}
-
-void    exit_message(char *s, int code)
-{
-	ft_putendl_fd(s, STDERR_FILENO);
-	exit(code);
-}
-
-bool _min(int a, int b)
+int _min(int a, int b)
 {
 	if (a < b)
 		return a;
