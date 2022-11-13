@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 int	ft_putchar_va_arg(va_list arg)
 {
@@ -48,7 +48,7 @@ int	ft_print_address_va_arg(va_list arg)
 	else
 	{
 		ft_putnbr_fd(n, 16, 1);
-		p += ft_nbrlen(n, 16);
+		p += ft_numlen(n, 16);
 	}
 	return ((int)p);
 }

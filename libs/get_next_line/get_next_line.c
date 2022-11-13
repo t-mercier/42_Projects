@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
+#include "stdio.h"
 
 char	*ft_free(char **tmp, int line)
 {

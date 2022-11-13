@@ -33,18 +33,18 @@
 //		projection(fdf->grid, fdf);
 //	}
 //}
-
-void scrollhook(double xdelta, double ydelta, t_fdf *fdf)
-{
-	(void) xdelta;
-	if (ydelta > 0)
-		fdf->img->instances[0].z -= 1;
-	else if (ydelta < 0)
-		fdf->img->instances[0].z += 1;
-	projection(fdf->grid, &fdf);
-
-
-}
+//
+//void scrollhook(double xdelta, double ydelta, t_fdf *fdf)
+//{
+//	(void) xdelta;
+//	if (ydelta > 0)
+//		fdf->img->instances[0].z -= 1;
+//	else if (ydelta < 0)
+//		fdf->img->instances[0].z += 1;
+//	projection(fdf->grid, &fdf);
+//
+//
+//}
 
 void	hook(t_fdf *fdf)
 {

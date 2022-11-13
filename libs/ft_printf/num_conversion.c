@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 int	ft_putnbr_va_arg(va_list arg)
 {
@@ -19,9 +19,9 @@ int	ft_putnbr_va_arg(va_list arg)
 	n = va_arg(arg, int);
 	ft_putnbr_fd(n, 10, 1);
 	if (n < 0)
-		return (ft_nbrlen(n, 10) + 1);
+		return (ft_numlen(n, 10) + 1);
 	else
-		return (ft_nbrlen(n, 10));
+		return (ft_numlen(n, 10));
 }
 
 int	ft_unsigned_va_arg(va_list arg)
@@ -30,7 +30,7 @@ int	ft_unsigned_va_arg(va_list arg)
 
 	n = va_arg(arg, int);
 	ft_putnbr_fd(n, 10, 1);
-	return (ft_nbrlen(n, 10));
+	return (ft_numlen(n, 10));
 }
 
 int	ft_lowerhex_va_arg(va_list arg)
@@ -39,7 +39,7 @@ int	ft_lowerhex_va_arg(va_list arg)
 
 	n = (unsigned int)va_arg(arg, unsigned int);
 	ft_putnbr_fd(n, 16, 1);
-	return (ft_nbrlen(n, 16));
+	return (ft_numlen(n, 16));
 }
 
 int	ft_upperhex_va_arg(va_list arg)
@@ -48,5 +48,5 @@ int	ft_upperhex_va_arg(va_list arg)
 
 	n = (unsigned int)va_arg(arg, unsigned int);
 	ft_putnbr_fd(n, 16, 1);
-	return (ft_nbrlen(n, 16));
+	return (ft_numlen(n, 16));
 }
