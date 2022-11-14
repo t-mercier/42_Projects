@@ -19,9 +19,9 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <errno.h>
-# include <math.h>
 # include <limits.h>
 # include <stdio.h>
+# include <math.h>
 
 # define EXIT_FAILURE    1
 
@@ -109,7 +109,7 @@ void    exit_message(char *s, int code);
 **		free.c
 ** ---------------------------------
 */
-char	**ft_free_doublearr(char **s)
+char	**ft_free_doublearr(char **s);
 
 /*
 **		join.c
@@ -131,7 +131,7 @@ size_t	ft_count_words(char const *s, char c);
 ** ---------------------------------
 */
 void	*ft_calloc(size_t count, size_t size);
-void	*ft_malloc(void	*ptr, ssize_t esz);
+void	*ft_malloc(ssize_t esz);
 void	*ft_memset(void *b, int c, size_t len);
 void	*ft_realloc(void *ptr, size_t size, size_t old_s);
 

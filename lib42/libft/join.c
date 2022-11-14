@@ -11,11 +11,11 @@
 /* ************************************************************************** */
 
 /* strlcat() appends string src to the end of dst.
- * It will append at most dstsize - strlen(dst) - 1 characters.
- * It will then NUL-terminate, unless dstsize is 0
- * or the original dst string was longer than dstsize
+ * It will append at most size - strlen(dst) - 1 characters.
+ * It will then NUL-terminate, unless size is 0
+ * or the original dst string was longer than size
  * (in practice this should not happen as it means that either
- * dstsize is incorrect or that dst is not a proper string).
+ * size is incorrect or that dst is not a proper string).
  *
  * If the src and dst strings overlap, the behavior is undefined. */
 
@@ -23,7 +23,7 @@
 
 static size_t ft_strnlen(char *s, size_t n)
 {
-	int i;
+	size_t i;
 
 	i = 0;
 	while (s[i] && i < n)
@@ -31,21 +31,21 @@ static size_t ft_strnlen(char *s, size_t n)
 	return i;
 }
 
-size_t	ft_strlcat(char *dst, char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, char *src, size_t size)
 {
 	size_t	d_len;
 	size_t	s_len;
 
-	d_len = ft_strnlen(dst, dstsize);
+	d_len = ft_strnlen(dst, size);
 	s_len = ft_strlen(src);
-	if (dstsize <= d_len)
-		return (s_len + dstsize);
-	if (s_len < dstsize - d_len)
+	if (size <= d_len)
+		return (s_len + size);
+	if (s_len < size - d_len)
 		ft_memcpy(dst + d_len, src, s_len + 1);
 	else
 	{
-		ft_memcpy(dst + d_len, src, dstsize - d_len - 1);
-		dst[dstsize - 1] = '\0';
+		ft_memcpy(dst + d_len, src, size - d_len - 1);
+		dst[size - 1] = '\0';
 	}
 
 	return (s_len + d_len);

@@ -35,7 +35,7 @@ static char	**get_words(char **ptr, char const *s, char c)
 				j++;
 			ptr[count] = ft_substr(s, i, j);
 			if (!ptr[count])
-				return (ft_freetab(ptr));
+				return (ft_free_doublearr(ptr));
 			i += j;
 			count++;
 		}
@@ -51,9 +51,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		exit(EXIT_FAILURE);
-	result = malloc(sizeof(s) * (ft_count_words(s, c) + 1));
-	if (!result)
-		exit(EXIT_FAILURE);
+	result = ft_malloc(sizeof(s) * (ft_count_words(s, c) + 1));
 	return (get_words(result, s, c));
 }
 
@@ -86,9 +84,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (ft_strdup(""));
 	if (len > s_len)
 		len = s_len;
-	sub_str = malloc(sizeof(char *) * (len + 1));
-	if (!sub_str)
-		exit(EXIT_FAILURE);
+	sub_str = ft_malloc(sizeof(char *) * (len + 1));
 	ft_strlcpy(sub_str, s + start, len + 1);
 	return (sub_str);
 }

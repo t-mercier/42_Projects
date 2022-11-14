@@ -51,11 +51,18 @@ void	hook(t_fdf *fdf)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
-		fdf->img->instances[0].y -= 5;
+		fdf->y_off -= 5;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
-		fdf->img->instances[0].y += 5;
+		fdf->y_off += 5;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
-		fdf->img->instances[0].x -= 5;
+		fdf->x_off -= 5;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
-		fdf->img->instances[0].x += 5;
+		fdf->x_off += 5;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_ADD))
+		fdf->tile_size += 2;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_SUBTRACT))
+		fdf->tile_size -= 2;
+	projection(fdf->grid, fdf);
+
+
 }

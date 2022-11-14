@@ -53,24 +53,10 @@ void	line(mlx_image_t *image, int x0, int y0, int x1, int y1, uint32_t color)
 }
 
 
-void	projection(t_vector *map, t_fdf *fdf)
+void	calibration(t_fdf *fdf)
 {
-	t_vertex	_0;
-	t_index		i;
-	t_vector	*row;
+	fdf->tile_size = 50;
+	fdf->x_off  = WIDTH - (WIDTH / 2);
+	fdf->y_off  = HEIGHT - (HEIGHT / 2);
 
-	i.y = 0;
-	ft_memset(&_0, 0, sizeof(t_vertex));
-	while (i.y < fdf->size.y)
-	{
-		i.x = 0;
-		row = ((t_vector **)map->item)[i.y];
-		while (i.x < fdf->size.x)
-		{
-			project_0(fdf, row, &_0, i);
-			project_1(fdf, map, _0, i);
-			i.x++;
-		}
-		i.y++;
-	}
 }

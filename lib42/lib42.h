@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_isalnum.c                                       :+:    :+:            */
+/*   libft.h                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/11/29 14:43:05 by tmercier      #+#    #+#                 */
-/*   Updated: 2021/11/29 14:43:08 by tmercier      ########   odam.nl         */
+/*   Created: 2021/11/29 14:48:22 by tmercier      #+#    #+#                 */
+/*   Updated: 2021/12/18 14:34:42 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Checks if c is a numric or alphabet character */
+#ifndef LIB42_H
+# define LIB42_H
 
-#include "../include/libft.h"
+# include "include/libft.h"
+# include "include/single_linkedlist.h"
+# include "MLX42/include/MLX42/MLX42.h"
 
-int	ft_isalnum(int c)
-{
-	return (ft_isalpha(c) || ft_isdigit(c));
-}
+# define EXIT_FAILURE    1
 
-int	ft_isalpha(int c)
-{
-	return (ft_islower(c) || ft_isupper(c));
-}
+# ifndef MAX_FD
+#  define MAX_FD 10240
+# endif
 
-int	ft_isascii(int c)
-{
-	return (c >= 0 && c <= 127);
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
 
-int	ft_isprint(int c)
-{
-	return (c > 31 && c < 127);
-}
-
-int	ft_isdigit(int c)
-{
-	return (c > 47 && c < 58);
-}
+#endif 

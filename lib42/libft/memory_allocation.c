@@ -31,12 +31,13 @@ void	*ft_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
-void	*ft_malloc(void	*ptr, ssize_t esz)
+void	*ft_malloc(ssize_t esz)
 {
+	void *ptr;
 	ptr = malloc(esz);
 	if (ptr != NULL)
 		return (ptr);
-	return (exit(EXIT_FAILURE));
+	exit(EXIT_FAILURE);
 }
 
 void	*ft_memset(void *b, int c, size_t len)

@@ -12,60 +12,52 @@
 
 SHELL = /bin/sh
 
+NAME 		=	fdf
+
 ################### SOURCES FILES
 FILES		=	src fdf.c
 HEADER		=	include/fdf.h
-INCLUDE		=	-Iinclude -Ilibs/include -Ilibs/include/MLX42
+INCLUDE		=	-Iinclude
 OBJDIR 		= 	obj
 FDF			=	.
 
-################### COMPILATION & FLAGS
-CC			=	gcc
+# --------------- CC --------------- #
 
-#ifdef DEBUG
-#	CFLAGS += -g3 -fsanitize=address
-#else
-#	CFLAGS += -g3
-#endif
-CFLAGS = -g3 -fsanitize=address
+CC				=	gcc
 
-################### LIBS
-LIBFT		=	libs/libft.a
-LIBMLX		=	libs/libmlx42.a
-LIBS		=	$(LIBFT) $(LIBMLX)
-GLFW		=	-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+# --------------- LIB42 --------------- #
 
-################### PROGRAM
-NAME 		=	fdf
+LIB42		=	../lib42/lib42.a
+LIB42_DIR	=	../lib42
+# --------------- Libraries --------------- #
+
+GLFW			=	-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+LFLAGS 			= -lm -lpthread -Wl -L$(LIB42_DIR) -l42
+
 SRC 		=	$(shell find $(FILES) -name "*.c")
 OBJ			=	$(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
 all: $(LIBMLX) $(NAME)
 
-################## LIBFT
-$(LIBFT):
-				@make -C libs
-
-#################### OBJ
 $(OBJDIR)/%.o: 	%.c $(HEADER)
 				@mkdir -p $(@D)
 				@$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDE)
 
-$(NAME):$(LIBS) $(OBJ)
-				@$(CC) $(CFLAGS) $(OBJ) $(LIBS) $(GLFW) $(INCLUDE) -o $(NAME)
+$(NAME): $(LIB42) $(OBJ)
+				@$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) $(GLFW) $(INCLUDE) -o $(NAME)
 				@printf "$(NO_COLOR)---> Executable $(NAME) created.$(_END) ✔️\n\n"
 				@make signature
 
 ################### CLEAN
 clean:
-				@make clean -C libs
+				@if [ -d "lib42" ]; then rm -r lib42/obj; fi
 				@rm -rf $(OBJDIR)
 				@printf "$(LIGHT_RED)\n-> libft obj files removed.\n"
 				@printf "$(LIGHT_RED)\n-> push_swap obj files removed.\n"
 
 fclean:			clean
-				@$(MAKE) fclean -C libs
 				@rm -rf $(NAME)
+				@if [ -f "lib42.a" ]; then rm -rf lib42.a; fi
 				@printf "\n$(LIGHT_RED)-> $(NAME) removed.\n\n"
 
 re: 			fclean all

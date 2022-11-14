@@ -13,9 +13,7 @@
 #ifndef FDF_H
 # define FDF_H
 
-# include "../libs/include/MLX42/MLX42/MLX42.h"
-# include "../libs/include/libft.h"
-# include "../libs/include/single_linkedlist.h"
+# include "../../lib42/lib42.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
@@ -33,8 +31,8 @@
 # define DEFAULT 0x00000000
 # define W_HEIGHT 1500
 # define W_WIDTH 1800
-# define HEIGHT 1200
-# define WIDTH 1500
+# define HEIGHT 1500
+# define WIDTH 1800
 # define TILE_SIZE 50
 
 /*
@@ -60,9 +58,9 @@ typedef struct s_vertices
 
 typedef struct s_index
 {
-	int				x;
-	int				y;
-	int				z;
+	size_t				x;
+	size_t				y;
+	ssize_t 			z;
 }					t_index;
 
 typedef struct s_map

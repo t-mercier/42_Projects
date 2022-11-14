@@ -12,21 +12,14 @@
 
 #include "../include/fdf.h"
 
-void	calibration(t_fdf *fdf)
-{
-	fdf->tile_size = 50;
-	fdf->x_off  = WIDTH - (W_WIDTH / 2);
-	fdf->y_off  = HEIGHT - (W_HEIGHT / 2);
-
-}
 
 void	projection_down(t_fdf *fdf, t_vertex _0, t_index i)
 {
 	t_vertex _1;
 
-	fdf->map.x = (i.x * TILE_SIZE);
-	fdf->map.y = ((i.y + 1) * TILE_SIZE);
-	fdf->map.z = i.z * TILE_SIZE / 5;
+	fdf->map.x = (i.x * fdf->tile_size);
+	fdf->map.y = ((i.y + 1) * fdf->tile_size);
+	fdf->map.z = i.z * (fdf->tile_size / 3);
 	_1.x = (fdf->map.x - fdf->map.y) * cos(0.523599);
 	_1.y = -fdf->map.z + (fdf->map.x + fdf->map.y) * sin(0.523599);
 	_1.x += fdf->x_off;
@@ -38,9 +31,9 @@ void	projection_right(t_fdf *fdf, t_vertex _0, t_index i)
 {
 	t_vertex _1;
 
-	fdf->map.x = ((i.x + 1) * TILE_SIZE);
-	fdf->map.y = (i.y * TILE_SIZE);
-	fdf->map.z = i.z * TILE_SIZE / 5;
+	fdf->map.x = ((i.x + 1) * fdf->tile_size);
+	fdf->map.y = (i.y * fdf->tile_size);
+	fdf->map.z = i.z * (fdf->tile_size / 3);
 	_1.x = (fdf->map.x - fdf->map.y) * cos(0.523599);
 	_1.y = -fdf->map.z + (fdf->map.x + fdf->map.y) * sin(0.523599);
 	_1.x += fdf->x_off;
@@ -69,14 +62,35 @@ void	project_1(t_fdf *fdf, t_vector *map, t_vertex _0, t_index i)
 
 void	project_0(t_fdf *fdf, t_vector *row, t_vertex *_0, t_index i)
 {
-	t_map p;
-
 	i.z = ((int *)row->item)[i.x];
-	fdf->map.x = (i.x * TILE_SIZE);
-	fdf->map.y = (i.y * TILE_SIZE);
-	fdf->map.z = i.z * TILE_SIZE / 5;
+	fdf->map.x = (i.x * fdf->tile_size);
+	fdf->map.y = (i.y * fdf->tile_size);
+	fdf->map.z = i.z * (fdf->tile_size / 3);
 	_0->x = (fdf->map.x - fdf->map.y) * cos(0.523599);
 	_0->y = -fdf->map.z + (fdf->map.x + fdf->map.y) * sin(0.523599);
 	_0->x += fdf->x_off;
 	_0->y += fdf->y_off;
+}
+
+void	projection(t_vector *map, t_fdf *fdf)
+{
+	t_vertex	_0;
+	t_index		i;
+	t_vector	*row;
+
+	i.y = 0;
+	ft_memset(&_0, 0, sizeof(t_vertex));
+	ft_memset(fdf->img->pixels, 0, sizeof(int) * fdf->img->width * fdf->img->height);
+	while (i.y < fdf->size.y)
+	{
+		i.x = 0;
+		row = ((t_vector **)map->item)[i.y];
+		while (i.x < fdf->size.x)
+		{
+			project_0(fdf, row, &_0, i);
+			project_1(fdf, map, _0, i);
+			i.x++;
+		}
+		i.y++;
+	}
 }
