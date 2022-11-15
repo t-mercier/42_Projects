@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/tmercier/Documents/GITHUB/FdF_master/cmake-build-debug"
+			"value" : "/Users/tmercier/Documents/GITHUB/projects/fdf/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -419,7 +419,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/tmercier/Documents/GITHUB/FdF_master"
+			"value" : "/Users/tmercier/Documents/GITHUB/projects/fdf"
 		},
 		{
 			"name" : "CMAKE_INSTALL_NAME_TOOL",
@@ -991,7 +991,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/tmercier/Documents/GITHUB/FdF_master/cmake-build-debug"
+			"value" : "/Users/tmercier/Documents/GITHUB/projects/fdf/cmake-build-debug"
 		},
 		{
 			"name" : "fdf.c_IS_TOP_LEVEL",
@@ -1015,7 +1015,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/tmercier/Documents/GITHUB/FdF_master"
+			"value" : "/Users/tmercier/Documents/GITHUB/projects/fdf"
 		}
 	],
 	"kind" : "cache",

@@ -52,7 +52,6 @@ void	line(mlx_image_t *image, int x0, int y0, int x1, int y1, uint32_t color)
 	}
 }
 
-
 void	calibration(t_fdf *fdf)
 {
 	fdf->tile_size = 50;

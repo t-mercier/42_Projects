@@ -31,7 +31,7 @@ LIB42		=	../lib42/lib42.a
 LIB42_DIR	=	../lib42
 # --------------- Libraries --------------- #
 
-GLFW			=	-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+GLFW			= -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 LFLAGS 			= -lm -lpthread -Wl -L$(LIB42_DIR) -l42
 
 SRC 		=	$(shell find $(FILES) -name "*.c")

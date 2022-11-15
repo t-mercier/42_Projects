@@ -36,7 +36,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = /Users/tmercier/Documents/GITHUB/FdF_master/cmake-build-debug/
+cmake_ninja_workdir = /Users/tmercier/Documents/GITHUB/projects/fdf/cmake-build-debug/
 # =============================================================================
 # Object build statements for EXECUTABLE target src
 
@@ -46,669 +46,66 @@ cmake_ninja_workdir = /Users/tmercier/Documents/GITHUB/FdF_master/cmake-build-de
 
 build cmake_object_order_depends_target_src: phony || CMakeFiles/src.dir
 
-build CMakeFiles/src.dir/fdf.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/fdf.c || cmake_object_order_depends_target_src
+build CMakeFiles/src.dir/fdf.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/projects/fdf/fdf.c || cmake_object_order_depends_target_src
   DEP_FILE = CMakeFiles/src.dir/fdf.c.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
+  INCLUDES = -I/Users/tmercier/Documents/GITHUB/projects/fdf/FDF_master -I/Users/tmercier/Documents/GITHUB/projects/fdf/include -I/Users/tmercier/Documents/GITHUB/projects/fdf/libs/include
   OBJECT_DIR = CMakeFiles/src.dir
   OBJECT_FILE_DIR = CMakeFiles/src.dir
   TARGET_COMPILE_PDB = CMakeFiles/src.dir/
   TARGET_PDB = src.pdb
 
-build CMakeFiles/src.dir/src/0_input.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/src/0_input.c || cmake_object_order_depends_target_src
+build CMakeFiles/src.dir/src/0_input.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/projects/fdf/src/0_input.c || cmake_object_order_depends_target_src
   DEP_FILE = CMakeFiles/src.dir/src/0_input.c.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
+  INCLUDES = -I/Users/tmercier/Documents/GITHUB/projects/fdf/FDF_master -I/Users/tmercier/Documents/GITHUB/projects/fdf/include -I/Users/tmercier/Documents/GITHUB/projects/fdf/libs/include
   OBJECT_DIR = CMakeFiles/src.dir
   OBJECT_FILE_DIR = CMakeFiles/src.dir/src
   TARGET_COMPILE_PDB = CMakeFiles/src.dir/
   TARGET_PDB = src.pdb
 
-build CMakeFiles/src.dir/src/1_initmap.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/src/1_initmap.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/src/1_initmap.c.o.d
+build CMakeFiles/src.dir/src/1_control.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/projects/fdf/src/1_control.c || cmake_object_order_depends_target_src
+  DEP_FILE = CMakeFiles/src.dir/src/1_control.c.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
+  INCLUDES = -I/Users/tmercier/Documents/GITHUB/projects/fdf/FDF_master -I/Users/tmercier/Documents/GITHUB/projects/fdf/include -I/Users/tmercier/Documents/GITHUB/projects/fdf/libs/include
   OBJECT_DIR = CMakeFiles/src.dir
   OBJECT_FILE_DIR = CMakeFiles/src.dir/src
   TARGET_COMPILE_PDB = CMakeFiles/src.dir/
   TARGET_PDB = src.pdb
 
-build CMakeFiles/src.dir/src/2_draw.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/src/2_draw.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/src/2_draw.c.o.d
+build CMakeFiles/src.dir/src/2_translation.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/projects/fdf/src/2_translation.c || cmake_object_order_depends_target_src
+  DEP_FILE = CMakeFiles/src.dir/src/2_translation.c.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
+  INCLUDES = -I/Users/tmercier/Documents/GITHUB/projects/fdf/FDF_master -I/Users/tmercier/Documents/GITHUB/projects/fdf/include -I/Users/tmercier/Documents/GITHUB/projects/fdf/libs/include
   OBJECT_DIR = CMakeFiles/src.dir
   OBJECT_FILE_DIR = CMakeFiles/src.dir/src
   TARGET_COMPILE_PDB = CMakeFiles/src.dir/
   TARGET_PDB = src.pdb
 
-build CMakeFiles/src.dir/src/3_algo.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/src/3_algo.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/src/3_algo.c.o.d
+build CMakeFiles/src.dir/src/3_projection.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/projects/fdf/src/3_projection.c || cmake_object_order_depends_target_src
+  DEP_FILE = CMakeFiles/src.dir/src/3_projection.c.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
+  INCLUDES = -I/Users/tmercier/Documents/GITHUB/projects/fdf/FDF_master -I/Users/tmercier/Documents/GITHUB/projects/fdf/include -I/Users/tmercier/Documents/GITHUB/projects/fdf/libs/include
   OBJECT_DIR = CMakeFiles/src.dir
   OBJECT_FILE_DIR = CMakeFiles/src.dir/src
   TARGET_COMPILE_PDB = CMakeFiles/src.dir/
   TARGET_PDB = src.pdb
 
-build CMakeFiles/src.dir/src/4_utils.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/src/4_utils.c || cmake_object_order_depends_target_src
+build CMakeFiles/src.dir/src/4_utils.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/projects/fdf/src/4_utils.c || cmake_object_order_depends_target_src
   DEP_FILE = CMakeFiles/src.dir/src/4_utils.c.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
+  INCLUDES = -I/Users/tmercier/Documents/GITHUB/projects/fdf/FDF_master -I/Users/tmercier/Documents/GITHUB/projects/fdf/include -I/Users/tmercier/Documents/GITHUB/projects/fdf/libs/include
   OBJECT_DIR = CMakeFiles/src.dir
   OBJECT_FILE_DIR = CMakeFiles/src.dir/src
   TARGET_COMPILE_PDB = CMakeFiles/src.dir/
   TARGET_PDB = src.pdb
 
-build CMakeFiles/src.dir/src/6_colors.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/src/6_colors.c || cmake_object_order_depends_target_src
+build CMakeFiles/src.dir/src/6_colors.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/projects/fdf/src/6_colors.c || cmake_object_order_depends_target_src
   DEP_FILE = CMakeFiles/src.dir/src/6_colors.c.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
+  INCLUDES = -I/Users/tmercier/Documents/GITHUB/projects/fdf/FDF_master -I/Users/tmercier/Documents/GITHUB/projects/fdf/include -I/Users/tmercier/Documents/GITHUB/projects/fdf/libs/include
   OBJECT_DIR = CMakeFiles/src.dir
   OBJECT_FILE_DIR = CMakeFiles/src.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/check_case.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/check_case.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/check_case.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/check_char.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/check_char.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/check_char.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/compare.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/compare.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/compare.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/convert_char.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/convert_char.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/convert_char.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/convert_num.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/convert_num.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/convert_num.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/copy.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/copy.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/copy.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_atoi.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_atoi.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_atoi.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_atol.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_atol.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_atol.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_calloc.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_calloc.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_calloc.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_free.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_free.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_free.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_intncmp.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_intncmp.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_intncmp.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_isalnum.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_isalnum.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_isalnum.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_isalpha.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_isalpha.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_isalpha.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_isascii.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_isascii.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_isascii.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_isdigit.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_isdigit.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_isdigit.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_islower.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_islower.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_islower.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_isprint.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_isprint.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_isprint.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_isupper.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_isupper.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_isupper.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_itoa.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_itoa.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_itoa.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_memchr.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_memchr.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_memchr.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_memcmp.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_memcmp.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_memcmp.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_memcpy.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_memcpy.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_memcpy.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_memmove.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_memmove.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_memmove.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_memset.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_memset.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_memset.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_nbrlen.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_nbrlen.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_nbrlen.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_putchar_fd.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_putchar_fd.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_putchar_fd.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_putendl_fd.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_putendl_fd.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_putendl_fd.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_putnbr_fd.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_putnbr_fd.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_putnbr_fd.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_putstr_fd.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_putstr_fd.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_putstr_fd.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_putulong_fd.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_putulong_fd.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_putulong_fd.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_realloc.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_realloc.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_realloc.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_split.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_split.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_split.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_strchr.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_strchr.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_strchr.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_strcmp.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_strcmp.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_strcmp.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_strcpy.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_strcpy.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_strcpy.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_strdup.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_strdup.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_strdup.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_striteri.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_striteri.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_striteri.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_strjoin.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_strjoin.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_strjoin.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_strlcat.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_strlcat.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_strlcat.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_strlcpy.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_strlcpy.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_strlcpy.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_strlen.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_strlen.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_strlen.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_strmapi.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_strmapi.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_strmapi.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_strncmp.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_strncmp.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_strncmp.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_strncpy.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_strncpy.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_strncpy.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_strnstr.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_strnstr.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_strnstr.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_strrchr.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_strrchr.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_strrchr.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_strtol.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_strtol.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_strtol.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_strtrim.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_strtrim.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_strtrim.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_substr.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_substr.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_substr.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_tolower.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_tolower.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_tolower.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_toupper.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_toupper.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_toupper.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/ft_vector.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/ft_vector.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/ft_vector.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/join.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/join.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/join.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/length.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/length.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/length.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/memory.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/memory.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/memory.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/put_.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/put_.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/put_.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/search.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/search.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/search.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/split.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/split.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/split.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/strings_iter.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/strings_iter.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/strings_iter.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/libft/vector.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/libft/vector.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/libft/vector.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/libft
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/linkedlist/create.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/linkedlist/create.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/linkedlist/create.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/linkedlist
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/linkedlist/remove.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/linkedlist/remove.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/linkedlist/remove.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/linkedlist
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/linkedlist/utils.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/linkedlist/utils.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/linkedlist/utils.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/linkedlist
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/ft_printf/char_conversion.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/ft_printf/char_conversion.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/ft_printf/char_conversion.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/ft_printf
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/ft_printf/ft_printf.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/ft_printf/ft_printf.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/ft_printf/ft_printf.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/ft_printf
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/ft_printf/num_conversion.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/ft_printf/num_conversion.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/ft_printf/num_conversion.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/ft_printf
-  TARGET_COMPILE_PDB = CMakeFiles/src.dir/
-  TARGET_PDB = src.pdb
-
-build CMakeFiles/src.dir/libs/get_next_line/get_next_line.c.o: C_COMPILER__src_Debug /Users/tmercier/Documents/GITHUB/FdF_master/libs/get_next_line/get_next_line.c || cmake_object_order_depends_target_src
-  DEP_FILE = CMakeFiles/src.dir/libs/get_next_line/get_next_line.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
-  INCLUDES = -I/Users/tmercier/Documents/GITHUB/FdF_master/FDF_master -I/Users/tmercier/Documents/GITHUB/FdF_master/include -I/Users/tmercier/Documents/GITHUB/FdF_master/libs/include
-  OBJECT_DIR = CMakeFiles/src.dir
-  OBJECT_FILE_DIR = CMakeFiles/src.dir/libs/get_next_line
   TARGET_COMPILE_PDB = CMakeFiles/src.dir/
   TARGET_PDB = src.pdb
 
@@ -720,7 +117,7 @@ build CMakeFiles/src.dir/libs/get_next_line/get_next_line.c.o: C_COMPILER__src_D
 #############################################
 # Link the executable src
 
-build src: C_EXECUTABLE_LINKER__src_Debug CMakeFiles/src.dir/fdf.c.o CMakeFiles/src.dir/src/0_input.c.o CMakeFiles/src.dir/src/1_initmap.c.o CMakeFiles/src.dir/src/2_draw.c.o CMakeFiles/src.dir/src/3_algo.c.o CMakeFiles/src.dir/src/4_utils.c.o CMakeFiles/src.dir/src/6_colors.c.o CMakeFiles/src.dir/libs/libft/check_case.c.o CMakeFiles/src.dir/libs/libft/check_char.c.o CMakeFiles/src.dir/libs/libft/compare.c.o CMakeFiles/src.dir/libs/libft/convert_char.c.o CMakeFiles/src.dir/libs/libft/convert_num.c.o CMakeFiles/src.dir/libs/libft/copy.c.o CMakeFiles/src.dir/libs/libft/ft_atoi.c.o CMakeFiles/src.dir/libs/libft/ft_atol.c.o CMakeFiles/src.dir/libs/libft/ft_calloc.c.o CMakeFiles/src.dir/libs/libft/ft_free.c.o CMakeFiles/src.dir/libs/libft/ft_intncmp.c.o CMakeFiles/src.dir/libs/libft/ft_isalnum.c.o CMakeFiles/src.dir/libs/libft/ft_isalpha.c.o CMakeFiles/src.dir/libs/libft/ft_isascii.c.o CMakeFiles/src.dir/libs/libft/ft_isdigit.c.o CMakeFiles/src.dir/libs/libft/ft_islower.c.o CMakeFiles/src.dir/libs/libft/ft_isprint.c.o CMakeFiles/src.dir/libs/libft/ft_isupper.c.o CMakeFiles/src.dir/libs/libft/ft_itoa.c.o CMakeFiles/src.dir/libs/libft/ft_memchr.c.o CMakeFiles/src.dir/libs/libft/ft_memcmp.c.o CMakeFiles/src.dir/libs/libft/ft_memcpy.c.o CMakeFiles/src.dir/libs/libft/ft_memmove.c.o CMakeFiles/src.dir/libs/libft/ft_memset.c.o CMakeFiles/src.dir/libs/libft/ft_nbrlen.c.o CMakeFiles/src.dir/libs/libft/ft_putchar_fd.c.o CMakeFiles/src.dir/libs/libft/ft_putendl_fd.c.o CMakeFiles/src.dir/libs/libft/ft_putnbr_fd.c.o CMakeFiles/src.dir/libs/libft/ft_putstr_fd.c.o CMakeFiles/src.dir/libs/libft/ft_putulong_fd.c.o CMakeFiles/src.dir/libs/libft/ft_realloc.c.o CMakeFiles/src.dir/libs/libft/ft_split.c.o CMakeFiles/src.dir/libs/libft/ft_strchr.c.o CMakeFiles/src.dir/libs/libft/ft_strcmp.c.o CMakeFiles/src.dir/libs/libft/ft_strcpy.c.o CMakeFiles/src.dir/libs/libft/ft_strdup.c.o CMakeFiles/src.dir/libs/libft/ft_striteri.c.o CMakeFiles/src.dir/libs/libft/ft_strjoin.c.o CMakeFiles/src.dir/libs/libft/ft_strlcat.c.o CMakeFiles/src.dir/libs/libft/ft_strlcpy.c.o CMakeFiles/src.dir/libs/libft/ft_strlen.c.o CMakeFiles/src.dir/libs/libft/ft_strmapi.c.o CMakeFiles/src.dir/libs/libft/ft_strncmp.c.o CMakeFiles/src.dir/libs/libft/ft_strncpy.c.o CMakeFiles/src.dir/libs/libft/ft_strnstr.c.o CMakeFiles/src.dir/libs/libft/ft_strrchr.c.o CMakeFiles/src.dir/libs/libft/ft_strtol.c.o CMakeFiles/src.dir/libs/libft/ft_strtrim.c.o CMakeFiles/src.dir/libs/libft/ft_substr.c.o CMakeFiles/src.dir/libs/libft/ft_tolower.c.o CMakeFiles/src.dir/libs/libft/ft_toupper.c.o CMakeFiles/src.dir/libs/libft/ft_vector.c.o CMakeFiles/src.dir/libs/libft/join.c.o CMakeFiles/src.dir/libs/libft/length.c.o CMakeFiles/src.dir/libs/libft/memory.c.o CMakeFiles/src.dir/libs/libft/put_.c.o CMakeFiles/src.dir/libs/libft/search.c.o CMakeFiles/src.dir/libs/libft/split.c.o CMakeFiles/src.dir/libs/libft/strings_iter.c.o CMakeFiles/src.dir/libs/libft/vector.c.o CMakeFiles/src.dir/libs/linkedlist/create.c.o CMakeFiles/src.dir/libs/linkedlist/remove.c.o CMakeFiles/src.dir/libs/linkedlist/utils.c.o CMakeFiles/src.dir/libs/ft_printf/char_conversion.c.o CMakeFiles/src.dir/libs/ft_printf/ft_printf.c.o CMakeFiles/src.dir/libs/ft_printf/num_conversion.c.o CMakeFiles/src.dir/libs/get_next_line/get_next_line.c.o
+build src: C_EXECUTABLE_LINKER__src_Debug CMakeFiles/src.dir/fdf.c.o CMakeFiles/src.dir/src/0_input.c.o CMakeFiles/src.dir/src/1_control.c.o CMakeFiles/src.dir/src/2_translation.c.o CMakeFiles/src.dir/src/3_projection.c.o CMakeFiles/src.dir/src/4_utils.c.o CMakeFiles/src.dir/src/6_colors.c.o
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14
   OBJECT_DIR = CMakeFiles/src.dir
   POST_BUILD = :
@@ -734,7 +131,7 @@ build src: C_EXECUTABLE_LINKER__src_Debug CMakeFiles/src.dir/fdf.c.o CMakeFiles/
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /Users/tmercier/Documents/GITHUB/FdF_master/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  COMMAND = cd /Users/tmercier/Documents/GITHUB/projects/fdf/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -745,7 +142,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /Users/tmercier/Documents/GITHUB/FdF_master/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/tmercier/Documents/GITHUB/FdF_master -B/Users/tmercier/Documents/GITHUB/FdF_master/cmake-build-debug
+  COMMAND = cd /Users/tmercier/Documents/GITHUB/projects/fdf/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/tmercier/Documents/GITHUB/projects/fdf -B/Users/tmercier/Documents/GITHUB/projects/fdf/cmake-build-debug
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -761,7 +158,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 
 #############################################
-# Folder: /Users/tmercier/Documents/GITHUB/FdF_master/cmake-build-debug
+# Folder: /Users/tmercier/Documents/GITHUB/projects/fdf/cmake-build-debug
 
 build all: phony src
 

@@ -410,8 +410,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/Users/tmercier/Documents/GITHUB/FdF_master/cmake-build-debug",
-		"source" : "/Users/tmercier/Documents/GITHUB/FdF_master"
+		"build" : "/Users/tmercier/Documents/GITHUB/projects/fdf/cmake-build-debug",
+		"source" : "/Users/tmercier/Documents/GITHUB/projects/fdf"
 	},
 	"version" : 
 	{

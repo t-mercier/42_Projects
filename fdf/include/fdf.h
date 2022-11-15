@@ -14,9 +14,6 @@
 # define FDF_H
 
 # include "../../lib42/lib42.h"
-# include <fcntl.h>
-# include <math.h>
-# include <stdio.h>
 
 # define DEG2RAD (360.0 * M_PI / 180)
 
