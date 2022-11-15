@@ -23,6 +23,15 @@
 #  define MAX_FD 10240
 # endif
 
+static void	mlx_error_exit(void)
+{
+	char    *s;
+
+	s = ft_strdup(mlx_strerror(mlx_errno));
+	ft_putendl_fd(s, STDERR_FILENO);
+	exit(EXIT_FAILURE);
+}
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1000
 # endif

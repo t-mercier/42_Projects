@@ -12,18 +12,18 @@
 
 #include "../include/libft.h"
 
-int	ft_isnegative(int n)
+bool	is_negative(int n)
 {
 	if ((long int)n < 0)
-		return (1);
-	return (0);
+		return (true);
+	return (false);
 }
 
-int	ft_isspace(int c)
+bool	is_space(int c)
 {
 	if (c == 32 || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
+		return (true);
+	return (false);
 }
 
 bool	char_is_found(int c, char const *s)

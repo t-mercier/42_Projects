@@ -21,6 +21,7 @@
 # include <errno.h>
 # include <limits.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include <math.h>
 
 # define EXIT_FAILURE    1
@@ -64,6 +65,13 @@ int		ft_isascii(int c);
 int		ft_isdigit(int c);
 
 /*
+**		check_misc.c
+** ---------------------------------
+*/
+int		ft_isnegative(int n);
+int		ft_isspace(int c);
+
+/*
 **		compare.c
 ** ---------------------------------
 */
@@ -102,7 +110,6 @@ char	*ft_strncpy(char *dst, char const *src, size_t n);
 **		errors.c
 ** ---------------------------------
 */
-void	mlx_error_exit(void);
 void    exit_message(char *s, int code);
 
 /*
