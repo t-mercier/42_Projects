@@ -44,27 +44,34 @@ typedef struct s_vertex
 	int				x;
 	int				y;
 	int				z;
+	int				color;
 }					t_vertex;
 
 typedef struct s_vertices
 {
 	uint16_t		x;
 	uint16_t		y;
-	int				color;
 }					t_vertices;
+
+typedef struct s_data
+{
+	int 			n;
+	int 			c;
+} t_data;
 
 typedef struct s_index
 {
 	size_t				x;
 	size_t				y;
-	ssize_t 			z;
+	t_data	 			z;
+	int 				c;
 }					t_index;
-
 typedef struct s_map
 {
 	int				x;
 	int				y;
 	int				z;
+	int 			color;
 	int				*heightmap;
 	float			delta;
 	int				min;

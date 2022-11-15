@@ -36,21 +36,21 @@ void	ft_itoa(long n, int radix, char *buff)
 
 int	ft_hextodeci(char *hex)
 {
-	int		y;
-	int		n;
-	int		x;
-	size_t	len;
+	int n;
+	int x;
+	size_t len;
 
-	y = 0;
 	n = 0;
-	len = ft_strlen(hex) - 1;
-	while (len--)
-	{
-		if (*(hex + len) >= '0' && *(hex + len) <= '9')
-			x = *(hex + len) - '0';
+	len = ft_strlen(hex);
+	while (len--) {
+		if (*hex >= '0' && *hex <= '9')
+			x = *hex - '0';
+		else if (*hex >= 'a' && *hex <= 'f')
+			x = *hex - 'a' + 10;
 		else
-			x = *(hex + len) - 'A' + 10;
-		n = (int)(n + x * pow(16, y));
+			x = *hex - 'A' + 10;
+		n += x * pow(16, len);
+		hex++;
 	}
 	return (n);
 }

@@ -17,7 +17,7 @@ SHELL 			= /bin/sh
 NAME			= 42
 
 OBJ_DIR			= output
-LIB_DIR		= ft_printf get_next_line libft linkedlist
+LIB_DIR			= ft_printf get_next_line libft linkedlist
 LIB42_A 		= lib$(NAME).a
 
 # --------------- $(CC) --------------- #
@@ -58,7 +58,7 @@ $(NAME): $(OBJ)
 	@make -C ./MLX42
 	@mv $(MLX_A) ./$(LIB42_A)
 	@ar rcs $(LIB42_A) $(OBJ)
-	@printf "\n$(WHITE)---> $(LIB42_A) archiver created ✔️ $(RESET)\n\n"
+	@printf "\n$(WHITE)---> $(LIB42_A) archive created ✔️ $(RESET)\n\n"
 
 # --------------- clean --------------- #
 
