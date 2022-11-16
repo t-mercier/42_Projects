@@ -12,7 +12,7 @@
 
 #include "../include/fdf.h"
 
-void	projection_down(t_fdf *fdf, t_vertex _0, t_vertex p)
+static void	projection_down(t_fdf *fdf, t_vertex _0, t_vertex p)
 {
 	t_vertex	_1;
 	t_vertex	t;
@@ -25,7 +25,7 @@ void	projection_down(t_fdf *fdf, t_vertex _0, t_vertex p)
 	drawline(fdf->img, _0, _1, GREEN);
 }
 
-void	projection_right(t_fdf *fdf, t_vertex _0, t_vertex p)
+static void	projection_right(t_fdf *fdf, t_vertex _0, t_vertex p)
 {
 	t_vertex	_1;
 	t_vertex	t;
@@ -38,7 +38,7 @@ void	projection_right(t_fdf *fdf, t_vertex _0, t_vertex p)
 	drawline(fdf->img, _0, _1, GREEN);
 }
 
-void	project_1(t_fdf *fdf, t_vector *map, t_vertex _0, t_vertex p)
+static void	project_1(t_fdf *fdf, t_vector *map, t_vertex _0, t_vertex p)
 {
 	t_vector	*row;
 
@@ -56,7 +56,7 @@ void	project_1(t_fdf *fdf, t_vector *map, t_vertex _0, t_vertex p)
 	}
 }
 
-void	project_0(t_fdf *fdf, t_vector *row, t_vertex *_0, t_vertex p)
+static void	project_0(t_fdf *fdf, t_vector *row, t_vertex *_0, t_vertex p)
 {
 	t_vertex	t;
 

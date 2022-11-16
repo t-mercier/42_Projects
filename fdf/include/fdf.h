@@ -52,6 +52,7 @@ typedef struct s_vertex
 	int			color;
 	t_data		data;
 }				t_vertex;
+
 typedef struct s_bresenham
 {
 	t_vertex	d;
@@ -73,12 +74,7 @@ typedef struct s_fdf
 }				t_fdf;
 
 void			hook(t_fdf *fdf);
-void			project_0(t_fdf *fdf, t_vector *map, t_vertex *_0, t_vertex p);
-void			project_1(t_fdf *fdf, t_vector *map, t_vertex _0, t_vertex p);
-void			projection_right(t_fdf *fdf, t_vertex _0, t_vertex p);
-void			projection_down(t_fdf *fdf, t_vertex _0, t_vertex p);
 void			calibration(t_fdf *fdf);
-void			error(void);
 void			scrollhook(double xdelta, double ydelta, t_fdf *fdf);
 void			control_hook(mlx_key_data_t press, t_fdf *fdf);
 t_vector		*open_read_file(int fd);
@@ -86,7 +82,6 @@ void			exit_message(char *s, int code);
 void			projection(t_vector *map, t_fdf *fdf);
 void			drawline(mlx_image_t *img, t_vertex _0, t_vertex _1,
 					uint32_t color);
-
 int				get_color(t_vertex *p1, t_vertex *p2, int mod);
 
 #endif
