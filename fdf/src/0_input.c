@@ -12,10 +12,6 @@
 
 #include "../include/fdf.h"
 
-int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
 t_vector *open_read_file(t_fdf *fdf, int fd)
 {
 	static char	**split;
@@ -23,7 +19,6 @@ t_vector *open_read_file(t_fdf *fdf, int fd)
 	t_vector	*map;
 	t_vector	*row;
 	t_data 		data;
-	char		*tmp;
 
 	map = vector_init(sizeof(t_vector *));
 	while (1)
@@ -33,20 +28,9 @@ t_vector *open_read_file(t_fdf *fdf, int fd)
 		if (!line)
 			break ;
 		split = ft_split(line, ' ');
-		free(line);
 		while (*split)
 		{
-			if ((tmp = ft_strchr(*split, ',')))
-			{
-				tmp += 3;
-				data.c = ft_hextodeci(tmp);
-				data.c = create_trgb(data.n*3,data.n/2,0,0xff);
-
-
-
-
-				data.c = (ft_hextodeci(tmp) << sizeof(0xff) ) & 0xFF;
-			}
+			data.c = GREEN;
 			data.n = ft_atoi(*split++);
 			vector_append(row, &data);
 		}
@@ -54,6 +38,7 @@ t_vector *open_read_file(t_fdf *fdf, int fd)
 		fdf->size.x = row->len;
 	}
 	fdf->size.y = map->len;
+	free(line);
 	close(fd);
 	return (map);
 }

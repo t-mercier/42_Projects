@@ -13,93 +13,83 @@
 #include "../include/fdf.h"
 
 
-void	projection_down(t_fdf *fdf, t_vertex _0, t_index i)
+void	projection_down(t_fdf *fdf, t_vertex _0, t_vertex p)
 {
 	t_vertex _1;
+	t_vertex t;
 
-	fdf->map.x = (i.x * fdf->tile_size);
-	fdf->map.y = ((i.y + 1) * fdf->tile_size);
-	fdf->map.z = i.z.n * (fdf->tile_size / 3);
-	_1.x = (fdf->map.x - fdf->map.y) * cos(0.523599);
-	_1.y = -fdf->map.z + (fdf->map.x + fdf->map.y) * sin(0.523599);
-	_1.x += fdf->x_off;
-	_1.y += fdf->y_off;
-//	fprintf(stderr, "%d\n", i.z.c);
-
-	line(fdf->img, _0.x, _0.y, _1.x, _1.y, i.z.c);
+	t.x = (p.x * fdf->tile_size);
+	t.y = ((p.y + 1) * fdf->tile_size);
+	t.z = p.data.n * (fdf->tile_size / 3);
+	_1.x = (t.x - t.y) * cos(0.523599) + fdf->x_offset;
+	_1.y = -t.z + (t.x + t.y) * sin(0.523599) + fdf->y_offset;
+	drawline(fdf->img, _0, _1, GREEN);
 }
 
-void	projection_right(t_fdf *fdf, t_vertex _0, t_index i)
+void	projection_right(t_fdf *fdf, t_vertex _0, t_vertex p)
 {
 	t_vertex _1;
+	t_vertex t;
 
-	fdf->map.x = ((i.x + 1) * fdf->tile_size);
-	fdf->map.y = (i.y * fdf->tile_size);
-	fdf->map.z = i.z.n * (fdf->tile_size / 3);
-	_1.x = (fdf->map.x - fdf->map.y) * cos(0.523599);
-	_1.y = -fdf->map.z + (fdf->map.x + fdf->map.y) * sin(0.523599);
-	_1.x += fdf->x_off;
-	_1.y += fdf->y_off;
-	line(fdf->img, _0.x, _0.y, _1.x, _1.y, i.z.c);
+	t.x = ((p.x + 1) * fdf->tile_size);
+	t.y = (p.y * fdf->tile_size);
+	t.z = p.data.n * (fdf->tile_size / 3);
+	_1.x = (t.x - t.y) * cos(0.523599) + fdf->x_offset;
+	_1.y = -t.z + (t.x + t.y) * sin(0.523599) + fdf->y_offset;
+	drawline(fdf->img, _0, _1, GREEN);
 }
 
-
-void	project_1(t_fdf *fdf, t_vector *map, t_vertex _0, t_index i)
+void	project_1(t_fdf *fdf, t_vector *map, t_vertex _0, t_vertex p)
 {
 	t_vector	*row;
-	t_data	z;
 
-
-	row = ((t_vector **)map->item)[i.y];
-	if (i.x < row->len)
+	row = ((t_vector **)map->item)[p.y];
+	if (p.x < row->len - 1)
 	{
-//		i.z = ((int *)row->item)[i.x + 1];
-		i.z = ((t_data *)row->item)[i.x + 1];
-		projection_right(fdf, _0, i);
+		p.data = ((t_data *)row->item)[p.x + 1];
+		projection_right(fdf, _0, p);
 	}
-	if (i.y < map->len - 1)
+	if (p.y < map->len - 1)
 	{
-		row = ((t_vector **)map->item)[i.y + 1];
-		i.z = ((t_data *)row->item)[i.x];
-		projection_down(fdf, _0, i);
+		row = ((t_vector **)map->item)[p.y + 1];
+		p.data = ((t_data *)row->item)[p.x];
+		projection_down(fdf, _0, p);
 	}
 }
 
-void	project_0(t_fdf *fdf, t_vector *row, t_vertex *_0, t_index i)
+void	project_0(t_fdf *fdf, t_vector *row, t_vertex *_0, t_vertex p)
 {
-	t_data	z;
+	t_vertex t;
 
-	z = ((t_data *)row->item)[i.x];
-//	i.z = ((int *)row->item)[i.x];
-	fdf->map.x = (i.x * fdf->tile_size);
-	fdf->map.y = (i.y * fdf->tile_size);
-	fdf->map.z = z.n * (fdf->tile_size / 3);
-	_0->color =  z.c;
-	_0->x = (fdf->map.x - fdf->map.y) * cos(0.523599);
-	_0->y = -fdf->map.z + (fdf->map.x + fdf->map.y) * sin(0.523599);
-	_0->x += fdf->x_off;
-	_0->y += fdf->y_off;
+	p.data = ((t_data *)row->item)[p.x];
+	t.x = (p.x * fdf->tile_size);
+	t.y = (p.y * fdf->tile_size);
+	t.z = p.data.n * (fdf->tile_size / 3);
+	_0->x = (t.x - t.y) * cos(0.523599) + fdf->x_offset;
+	_0->y = -t.z + (t.x + t.y) * sin(0.523599) + fdf->y_offset;
 }
 
 void	projection(t_vector *map, t_fdf *fdf)
 {
+	t_vertex	p;
 	t_vertex	_0;
-	t_index		i;
 	t_vector	*row;
 
-	i.y = 0;
+	mlx_image_to_window(fdf->mlx, fdf->img, 0, 0);
 	ft_memset(&_0, 0, sizeof(t_vertex));
-	ft_memset(fdf->img->pixels, 0, sizeof(int) * fdf->img->width * fdf->img->height);
-	while (i.y < fdf->size.y)
+	ft_memset(fdf->img->pixels, 0, \
+	sizeof(int) * fdf->img->width * fdf->img->height);
+	p.y = 0;
+	while (p.y < map->len)
 	{
-		i.x = 0;
-		row = ((t_vector **)map->item)[i.y];
-		while (i.x < fdf->size.x)
+		row = ((t_vector **)map->item)[p.y];
+		p.x = 0;
+		while (p.x < row->len)
 		{
-			project_0(fdf, row, &_0, i);
-			project_1(fdf, map, _0, i);
-			i.x++;
+			project_0(fdf, row, &_0, p);
+			project_1(fdf, map, _0, p);
+			p.x++;
 		}
-		i.y++;
+		p.y++;
 	}
 }

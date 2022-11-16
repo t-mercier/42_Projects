@@ -11,42 +11,50 @@
 /* ************************************************************************** */
 
 #include "include/fdf.h"
-//
+
+mlx_image_t* mlx_put_string(mlx_t* mlx, const char* str, int32_t x, int32_t y);
+
 //void	init(t_fdf *fdf, char *filename)
-//{
-//	int		i;
-//
 //	fdf->map.heightmap = NULL;
-//	fdf->map->height = 1000;
 //	fdf->width = 1000;
+//	fdf->height = 1000;
 //	fdf->zoom = fdf->width / 2;
 //	fdf->rgb = 0xFF0000;
+//}
+
+//int		get_color(t_vertex *p1)
+//{
+//	int	r;
+//	int	g;
+//	int	b;
+//
+//	r = (p1->color & 0xFF0000) >> 16;
+//	g = (p1->color & 0x00FF00) >> 8;
+//	b = p1->color & 0x0000FF;
+//	return ((r << 16) + (g << 8) + b);
 //}
 
 
 int32_t	main(int ac, char **av)
 {
-
 	t_fdf		fdf;
 	int			fd;
 
 	if (ac != 2)
 		exit(EXIT_FAILURE);
 	if (ft_strlen(av[1]) - 4 <= 0)
-		mlx_error_exit();
-	ft_memset(&fdf, 0, sizeof(t_fdf));
-	calibration(&fdf);
+		exit_message("[ ERROR - WRONG ARGUMENTS ]", 1);
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
-		exit_message("ERROR [ Empty grid ]\n", 1);
+		exit_message("[ ERROR FILE READING ]\n", 1);
+	ft_memset(&fdf, 0, sizeof(t_fdf));
+	calibration(&fdf);
 	fdf.mlx = mlx_init(WIDTH, HEIGHT, "FDF", true);
-	fdf.grid = open_read_file(&fdf, fd);
+		if (!fdf.mlx) exit(EXIT_FAILURE);
+	fdf.map = open_read_file(&fdf, fd);
 	mlx_set_window_size(fdf.mlx, WIDTH, HEIGHT);
-	if (!fdf.mlx)
-		exit(EXIT_FAILURE);
 	fdf.img = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);
-	mlx_image_to_window(fdf.mlx, fdf.img, 50, 50);
-	projection(fdf.grid, &fdf);
+	projection(fdf.map, &fdf);
 	mlx_loop_hook(fdf.mlx, (void *)&hook, &fdf);
 	mlx_loop(fdf.mlx);
 	mlx_delete_image(fdf.mlx, fdf.img);

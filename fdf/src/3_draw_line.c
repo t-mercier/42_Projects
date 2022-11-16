@@ -12,42 +12,40 @@
 
 #include "../include/fdf.h"
 
-void	line(mlx_image_t *image, int x0, int y0, int x1, int y1, uint32_t color)
+void	drawline(mlx_image_t *image, t_vertex _0, t_vertex _1, uint32_t color)
 {
-	int	dx;
-	int	sx;
-	int	dy;
-	int	sy;
+	t_vertex d;
+	t_vertex s;
 	int	error;
 	int	e2;
 
-	if (x0 > image->width || x1 > image->width || y0 > image->height ||
-		y1 > image->height)
+	if (_0.x >= image->width || _1.x >= image->width \
+	|| _0.y >= image->height || _1.y >= image->height)
 		return ;
-	dx = abs(x1 - x0);
-	sx = x0 < x1 ? 1 : -1;
-	dy = -abs(y1 - y0);
-	sy = y0 < y1 ? 1 : -1;
-	error = dx + dy;
+	d.x = abs(_1.x - _0.x);
+	s.x = _0.x < _1.x ? 1 : -1;
+	d.y = -abs(_1.y - _0.y);
+	s.y = _0.y < _1.y ? 1 : -1;
+	error = d.x + d.y;
 	while (1)
 	{
-		mlx_put_pixel(image, abs(x0), abs(y0), color);
-		if (x0 == x1 && y0 == y1)
+		mlx_put_pixel(image, abs(_0.x), abs(_0.y), color);
+		if (_0.x == _1.x && _0.y == _1.y)
 			break ;
 		e2 = 2 * error;
-		if (e2 >= dy)
+		if (e2 >= d.y)
 		{
-			if (x0 == x1)
+			if (_0.x == _1.x)
 				break ;
-			error += dy;
-			x0 += sx;
+			error += d.y;
+			_0.x += s.x;
 		}
-		if (e2 <= dx)
+		if (e2 <= d.x)
 		{
-			if (y0 == y1)
+			if (_0.y == _1.y)
 				break ;
-			error += dx;
-			y0 += sy;
+			error += d.x;
+			_0.y += s.y;
 		}
 	}
 }
@@ -55,7 +53,7 @@ void	line(mlx_image_t *image, int x0, int y0, int x1, int y1, uint32_t color)
 void	calibration(t_fdf *fdf)
 {
 	fdf->tile_size = 50;
-	fdf->x_off  = WIDTH - (WIDTH / 2);
-	fdf->y_off  = HEIGHT - (HEIGHT / 2);
+	fdf->x_offset  = WIDTH - (WIDTH / 2);
+	fdf->y_offset  = HEIGHT - (HEIGHT / 2);
 
 }

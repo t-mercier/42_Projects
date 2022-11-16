@@ -12,27 +12,23 @@
 
 #include "../include/fdf.h"
 
-int get_r(int rgba)
-{
-	return ((rgba >> 24) & 0xFF);
-}
 
-int get_g(int rgba)
-{
-	return ((rgba >> 16) & 0xFF);
-}
+//t_rgb color_converter(int hex)
+//{
+//	t_rgb c;
+//	c.r = ((hex >> 16) & 0xff) / 255.0;  // Extract the RR byte
+//	c.g = ((hex >> 8) & 0xff) / 255.0;   // Extract the GG byte
+//	c.b = ((hex) & 0xff) / 255.0;        // Extract the BB byte
+//
+//	return c;
+//}
+//
+//double get_rgba(t_rgb c)
+//{
+//	return (c.r << 24 | c.g << 16 | c.b << 8 | c.a);
+//}
 
-int get_b(int rgba)
-{
-	return ((rgba >> 8) & 0xFF);
-}
-
-int get_a(int rgba)
-{
-	return (rgba & 0xFF);
-}
-
-int get_rgba(int r, int g, int b, int a)
-{
-	return (r << 24 | g << 16 | b << 8 | a);
-}
+//int get_rgba()
+//{
+//	return (R << 24 | G << 16 | B << 8 | A);
+//}
