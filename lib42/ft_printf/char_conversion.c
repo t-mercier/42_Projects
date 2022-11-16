@@ -42,7 +42,7 @@ int	ft_print_address_va_arg(va_list arg)
 
 	p = 2;
 	n = (long)va_arg(arg, long);
-	write (1, "0x", 2);
+	write(1, "0x", 2);
 	if (n == 0)
 		p += write(1, "0", 1);
 	else

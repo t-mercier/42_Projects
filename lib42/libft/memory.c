@@ -33,7 +33,8 @@ void	*ft_calloc(size_t count, size_t size)
 
 void	*ft_malloc(ssize_t esz)
 {
-	void *ptr;
+	void	*ptr;
+
 	ptr = malloc(esz);
 	if (ptr != NULL)
 		return (ptr);
@@ -42,7 +43,7 @@ void	*ft_malloc(ssize_t esz)
 
 void	*ft_memset(void *b, int c, size_t len)
 {
-	size_t			i;
+	size_t	i;
 
 	if (!b)
 		return (NULL);
@@ -52,7 +53,7 @@ void	*ft_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-void		*ft_realloc(void *ptr, size_t size, size_t old_s)
+void	*ft_realloc(void *ptr, size_t size, size_t old_s)
 {
 	void	*new_p;
 

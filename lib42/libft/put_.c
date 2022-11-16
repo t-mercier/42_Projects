@@ -53,7 +53,6 @@ void	ft_putulong_fd(unsigned long n, int radix, int fd)
 	write(fd, &c, 1);
 }
 
-
 void	ft_putendl_fd(char *s, int fd)
 {
 	size_t	len;

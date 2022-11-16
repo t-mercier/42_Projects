@@ -12,22 +12,6 @@
 
 #include "../include/libft.h"
 
-int	ft_tolower(int c)
-{
-	if (ft_isupper(c) == 1)
-		return (c + 32);
-	else
-		return (c);
-}
-
-int	ft_toupper(int c)
-{
-	if (ft_islower(c) == 1)
-		return (c - 32);
-	else
-		return (c);
-}
-
 long	ft_strtol(const char *str)
 {
 	long	res;

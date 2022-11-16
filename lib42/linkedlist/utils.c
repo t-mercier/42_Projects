@@ -12,7 +12,7 @@
 
 #include "../include/single_linkedlist.h"
 
-bool is_empty(t_node *list)
+bool	is_empty(t_node *list)
 {
 	return (list == NULL);
 }

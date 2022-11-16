@@ -12,7 +12,7 @@
 
 #include "../include/libft.h"
 
-void    exit_message(char *s, int code)
+void	exit_message(char *s, int code)
 {
 	ft_putendl_fd(s, STDERR_FILENO);
 	exit(code);

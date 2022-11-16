@@ -21,14 +21,14 @@
 
 #include "../include/libft.h"
 
-static size_t ft_strnlen(char *s, size_t n)
+static size_t	ft_strnlen(char *s, size_t n)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (s[i] && i < n)
 		i++;
-	return i;
+	return (i);
 }
 
 size_t	ft_strlcat(char *dst, char *src, size_t size)
@@ -47,15 +47,13 @@ size_t	ft_strlcat(char *dst, char *src, size_t size)
 		ft_memcpy(dst + d_len, src, size - d_len - 1);
 		dst[size - 1] = '\0';
 	}
-
 	return (s_len + d_len);
 }
 
-
 char	*ft_strjoin(char *s1, char const *s2)
 {
-	size_t		l;
-	char		*s;
+	size_t l;
+	char *s;
 
 	if (!s1 && !s2)
 		return (0);

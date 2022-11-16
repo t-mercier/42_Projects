@@ -55,7 +55,6 @@ char	**ft_split(char const *s, char c)
 	return (get_words(result, s, c));
 }
 
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	start;

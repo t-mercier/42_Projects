@@ -41,7 +41,7 @@ DEPS 			+=	$(MLX_A)
 ifdef DEBUG
 	CFLAGS += -fsanitize=address
 else
-	CFLAGS = -g3
+	CFLAGS += -g3
 endif
 
 SRC 	=	$(shell find $(LIB_DIR) -name "*.c")

@@ -17,15 +17,15 @@ void	delete_one(t_node *lst)
 	free(lst);
 }
 
- #include <stdio.h>
+#include <stdio.h>
 
 void	clear_list(t_node **list)
 {
-	if (!list)
-		return ;
 	t_node	*node;
 	t_node	*next;
 
+	if (!list)
+		return ;
 	node = *list;
 	while (node)
 	{

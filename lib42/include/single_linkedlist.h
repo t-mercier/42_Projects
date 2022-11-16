@@ -13,12 +13,11 @@
 #ifndef SINGLE_LINKEDLIST_H
 # define SINGLE_LINKEDLIST_H
 
+# include <stdbool.h>
 # include <stddef.h>
 # include <stdlib.h>
-# include <stdbool.h>
 
-# define EXIT_FAILURE    1
-
+# define EXIT_FAILURE 1
 
 /*
 **		[ STRUCTURES ]
@@ -27,9 +26,9 @@
 */
 typedef struct s_node
 {
-	void			*content;
-	struct s_node	*next;
-}t_node;
+	void				*content;
+	struct s_node		*next;
+}						t_node;
 
 /*
 **		[ STORAGE CLASSES ]
@@ -63,15 +62,15 @@ static inline int	second(t_node *list)
 **		[ MANIPULATION ]
 ** ---------------------------------
 */
-t_node	*create_node(void *content);
-void	add_front(t_node **list, t_node *new);
-void	add_back(t_node **list, t_node *new);
-t_node	*get_last(t_node *list);
-int		list_size(t_node *list);
-void	delete_one(t_node *lst);
-void	clear_list(t_node **lst);
-void	list_iterate(t_node *lst, void (*f)(int));
-void	free_list(t_node *list);
-bool	is_empty(t_node *list);
+t_node					*create_node(void *content);
+void					add_front(t_node **list, t_node *new);
+void					add_back(t_node **list, t_node *new);
+t_node					*get_last(t_node *list);
+int						list_size(t_node *list);
+void					delete_one(t_node *lst);
+void					clear_list(t_node **lst);
+void					list_iterate(t_node *lst, void (*f)(int));
+void					free_list(t_node *list);
+bool					is_empty(t_node *list);
 
-#endif 
+#endif

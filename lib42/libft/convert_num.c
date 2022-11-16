@@ -42,12 +42,13 @@ int	ft_hextodeci(char *hex)
 
 	n = 0;
 	len = ft_strlen(hex);
-	while (len--) {
+	while (len--)
+	{
 		if (*hex >= '0' && *hex <= '9')
 			x = *hex - '0';
 		else if (*hex >= 'a' && *hex <= 'f')
 			x = *hex - 'a' + 10;
-		else
+		else if (*hex >= 'A' && *hex <= 'F')
 			x = *hex - 'A' + 10;
 		n += x * pow(16, len);
 		hex++;
