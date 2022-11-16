@@ -12,41 +12,50 @@
 
 #include "../include/fdf.h"
 
-void	drawline(mlx_image_t *image, t_vertex _0, t_vertex _1, uint32_t color)
+static bool out_perimeter(mlx_image_t *img, t_vertex _0, t_vertex _1)
 {
-	t_vertex d;
-	t_vertex s;
-	int	error;
-	int	e2;
+	return (_0.x >= img->width || _1.x >= img->width \
+	|| _0.y >= img->height || _1.y >= img->height);
+}
 
-	if (_0.x >= image->width || _1.x >= image->width \
-	|| _0.y >= image->height || _1.y >= image->height)
+static int init_s_d(t_vertex _0, t_vertex _1, t_bresenham *p)
+{
+	p->d.x = abs(_1.x - _0.x);
+	p->s.x = tern_int(_0.x < _1.x, 1, -1);
+	p->d.y = -abs(_1.y - _0.y);
+	p->s.y = tern_int(_0.y < _1.y, 1, -1);
+	return (p->d.x + p->d.y);
+}
+
+static void	narrow_(t_bresenham *p, t_vertex *_0, t_vertex _1)
+{
+	if (p->e2 >= p->d.y && _0->x != _1.x)
+	{
+		p->e += p->d.y;
+		_0->x += p->s.x;
+	}
+	if (p->e2 <= p->d.x && _0->y != _1.y)
+	{
+		p->e += p->d.x;
+		_0->y += p->s.y;
+	}
+}
+
+void	drawline(mlx_image_t *img, t_vertex _0, t_vertex _1, uint32_t color)
+{
+	t_bresenham p;
+
+	ft_memset(&p, 0, sizeof(t_bresenham));
+	if (out_perimeter(img, _0, _1))
 		return ;
-	d.x = abs(_1.x - _0.x);
-	s.x = _0.x < _1.x ? 1 : -1;
-	d.y = -abs(_1.y - _0.y);
-	s.y = _0.y < _1.y ? 1 : -1;
-	error = d.x + d.y;
+	p.e = init_s_d(_0, _1, &p);
 	while (1)
 	{
-		mlx_put_pixel(image, abs(_0.x), abs(_0.y), color);
+		mlx_put_pixel(img, abs(_0.x), abs(_0.y), color);
 		if (_0.x == _1.x && _0.y == _1.y)
-			break ;
-		e2 = 2 * error;
-		if (e2 >= d.y)
-		{
-			if (_0.x == _1.x)
-				break ;
-			error += d.y;
-			_0.x += s.x;
-		}
-		if (e2 <= d.x)
-		{
-			if (_0.y == _1.y)
-				break ;
-			error += d.x;
-			_0.y += s.y;
-		}
+			break;
+		p.e2 = p.e;
+		narrow_(&p, &_0, _1);
 	}
 }
 

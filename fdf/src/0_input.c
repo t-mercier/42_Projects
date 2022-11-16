@@ -12,7 +12,7 @@
 
 #include "../include/fdf.h"
 
-t_vector *open_read_file(t_fdf *fdf, int fd)
+t_vector *open_read_file(int fd)
 {
 	static char	**split;
 	char		*line;
@@ -31,13 +31,11 @@ t_vector *open_read_file(t_fdf *fdf, int fd)
 		while (*split)
 		{
 			data.c = GREEN;
-			data.n = ft_atoi(*split++);
+			data.z = ft_atoi(*split++);
 			vector_append(row, &data);
 		}
 		vector_append(map, &row);
-		fdf->size.x = row->len;
 	}
-	fdf->size.y = map->len;
 	free(line);
 	close(fd);
 	return (map);

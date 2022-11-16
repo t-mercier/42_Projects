@@ -20,7 +20,7 @@ void	projection_down(t_fdf *fdf, t_vertex _0, t_vertex p)
 
 	t.x = (p.x * fdf->tile_size);
 	t.y = ((p.y + 1) * fdf->tile_size);
-	t.z = p.data.n * (fdf->tile_size / 3);
+	t.z = p.data.z * (fdf->tile_size / 3);
 	_1.x = (t.x - t.y) * cos(0.523599) + fdf->x_offset;
 	_1.y = -t.z + (t.x + t.y) * sin(0.523599) + fdf->y_offset;
 	drawline(fdf->img, _0, _1, GREEN);
@@ -33,7 +33,7 @@ void	projection_right(t_fdf *fdf, t_vertex _0, t_vertex p)
 
 	t.x = ((p.x + 1) * fdf->tile_size);
 	t.y = (p.y * fdf->tile_size);
-	t.z = p.data.n * (fdf->tile_size / 3);
+	t.z = p.data.z * (fdf->tile_size / 3);
 	_1.x = (t.x - t.y) * cos(0.523599) + fdf->x_offset;
 	_1.y = -t.z + (t.x + t.y) * sin(0.523599) + fdf->y_offset;
 	drawline(fdf->img, _0, _1, GREEN);
@@ -64,7 +64,7 @@ void	project_0(t_fdf *fdf, t_vector *row, t_vertex *_0, t_vertex p)
 	p.data = ((t_data *)row->item)[p.x];
 	t.x = (p.x * fdf->tile_size);
 	t.y = (p.y * fdf->tile_size);
-	t.z = p.data.n * (fdf->tile_size / 3);
+	t.z = p.data.z * (fdf->tile_size / 3);
 	_0->x = (t.x - t.y) * cos(0.523599) + fdf->x_offset;
 	_0->y = -t.z + (t.x + t.y) * sin(0.523599) + fdf->y_offset;
 }

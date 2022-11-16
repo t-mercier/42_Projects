@@ -45,26 +45,30 @@ typedef struct s_rgb
 	uint32_t		rgb;
 } t_rgb;
 
-typedef struct s_vertices
-{
-	uint16_t		x;
-	uint16_t		y;
-}					t_vertices;
-
 typedef struct s_data
 {
-	int 			n;
+	int 			z;
 	int 			c;
 } t_data;
+
+
 
 typedef struct s_vertex
 {
 	int				x;
 	int				y;
 	int				z;
-	t_data			data;
 	int				color;
+	t_data			data;
 }					t_vertex;
+typedef struct s_bresenham
+{
+	t_vertex d;
+	t_vertex s;
+	int e;
+	int e2;
+
+}t_bresenham;
 
 typedef struct s_fdf
 {
@@ -74,7 +78,6 @@ typedef struct s_fdf
 	int 			tile_size;
 	mlx_t			*mlx;
 	t_vector		*map;
-	t_vertices		size;
 	mlx_image_t		*img;
 }					t_fdf;
 
@@ -87,10 +90,10 @@ void				calibration(t_fdf *fdf);
 void				error(void);
 void 				scrollhook(double xdelta, double ydelta, t_fdf *fdf);
 void				control_hook(mlx_key_data_t press, t_fdf *fdf);
-t_vector			*open_read_file(t_fdf *fdf, int fd);
+t_vector			*open_read_file(int fd);
 void				exit_message(char *s, int code);
 void				projection(t_vector *map, t_fdf *fdf);
-void				drawline(mlx_image_t *image, t_vertex _0, t_vertex _1, uint32_t color);
+void				drawline(mlx_image_t *img, t_vertex _0, t_vertex _1, uint32_t color);
 
 int		get_color(t_vertex *p1, t_vertex *p2, int mod);
 

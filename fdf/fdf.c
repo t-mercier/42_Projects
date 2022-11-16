@@ -51,7 +51,7 @@ int32_t	main(int ac, char **av)
 	calibration(&fdf);
 	fdf.mlx = mlx_init(WIDTH, HEIGHT, "FDF", true);
 		if (!fdf.mlx) exit(EXIT_FAILURE);
-	fdf.map = open_read_file(&fdf, fd);
+	fdf.map = open_read_file(fd);
 	mlx_set_window_size(fdf.mlx, WIDTH, HEIGHT);
 	fdf.img = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);
 	projection(fdf.map, &fdf);
