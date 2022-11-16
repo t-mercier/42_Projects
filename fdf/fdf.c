@@ -12,7 +12,7 @@
 
 #include "include/fdf.h"
 
-mlx_image_t* mlx_put_string(mlx_t* mlx, const char* str, int32_t x, int32_t y);
+mlx_image_t	*mlx_put_string(mlx_t *mlx, const char *str, int32_t x, int32_t y);
 
 //void	init(t_fdf *fdf, char *filename)
 //	fdf->map.heightmap = NULL;
@@ -34,11 +34,10 @@ mlx_image_t* mlx_put_string(mlx_t* mlx, const char* str, int32_t x, int32_t y);
 //	return ((r << 16) + (g << 8) + b);
 //}
 
-
 int32_t	main(int ac, char **av)
 {
-	t_fdf		fdf;
-	int			fd;
+	t_fdf	fdf;
+	int		fd;
 
 	if (ac != 2)
 		exit(EXIT_FAILURE);
@@ -50,7 +49,8 @@ int32_t	main(int ac, char **av)
 	ft_memset(&fdf, 0, sizeof(t_fdf));
 	calibration(&fdf);
 	fdf.mlx = mlx_init(WIDTH, HEIGHT, "FDF", true);
-		if (!fdf.mlx) exit(EXIT_FAILURE);
+	if (!fdf.mlx)
+		exit(EXIT_FAILURE);
 	fdf.map = open_read_file(fd);
 	mlx_set_window_size(fdf.mlx, WIDTH, HEIGHT);
 	fdf.img = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);

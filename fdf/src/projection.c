@@ -12,11 +12,10 @@
 
 #include "../include/fdf.h"
 
-
 void	projection_down(t_fdf *fdf, t_vertex _0, t_vertex p)
 {
-	t_vertex _1;
-	t_vertex t;
+	t_vertex	_1;
+	t_vertex	t;
 
 	t.x = (p.x * fdf->tile_size);
 	t.y = ((p.y + 1) * fdf->tile_size);
@@ -28,8 +27,8 @@ void	projection_down(t_fdf *fdf, t_vertex _0, t_vertex p)
 
 void	projection_right(t_fdf *fdf, t_vertex _0, t_vertex p)
 {
-	t_vertex _1;
-	t_vertex t;
+	t_vertex	_1;
+	t_vertex	t;
 
 	t.x = ((p.x + 1) * fdf->tile_size);
 	t.y = (p.y * fdf->tile_size);
@@ -59,7 +58,7 @@ void	project_1(t_fdf *fdf, t_vector *map, t_vertex _0, t_vertex p)
 
 void	project_0(t_fdf *fdf, t_vector *row, t_vertex *_0, t_vertex p)
 {
-	t_vertex t;
+	t_vertex	t;
 
 	p.data = ((t_data *)row->item)[p.x];
 	t.x = (p.x * fdf->tile_size);
@@ -77,8 +76,8 @@ void	projection(t_vector *map, t_fdf *fdf)
 
 	mlx_image_to_window(fdf->mlx, fdf->img, 0, 0);
 	ft_memset(&_0, 0, sizeof(t_vertex));
-	ft_memset(fdf->img->pixels, 0, \
-	sizeof(int) * fdf->img->width * fdf->img->height);
+	ft_memset(fdf->img->pixels, 0, sizeof(int) * \
+	fdf->img->width * fdf->img->height);
 	p.y = 0;
 	while (p.y < map->len)
 	{

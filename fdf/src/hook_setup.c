@@ -11,29 +11,32 @@
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-//
-//void control_hook(mlx_key_data_t press, t_fdf *fdf)
-//{
-//	if (press.action == MLX_PRESS)
-//	{
-//		if (press.key == MLX_KEY_Q)
-//			exit(EXIT_SUCCESS);
-//		if (press.key == 333 || fdf->press.key == 45)
-//			fdf->map.zoom -= 0.02;
-//		if (press.key == MLX_KEY_KP_ADD)
-//			fdf->map.zoom += 0.02;
-//		if (press.key == MLX_KEY_UP)
-//			fdf->map.y_offset += 10;
-//		if (press.key == MLX_KEY_DOWN)
-//			fdf->map.y_offset -= 10;
-//		if (press.key == MLX_KEY_RIGHT)
-//			fdf->map.x_offset += 10;
-//		if (press.key == MLX_KEY_LEFT)
-//			fdf->map.x_offset -= 10;
-//		projection(fdf->map, fdf);
-//	}
-//}
-//
+
+void	hook(t_fdf *fdf)
+{
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(fdf->mlx);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
+		mlx_delete_image(fdf->mlx, fdf->img);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
+		fdf->y_offset -= 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
+		fdf->y_offset += 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
+		fdf->x_offset -= 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
+		fdf->x_offset += 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_ADD))
+		fdf->tile_size += 2;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_SUBTRACT))
+		fdf->tile_size -= 2;
+	//	if (press.key == 333 || fdf->press.key == 45)
+	//		fdf->map.zoom -= 0.02;
+	//	if (press.key == MLX_KEY_KP_ADD)
+	//		fdf->map.zoom += 0.02;
+	projection(fdf->map, fdf);
+}
+
 //void scrollhook(double xdelta, double ydelta, t_fdf *fdf)
 //{
 //	(void) xdelta;
@@ -45,26 +48,3 @@
 //
 //
 //}
-
-void	hook(t_fdf *fdf)
-{
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(fdf->mlx);
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
-		mlx_delete_image(fdf->mlx, fdf->img);
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
-		fdf->y_offset -= 5;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
-		fdf->y_offset += 5;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
-		fdf->x_offset -= 5;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
-		fdf->x_offset += 5;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_ADD))
-		fdf->tile_size += 2;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_SUBTRACT))
-		fdf->tile_size -= 2;
-	projection(fdf->map, fdf);
-
-
-}

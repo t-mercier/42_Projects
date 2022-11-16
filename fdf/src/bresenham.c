@@ -12,13 +12,13 @@
 
 #include "../include/fdf.h"
 
-static bool out_perimeter(mlx_image_t *img, t_vertex _0, t_vertex _1)
+static bool	out_perimeter(mlx_image_t *img, t_vertex _0, t_vertex _1)
 {
-	return (_0.x >= img->width || _1.x >= img->width \
-	|| _0.y >= img->height || _1.y >= img->height);
+	return (_0.x >= img->width || _1.x >= img->width || _0.y >= img->height
+		|| _1.y >= img->height);
 }
 
-static int init_s_d(t_vertex _0, t_vertex _1, t_bresenham *p)
+static int	init_s_d(t_vertex _0, t_vertex _1, t_bresenham *p)
 {
 	p->d.x = abs(_1.x - _0.x);
 	p->s.x = tern_int(_0.x < _1.x, 1, -1);
@@ -43,7 +43,7 @@ static void	narrow_(t_bresenham *p, t_vertex *_0, t_vertex _1)
 
 void	drawline(mlx_image_t *img, t_vertex _0, t_vertex _1, uint32_t color)
 {
-	t_bresenham p;
+	t_bresenham	p;
 
 	ft_memset(&p, 0, sizeof(t_bresenham));
 	if (out_perimeter(img, _0, _1))
@@ -53,16 +53,8 @@ void	drawline(mlx_image_t *img, t_vertex _0, t_vertex _1, uint32_t color)
 	{
 		mlx_put_pixel(img, abs(_0.x), abs(_0.y), color);
 		if (_0.x == _1.x && _0.y == _1.y)
-			break;
+			break ;
 		p.e2 = p.e;
 		narrow_(&p, &_0, _1);
 	}
-}
-
-void	calibration(t_fdf *fdf)
-{
-	fdf->tile_size = 50;
-	fdf->x_offset  = WIDTH - (WIDTH / 2);
-	fdf->y_offset  = HEIGHT - (HEIGHT / 2);
-
 }
