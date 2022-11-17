@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   utils.c                                            :+:    :+:            */
+/*   remove.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/08/01 14:11:24 by tmercier      #+#    #+#                 */
-/*   Updated: 2022/10/16 20:57:04 by tmercier      ########   odam.nl         */
+/*   Created: 2022/09/17 12:15:31 by tmercier      #+#    #+#                 */
+/*   Updated: 2022/10/16 20:56:28 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/single_linkedlist.h"
+#include "../include/linkedlist.h"
 
-bool	is_empty(t_node *list)
+void	lls_delete_one(t_node *lst)
 {
-	return (list == NULL);
+	free(lst);
 }
 
-int	list_size(t_node *list)
+void	lls_clear_list(t_node **list)
 {
-	int	size;
+	t_node	*node;
+	t_node	*next;
 
-	size = 0;
-	while (list)
+	if (!list)
+		return ;
+	node = *list;
+	while (node)
 	{
-		list = list->next;
-		size++;
+		next = node->next;
+		lls_delete_one(node);
+		node = next;
 	}
-	return (size);
-}
-
-void	list_iterate(t_node *lst, void (*f)(int))
-{
-	while (lst)
-	{
-		f(*(int *)lst->content);
-		lst = lst->next;
-	}
+	*list = 0;
 }

@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   libft.h                                      :+:    :+:            */
+/*   single_linkedlist.h                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/11/29 14:48:22 by tmercier      #+#    #+#                 */
-/*   Updated: 2021/12/18 14:34:42 by tmercier      ########   odam.nl         */
+/*   Created: 2022/10/11 19:18:04 by tmercier      #+#    #+#                 */
+/*   Updated: 2022/10/16 20:57:11 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIB42_H
-# define LIB42_H
+#ifndef VECTORS_H
+# define VECTORS_H
 
-# include "include/libft.h"
-# include "include/linkedlist.h"
-# include "include/storage_classes.h"
-# include "include/vectors.h"
-# include "MLX42/include/MLX42/MLX42.h"
+# include <stdbool.h>
+# include <stddef.h>
+# include <stdlib.h>
 
-# define EXIT_FAILURE    1
+/*
+ * len : Vector real length
+ * size : Vector max size
+ * esz : Element size
+ */
 
-
-
-static void	mlx_error_exit(void)
+typedef struct s_vector
 {
-	char    *s;
+	void			*item;
+	size_t			size;
+	size_t			len;
+	size_t			esz;
+}					t_vector;
 
-	s = ft_strdup(mlx_strerror(mlx_errno));
-	ft_putendl_fd(s, STDERR_FILENO);
-	exit(EXIT_FAILURE);
-}
 
-#endif 
+t_vector			*vector_init(size_t size);
+void				vector_append(t_vector *v, void *x);
+void				free_vector(t_vector *v);
+
+#endif

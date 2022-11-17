@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   remove.c                                           :+:    :+:            */
+/*   list_iter.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/17 12:15:31 by tmercier      #+#    #+#                 */
-/*   Updated: 2022/10/16 20:56:28 by tmercier      ########   odam.nl         */
+/*   Created: 2022/08/01 14:11:24 by tmercier      #+#    #+#                 */
+/*   Updated: 2022/08/01 14:11:24 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/single_linkedlist.h"
+#include "../include/linkedlist.h"
+#include "../include/storage_classes.h"
 
-void	delete_one(t_node *lst)
+t_node	*llc_get_previous_end(t_list *list)
 {
-	free(lst);
+	t_node	*tmp;
+
+	tmp = head(list);
+	while (tmp->next != tail(list))
+		tmp = tmp->next;
+	return (tmp);
 }
 
-#include <stdio.h>
-
-void	clear_list(t_node **list)
+int	llc_list_size(t_list *list)
 {
-	t_node	*node;
-	t_node	*next;
+	int		i;
+	t_node	*current;
 
+	i = 1;
 	if (!list)
-		return ;
-	node = *list;
-	while (node)
-	{
-		next = node->next;
-		delete_one(node);
-		node = next;
-	}
-	*list = 0;
+		return (0);
+	current = head(list);
+	while (current != list->tail && i++)
+		current = current->next;
+	return (i);
 }
+

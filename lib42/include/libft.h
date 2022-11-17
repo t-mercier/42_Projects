@@ -35,20 +35,6 @@
 # endif
 
 /*
- * len : Vector real length
- * buff : Vector max size
- * esz : Element size
- */
-
-typedef struct s_vector
-{
-	void			*item;
-	size_t			size;
-	size_t			len;
-	size_t			esz;
-}					t_vector;
-
-/*
 **		check_case.c
 ** ---------------------------------
 */
@@ -185,15 +171,6 @@ int					tern_int(int condition, int _true, int _false);
 size_t				tern_size_t(int condition, size_t _true, size_t _false);
 char				tern_char(int condition, char _true, char _false);
 char				*tern_str(int condition, char *_true, char *_false);
-
-/*
-**		vector.c
-** ---------------------------------
-*/
-
-t_vector			*vector_init(size_t size);
-void				vector_append(t_vector *v, void *x);
-void				free_vector(t_vector *v);
 
 /*
 **		FT_PRINTF

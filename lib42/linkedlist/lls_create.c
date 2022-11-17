@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/single_linkedlist.h"
+#include "../include/linkedlist.h"
 
-t_node	*create_node(void *content)
+t_node	*lls_create_node(void *content)
 {
 	t_node	*list;
 
@@ -22,27 +22,4 @@ t_node	*create_node(void *content)
 	list->content = content;
 	list->next = 0;
 	return (list);
-}
-
-void	add_front(t_node **list, t_node *new)
-{
-	new->next = *list;
-	*list = new;
-}
-
-t_node	*get_last(t_node *list)
-{
-	if (!list)
-		return (0);
-	while (list->next)
-		list = list->next;
-	return (list);
-}
-
-void	add_back(t_node **list, t_node *new)
-{
-	if (!*list)
-		*list = new;
-	else
-		get_last(*list)->next = new;
 }
