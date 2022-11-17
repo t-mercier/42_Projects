@@ -12,31 +12,27 @@
 
 SHELL 			= /bin/sh
 
-# -------------------------------- variables --------------------------------- #
+# ---------------------------------- macros ---------------------------------- #
 
 NAME			= 42
+MLX42			= mlx42
 
 OBJ_DIR			= output
 LIB_DIR			= ft_printf get_next_line libft linkedlist
 LIB42_A 		= lib$(NAME).a
 
-# --------------- $(CC) --------------- #
-
 CFLAGS 			+= -O2
-
-# --------------- LIBFT --------------- #
-
 CFLAGS 			+= -Iinclude
 LFLAGS 			+=
 
-# --------------- MLX42 --------------- #
+# ---------------------------------- MLX42 ----------------------------------- #
 
 MLX_A			=	MLX42/libmlx42.a
 MAKE_FILES		=	$(MLX_DIR)
 CFLAGS 			+= -I $(MLX_DIR)/include
 DEPS 			+=	$(MLX_A)
 
-# --------------- debug --------------- #
+# --------------------------------- debug ------------------------------------ #
 
 ifdef DEBUG
 	CFLAGS += -fsanitize=address
@@ -49,18 +45,26 @@ OBJ		=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 all: $(NAME)
 
+mlx: $(MLX42) $(NAME)
+
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(@D)
 	@$(CC) -o $@ -c $< $(CFLAGS)
 	@echo "\033[96m	$@\033[0m"
 
 $(NAME): $(OBJ)
-	@make -C ./MLX42
-	@mv $(MLX_A) ./$(LIB42_A)
+	@#make -C ./MLX42
+	@#mv $(MLX_A) ./$(LIB42_A)
 	@ar rcs $(LIB42_A) $(OBJ)
 	@printf "\n$(WHITE)---> $(LIB42_A) archive created ✔️ $(RESET)\n\n"
 
-# --------------- clean --------------- #
+$(MLX42):
+	@make -C ./MLX42
+	@mv $(MLX_A) ./$(LIB42_A)
+#	@ar rcs $(LIB42_A) $(OBJ)
+#	@printf "\n$(WHITE)---> $(LIB42_A) archive created ✔️ $(RESET)\n\n"
+
+# --------------------------------- clean ------------------------------------ #
 
 clean:
 	@$(foreach var,$(MAKE_FILES),$(MAKE) -C $(var) clean;)
@@ -80,7 +84,7 @@ signature:
 
 .PHONY: clean fclean re graphic
 
-# --------------- colors --------------- #
+# ----------------------------------- colors --------------------------------- #
 
 BOLD	:= \033[1m
 BLACK	:= \033[30;1m
