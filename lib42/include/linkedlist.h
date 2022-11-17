@@ -30,6 +30,9 @@ typedef struct s_node
 	struct s_node		*next;
 }						t_node;
 
+/** ---------------------------------
+**		circular linked list
+*/
 typedef struct s_list
 {
 	t_node			*head;
@@ -77,13 +80,13 @@ t_node		*llc_create_silent_node(char	*move);
 */
 t_node		*llc_get_previous_end(t_list *list);
 int			llc_list_size(t_list *list);
-void		llc_print_list(t_list *list)__attribute__((unused));
+void		llc_print_list(t_list *list);
 void		llc_print_instructions_list(t_list *list);
 /* ---------------------------------
 **			llc_remove.c
 */
 void		llc_delete_first(t_list *list);
-void		llc_delete_last(t_list *node)__attribute__((unused));
+void		llc_delete_last(t_list *node);
 void		llc_free_list(t_list *list);
 
 
