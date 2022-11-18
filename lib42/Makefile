@@ -14,8 +14,6 @@ SHELL 			= /bin/sh
 
 # ---------------------------------- macros ---------------------------------- #
 
-
-
 OBJ_DIR			=	obj
 INC_DIR			=	./include
 LIB_DIR			=	ft_printf get_next_line libft linkedlist vectors
@@ -30,30 +28,28 @@ LIB42MLX		=	lib42mlx.a
 
 
 ifdef MLX
-	NAME = $(LIB42MLX)
+	NAME 		= 	$(LIB42MLX)
 else
-	NAME = $(LIB42)
+	NAME		= 	$(LIB42)
 endif
 
 # --------------------------------- debug ------------------------------------ #
 
-#CFLAGS 			+= 	-Iinclude -I $(MLX_DIR)/include
-
 ifdef MLX
-	CFLAGS += -I $(MLX_DIR)/include
+	CFLAGS		+=	-I $(MLX_DIR)/include
 else
-	CFLAGS += -Iinclude
+	CFLAGS		+=	-Iinclude
 endif
 
 ifdef DEBUG
-	CFLAGS += -fsanitize=address
+	CFLAGS		+=	-fsanitize=address
 else
-	CFLAGS += -g3
+	CFLAGS		+=	-g3
 endif
 
-SRC 	=	$(shell find $(LIB_DIR) -name "*.c")
-OBJ		=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
-HDR		=	$(shell find $(INC_DIR) -name "*.h")
+SRC				=	$(shell find $(LIB_DIR) -name "*.c")
+OBJ				=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+HDR				=	$(shell find $(INC_DIR) -name "*.h")
 
 all: $(NAME)
 

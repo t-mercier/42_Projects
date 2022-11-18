@@ -21,8 +21,6 @@
 
 # define EXIT_FAILURE    1
 
-
-
 static void	mlx_error_exit(void)
 {
 	char    *s;
