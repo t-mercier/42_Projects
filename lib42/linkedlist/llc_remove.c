@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/linkedlist.h"
-#include "storage_classes.h"
+#include "../include/storage_classes.h"
 
 void	llc_delete_first(t_list *list)
 {

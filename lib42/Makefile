@@ -14,25 +14,36 @@ SHELL 			= /bin/sh
 
 # ---------------------------------- macros ---------------------------------- #
 
-NAME			= 42
-MLX42			= mlx42
 
-OBJ_DIR			= objects
-LIB_DIR			= ft_printf get_next_line libft linkedlist vectors
-LIB42_A 		= lib$(NAME).a
 
-CFLAGS 			+= -O2
-CFLAGS 			+= -Iinclude
-LFLAGS 			+=
+OBJ_DIR			=	obj
+INC_DIR			=	./include
+LIB_DIR			=	ft_printf get_next_line libft linkedlist vectors
 
 # ---------------------------------- MLX42 ----------------------------------- #
 
-MLX_A			=	MLX42/libmlx42.a
-MAKE_FILES		=	$(MLX_DIR)
-CFLAGS 			+= -I $(MLX_DIR)/include
-DEPS 			+=	$(MLX_A)
+MLX42			=	MLX42/libmlx42.a
+MLX_DIR			=	MLX42
+
+LIB42			=	lib42.a
+LIB42MLX		=	lib42mlx.a
+
+
+ifdef MLX
+	NAME = $(LIB42MLX)
+else
+	NAME = $(LIB42)
+endif
 
 # --------------------------------- debug ------------------------------------ #
+
+#CFLAGS 			+= 	-Iinclude -I $(MLX_DIR)/include
+
+ifdef MLX
+	CFLAGS += -I $(MLX_DIR)/include
+else
+	CFLAGS += -Iinclude
+endif
 
 ifdef DEBUG
 	CFLAGS += -fsanitize=address
@@ -42,40 +53,49 @@ endif
 
 SRC 	=	$(shell find $(LIB_DIR) -name "*.c")
 OBJ		=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+HDR		=	$(shell find $(INC_DIR) -name "*.h")
 
 all: $(NAME)
 
-mlx: $(MLX42)
-
-
-$(OBJ_DIR)/%.o: %.c
+$(OBJ_DIR)/%.o: %.c $(HDR)
 	@mkdir -p $(@D)
+	@echo "$(GREEN)$(BOLD)Compiling:$(RESET) $(notdir $<)"
 	@$(CC) -o $@ -c $< $(CFLAGS)
-	@echo "\033[96m	$@\033[0m"
 
-$(NAME): $(OBJ)
-	@#make -C ./MLX42
-	@#mv $(MLX_A) ./$(LIB42_A)
-	@ar rcs $(LIB42_A) $(OBJ)
-	@printf "\n$(GREEN)---> $(LIB42_A) archive created ✔️ $(RESET)\n\n"
+$(LIB42): $(OBJ)
+	@ar rc $@ $^
+	@printf "\n$(GREEN)---> $(LIB42_A) archive created ✔️$(RESET)\n"
 
-$(MLX42): $(OBJ)
-	make -C ./MLX42
-	@mv $(MLX_A) ./$(LIB42_A)
-	@ar rcs $(LIB42_A) $(OBJ)
-	@printf "\n$(GREEN)---> $(LIB42_A) & $(MLX42).a archives merged successfully ✔️ $(RESET)\n\n"
+$(LIB42MLX): $(OBJ)
+	@if [ -f "lib42.a" ]; then mv lib42.a $(MLX42); fi
+	@make -C $(MLX_DIR)
+	@mv $(MLX42) $(LIB42MLX)
+	@ar rcs $(LIB42MLX) $(OBJ)
+	@printf "\n$(GREEN)---> $(LIB42) & mlx42.a \
+	archives merged successfully ✔️ $(RESET)\n\n"
+
 
 # --------------------------------- clean ------------------------------------ #
 
 clean:
-	@$(foreach var,$(MAKE_FILES),$(MAKE) -C $(var) clean;)
-	@if [ -d $(OBJ_DIR) ]; then rm -rf $(OBJ_DIR)  && printf "\n$(RED)-> .o files removed.\n"; \
-	else printf "\n$(GREEN) ... nothing to clean\n"; fi
+	@printf "$(RED)\nobj folder cleaned"
+	@if [ -d $(OBJ_DIR) ]; then rm -rf $(OBJ_DIR) && \
+	printf "$(RED)Cleaning\n$(GREEN)Objects files"; fi
 
 fclean: clean
-	@$(foreach var,$(MAKE_FILES),$(MAKE) -C $(var) fclean;)
-	@if [ -f "lib42.a" ]; then rm -rf lib42.a && printf "\n$(RED)-> lib42 folder cleaned.\n\n"; \
-	else printf "$(GREEN).o files and lib42.a already removed, lib42 folder is clean.\n\n"; fi
+	@if [ -f "lib42.a" ]; then rm -rf lib42.a && \
+	printf "$(RED)\nlib42 archive cleaned"; fi
+	@if [ -f "lib42mlx.a" ]; then rm -rf lib42mlx.a && \
+	printf "$(RED)\nlib42mlx archive cleaned\n"; fi
+	@printf "$(GREEN)\n-> lib42 folder cleaned\n"
+
+cleanmlx:
+	@$(MAKE) clean -C $(MLX_DIR)
+	@printf "$(RED)-> mlx42 objects files\n"
+	@$(MAKE) fclean -C $(MLX_DIR)
+	@printf "$(RED)-> mlx42 archive\n"
+
+
 re:
 	@$(MAKE) fclean
 	@$(MAKE) all

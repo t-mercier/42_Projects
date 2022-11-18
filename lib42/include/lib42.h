@@ -13,11 +13,11 @@
 #ifndef LIB42_H
 # define LIB42_H
 
-# include "include/libft.h"
-# include "include/linkedlist.h"
-# include "include/storage_classes.h"
-# include "include/vectors.h"
-# include "MLX42/include/MLX42/MLX42.h"
+# include "libft.h"
+# include "linkedlist.h"
+# include "storage_classes.h"
+# include "vectors.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 
 # define EXIT_FAILURE    1
 
