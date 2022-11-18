@@ -64,15 +64,12 @@ $(NAME): $(LIB42) $(OBJ)
 # -------------------------------- clean -------------------------------- #
 
 clean:
-	@if [ -d "lib42/obj" ]; then rm -rf lib42/obj; fi
 	@rm -rf $(OBJ_DIR)
-	@printf "$(LIGHT_RED)\n-> libft obj files removed.\n"
-	@printf "$(LIGHT_RED)\n-> push_swap obj files removed.\n"
+	@printf "$(LIGHT_RED)\n-> obj files removed.\n"
 
 fclean:	clean
 	@rm -rf $(NAME)
-	@if [ -f "lib42mlx.a" ]; then rm -rf lib42mlx.a; fi
-	@printf "\n$(LIGHT_RED)-> $(NAME) removed.\n\n"
+	@printf "\n$(LIGHT_RED)-> executable removed.\n\n"
 
 re: fclean all
 
