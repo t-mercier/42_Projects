@@ -13,7 +13,7 @@
 #ifndef FDF_H
 # define FDF_H
 
-# include "../../lib42/lib42.h"
+# include "../../lib42/include/lib42.h"
 
 # define DEG2RAD (360.0 * M_PI / 180)
 # define EXIT_FAILURE 1
@@ -46,8 +46,8 @@ typedef struct s_data
 
 typedef struct s_vertex
 {
-	int			x;
-	int			y;
+	int 		x;
+ 	int			y;
 	int			z;
 	int			color;
 	t_data		data;

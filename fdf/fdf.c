@@ -33,6 +33,13 @@ mlx_image_t	*mlx_put_string(mlx_t *mlx, const char *str, int32_t x, int32_t y);
 //	b = p1->color & 0x0000FF;
 //	return ((r << 16) + (g << 8) + b);
 //}
+void	calibration(t_fdf *fdf)
+{
+	fdf->tile_size = 50;
+	fdf->x_offset  = WIDTH - (WIDTH / 2);
+	fdf->y_offset  = HEIGHT - (HEIGHT / 2);
+
+}
 
 int32_t	main(int ac, char **av)
 {

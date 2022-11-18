@@ -27,7 +27,7 @@
 //{
 //	return (c.r << 24 | c.g << 16 | c.b << 8 | c.a);
 //}
-
+//
 //int get_rgba()
 //{
 //	return (R << 24 | G << 16 | B << 8 | A);

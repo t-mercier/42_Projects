@@ -14,67 +14,76 @@ SHELL = /bin/sh
 
 NAME 		=	fdf
 
-################### SOURCES FILES
-FILES		=	src fdf.c
-HEADER		=	include/fdf.h
-INCLUDE		=	-Iinclude
-OBJDIR 		= 	obj
+# ---------------------------------- FILES ---------------------------------- #
+
+SRD_DIR		=	src fdf.c
+INC_DIR		=	../lib42/include ./include
+OBJ_DIR 	= 	obj
 FDF			=	.
 
-# --------------- CC --------------- #
+# ----------------------------------- CC ------------------------------------ #
 
-CC				=	gcc
+CC			=	gcc
 
-# --------------- LIB42 --------------- #
+# ---------------------------------- LIB42 ---------------------------------- #
 
-LIB42		=	../lib42/lib42.a
+LIB42		=	../lib42/lib42mlx.a
 LIB42_DIR	=	../lib42
 
-# --------------- Libraries --------------- #
+# ----------------------------------- debug ---------------------------------- #
 
-GLFW			= -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
-LFLAGS 			= -lm -lpthread -Wl -L$(LIB42_DIR) -l42
+CFLAGS		=	-Iinclude
 
-SRC 		=	$(shell find $(FILES) -name "*.c")
-OBJ			=	$(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 ifdef DEBUG
-	CFLAGS += -fsanitize=address
+	CFLAGS +=	-fsanitize=address
 else
-	CFLAGS += -g3
+	CFLAGS +=	-g3
 endif
 
-all: $(LIBMLX) $(NAME)
+# -------------------------------- Libraries -------------------------------- #
 
-$(OBJDIR)/%.o: 	%.c $(HEADER)
-				@mkdir -p $(@D)
-				@$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDE)
+GLFW		= 	-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+LFLAGS 		= 	-lm -lpthread -Wl -L$(LIB42_DIR) -l42mlx
+
+SRC 		=	$(shell find $(SRD_DIR) -name "*.c")
+OBJ			=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
+HDR			=	$(shell find $(INC_DIR) -name "*.h")
+
+all: $(NAME)
+
+$(OBJ_DIR)/%.o: %.c $(HDR)
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 $(NAME): $(LIB42) $(OBJ)
-				@$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) $(GLFW) $(INCLUDE) -o $(NAME)
-				@printf "$(NO_COLOR)---> Executable $(NAME) created.$(_END) ✔️\n\n"
-				@make signature
+	@if ! [ -f $(LIB42) ]; then $(MAKE) -C $(LIB42_DIR); fi
+	@$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) $(GLFW) $(CFLAGS) -o $(NAME)
+	@printf "$(NO_COLOR)---> Executable $(NAME) created.$(_END) ✔️\n\n"
+	@make signature
 
-################### CLEAN
+# -------------------------------- clean -------------------------------- #
+
 clean:
-				@if [ -d "lib42" ]; then rm -r lib42/obj; fi
-				@rm -rf $(OBJDIR)
-				@printf "$(LIGHT_RED)\n-> libft obj files removed.\n"
-				@printf "$(LIGHT_RED)\n-> push_swap obj files removed.\n"
+	@if [ -d "lib42/obj" ]; then rm -rf lib42/obj; fi
+	@rm -rf $(OBJ_DIR)
+	@printf "$(LIGHT_RED)\n-> libft obj files removed.\n"
+	@printf "$(LIGHT_RED)\n-> push_swap obj files removed.\n"
 
-fclean:			clean
-				@rm -rf $(NAME)
-				@if [ -f "lib42.a" ]; then rm -rf lib42.a; fi
-				@printf "\n$(LIGHT_RED)-> $(NAME) removed.\n\n"
+fclean:	clean
+	@rm -rf $(NAME)
+	@if [ -f "lib42mlx.a" ]; then rm -rf lib42mlx.a; fi
+	@printf "\n$(LIGHT_RED)-> $(NAME) removed.\n\n"
 
-re: 			fclean all
+re: fclean all
 
 signature:
-				@printf \
+			@printf \
 	"$(LIGHT_CYAN)+---------------------+ © tmercier@student.codam.nl +\n\n"
 
 .PHONY: clean fclean re psclean leaks test f
 
-################### COLORS
+# -------------------------------- colors -------------------------------- #
+
 GREEN			=	\033[1;32m
 LIGHT_RED		=	\033[1;31m
 LIGHT_CYAN		=	\033[1;36m
