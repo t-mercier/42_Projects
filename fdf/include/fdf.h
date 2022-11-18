@@ -74,6 +74,7 @@ typedef struct s_fdf
 }				t_fdf;
 
 void			hook(t_fdf *fdf);
+void			usage(void);
 void			calibration(t_fdf *fdf);
 void			scrollhook(double xdelta, double ydelta, t_fdf *fdf);
 void			control_hook(mlx_key_data_t press, t_fdf *fdf);

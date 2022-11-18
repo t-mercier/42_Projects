@@ -49,7 +49,7 @@ int32_t	main(int ac, char **av)
 	if (ac != 2)
 		exit(EXIT_FAILURE);
 	if (ft_strlen(av[1]) - 4 <= 0)
-		exit_message("[ ERROR - WRONG ARGUMENTS ]", 1);
+		usage();
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		exit_message("[ ERROR FILE READING ]\n", 1);
