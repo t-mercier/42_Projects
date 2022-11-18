@@ -17,7 +17,7 @@ SHELL 			= /bin/sh
 NAME			= 42
 MLX42			= mlx42
 
-OBJ_DIR			= output
+OBJ_DIR			= objects
 LIB_DIR			= ft_printf get_next_line libft linkedlist vectors
 LIB42_A 		= lib$(NAME).a
 
@@ -45,7 +45,8 @@ OBJ		=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 all: $(NAME)
 
-#mlx: $(MLX42) $(NAME)
+mlx: $(MLX42)
+
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(@D)
@@ -53,30 +54,31 @@ $(OBJ_DIR)/%.o: %.c
 	@echo "\033[96m	$@\033[0m"
 
 $(NAME): $(OBJ)
-	@make -C ./MLX42
+	@#make -C ./MLX42
+	@#mv $(MLX_A) ./$(LIB42_A)
+	@ar rcs $(LIB42_A) $(OBJ)
+	@printf "\n$(GREEN)---> $(LIB42_A) archive created ✔️ $(RESET)\n\n"
+
+$(MLX42): $(OBJ)
+	make -C ./MLX42
 	@mv $(MLX_A) ./$(LIB42_A)
 	@ar rcs $(LIB42_A) $(OBJ)
-	@printf "\n$(WHITE)---> $(LIB42_A) archive created ✔️ $(RESET)\n\n"
-
-#$(MLX42):
-#	@make -C ./MLX42
-#	@mv $(MLX_A) ./$(LIB42_A)
-#	@ar rcs $(LIB42_A) $(OBJ)
-#	@printf "\n$(WHITE)---> $(LIB42_A) archive created ✔️ $(RESET)\n\n"
+	@printf "\n$(GREEN)---> $(LIB42_A) & $(MLX42).a archives merged successfully ✔️ $(RESET)\n\n"
 
 # --------------------------------- clean ------------------------------------ #
 
 clean:
 	@$(foreach var,$(MAKE_FILES),$(MAKE) -C $(var) clean;)
-	@if [ -d $(OBJ_DIR) ]; then rm -rf $(OBJ_DIR); fi
+	@if [ -d $(OBJ_DIR) ]; then rm -rf $(OBJ_DIR)  && printf "\n$(RED)-> .o files removed.\n"; \
+	else printf "\n$(GREEN) ... nothing to clean\n"; fi
 
 fclean: clean
 	@$(foreach var,$(MAKE_FILES),$(MAKE) -C $(var) fclean;)
-	@if [ -f "lib42.a" ]; then rm -rf lib42.a; fi
-	@printf "\n$(LIGHT_RED)-> $(NAME) removed.\n\n"
+	@if [ -f "lib42.a" ]; then rm -rf lib42.a && printf "\n$(RED)-> lib42 folder cleaned.\n\n"; \
+	else printf "$(GREEN).o files and lib42.a already removed, lib42 folder is clean.\n\n"; fi
 re:
 	@$(MAKE) fclean
-	@$(MAKE)
+	@$(MAKE) all
 
 signature:
 	@$(LC) printf \
