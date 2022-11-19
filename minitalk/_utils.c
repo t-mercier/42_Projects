@@ -19,11 +19,9 @@ void	init_sig()
 
 void	printout_pid(void)
 {
-	pid_t	pid;
 	char	*sp;
 
-	pid = getpid();
-	sp = ft_itoa(pid, 10);
+	sp = ft_itoa(getpid(), 10);
 	if (!sp)
 		exit_message("ERROR [ failed itoa ]", 1);
 	ft_putstr_fd("[ PID ] " , 1);
