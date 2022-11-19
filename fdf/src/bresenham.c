@@ -45,7 +45,7 @@ void	drawline(mlx_image_t *img, t_vertex _0, t_vertex _1, uint32_t color)
 {
 	t_bresenham	p;
 
-	ft_memset(&p, 0, sizeof(t_bresenham));
+	p = (t_bresenham){};
 	if (out_perimeter(img, _0, _1))
 		return ;
 	p.e = init_s_d(_0, _1, &p);

@@ -12,26 +12,47 @@
 
 #include "../include/libft.h"
 
-void	ft_itoa(long n, int radix, char *buff)
+char	*ft_itoa(long n, int radix)
+{
+	char	*s;
+	long	tmp;
+	int		len;
+
+	tmp = n;
+	len = tern_int(n <= 0, 2, 1);
+	while (n && ++len)
+		n /= 10;
+	s = ft_malloc(sizeof(char) * len);
+	s[--len] = '\0';
+	s[0] = tern_char(tmp <= 0, '-', '0');
+	while (tmp)
+	{
+		s[--len] = tern_long(tmp < 0, -tmp, tmp) % radix + '0';
+		tmp /= radix;
+	}
+	return (s);
+}
+
+void	ft_itoa_str(long n, int radix, char *str)
 {
 	static int		i;
-	unsigned char	*res;
+	unsigned char	*s;
 
 	i = 0;
-	res = (unsigned char *)buff;
+	s = (unsigned char *)str;
 	if (n < 0)
 		n = -n;
 	if (n < 0 && radix == 10)
-		res[i++] = '-';
+		s[i] = '-';
 	else
-		res[i++] = n % radix + '0';
+		s[i] = n % radix + '0';
 	if (n / radix)
-		ft_itoa(n / radix, radix, buff);
+		ft_itoa_str(n / radix, radix, str);
 	if ((n % radix) < 10)
-		res[i++] = (n % radix) + '0';
+		s[i++] = (n % radix) + '0';
 	else
-		res[i++] = (n % radix) + 'a' + 10;
-	res[i] = '\0';
+		s[i++] = (n % radix) + 'a' + 10;
+	s[i] = '\0';
 }
 
 int	ft_hextodeci(char *hex)

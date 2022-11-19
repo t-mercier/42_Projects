@@ -75,7 +75,7 @@ void	projection(t_vector *map, t_fdf *fdf)
 	t_vector	*row;
 
 	mlx_image_to_window(fdf->mlx, fdf->img, 0, 0);
-	ft_memset(&_0, 0, sizeof(t_vertex));
+	_0 = (t_vertex){};
 	ft_memset(fdf->img->pixels, 0, sizeof(int) * \
 	fdf->img->width * fdf->img->height);
 	p.y = 0;

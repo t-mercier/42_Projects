@@ -56,10 +56,13 @@ $(OBJ_DIR)/%.o: %.c $(HDR)
 	@$(CC) $(CFLAGS) -o $@ -c $<
 
 $(NAME): $(LIB42) $(OBJ)
-	@if ! [ -f $(LIB42) ]; then $(MAKE) -C $(LIB42_DIR); fi
 	@$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) $(GLFW) $(CFLAGS) -o $(NAME)
 	@printf "$(NO_COLOR)---> Executable $(NAME) created.$(_END) ✔️\n\n"
 	@make signature
+
+$(LIB42):
+	@if ! [ -f $(LIB42) ]; then MLX=1 $(MAKE) -C $(LIB42_DIR); fi
+	#MLX=1 $(MAKE) -C $(LIB42_DIR)
 
 # -------------------------------- clean -------------------------------- #
 

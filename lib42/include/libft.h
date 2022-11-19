@@ -81,7 +81,8 @@ int					ft_atoi(char const *str);
 **		convert_num.c
 ** ---------------------------------
 */
-void				ft_itoa(long n, int radix, char *buff);
+void				ft_itoa_str(long n, int radix, char *str);
+char				*ft_itoa(long n, int radix);
 int					ft_hextodeci(char *hex);
 
 /*
@@ -99,6 +100,7 @@ char				*ft_strncpy(char *dst, char const *src, size_t n);
 ** ---------------------------------
 */
 void				exit_message(char *s, int code);
+bool				ft_error_va(char *errmsg, ...);
 
 /*
 **		free.c

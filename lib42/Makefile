@@ -70,19 +70,25 @@ $(LIB42MLX): $(OBJ)
 	@printf "\n$(GREEN)---> $(LIB42) & mlx42.a \
 	archives merged successfully ✔️ $(RESET)\n\n"
 
-
+#libmlx: $(OBJ) lib42
+#	@mv lib42.a lib42mlx.a
+#	@make -C $(MLX_DIR)
+#	@mv $(MLX42) lib42mlx.a
+#	@ar rcs lib42mlx.a $(OBJ)
+#	@printf "\n$(GREEN)---> $(LIB42) & mlx42.a \
+#	archives merged successfully ✔️ $(RESET)\n\n"
 # --------------------------------- clean ------------------------------------ #
 
 clean:
-	@printf "$(RED)\nobj folder cleaned"
+	@printf "$(GREEN)\nobj folder cleaned\n"
 	@if [ -d $(OBJ_DIR) ]; then rm -rf $(OBJ_DIR) && \
-	printf "$(RED)Cleaning\n$(GREEN)Objects files"; fi
+	printf "$(RED)Cleaning objects files"; fi
 
 fclean: clean
 	@if [ -f "lib42.a" ]; then rm -rf lib42.a && \
-	printf "$(RED)\nlib42 archive cleaned"; fi
+	printf "$(GREEN)\nlib42 archive cleaned"; fi
 	@if [ -f "lib42mlx.a" ]; then rm -rf lib42mlx.a && \
-	printf "$(RED)\nlib42mlx archive cleaned\n"; fi
+	printf "$(GREEN)\nlib42mlx archive cleaned\n"; fi
 	@printf "$(GREEN)\n-> lib42 folder cleaned\n"
 
 cleanmlx:
