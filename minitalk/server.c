@@ -12,49 +12,64 @@
 
 #include "minitalk.h"
 
-// SERVER
 
-void sig_handler(int sig)
+void sig_send_val ( pid_t id, int signo, int val )
 {
-	static int i = 0;
-	static unsigned char c = 0;
+	union sigval *sigdata;
 
-	c = c << 1;
-	c |= sig == SIGUSR2;
-	if (++i == CHAR_BIT)
+	sigdata = malloc ( sizeof ( union sigval ) );
+	sigdata -> sival_int = val;
+
+	sigqueue(id,signo, *sigdata);
+
+	free(sigdata);
+}
+
+void sig_send_msg (pid_t id, int signo, char *msg)
+{
+	union sigval *sigdata;
+
+	sigdata = malloc (sizeof(union sigval));
+	sigdata->sival_ptr = msg;
+
+	sigqueue(id, signo, *sigdata );
+
+	free (sigdata);
+}
+
+void sig_set_handler(int signo, void *handler )
+{
+	struct sigaction *act;
+	act = malloc (sizeof(struct sigaction));
+	act->sa_sigaction = handler;
+	act->sa_flags = SA_SIGINFO;
+
+	sigaction(signo, act, NULL);
+}
+
+void signal_gen(char *av)
+{
+	while (1)
 	{
-		write(1, &c, 1);
-		i = 0;
-		c = 0;
+		sig_send_msg(getppid (), SIGUSR1, av[1]);
+		sleep(2);
 	}
-
 }
 
-char sym = 'X';
-
-void sh1(int st)
+void signal_handler(int sig, siginfo_t *siginfo, void *context)
 {
-	signal(SIGUSR1, sh1);
-	fscanf(fp,"%c",&sym);
-}
 
-void sh2(int st)
-{
-	fp = fopen("foo","r");
-	setbuf(fp,NULL);
+	printf ("message = %s\n", siginfo->si_value);
+
 }
 
 int	main(int ac, char **av)
 {
 
-	ft_printf("PID: [ %d ]", getpid());
+	ft_printf("PID: %d", getpid());
+	sig_send_msg(getpid(), SIGUSR1, av[1]);
 
-//	sig_handler(getpid(), SIGUSR1, av[1]);
-
-	/* Register signal handlers. */
-	signal(SIGUSR1, sig_handler);
-	signal(SIGUSR2, sig_handler);
 	while (1)
-		sleep(20);
+		sleep(1);
 }
 

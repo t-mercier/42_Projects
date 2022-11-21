@@ -10,6 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+ * The server reveals its PID and starts listening.
+ * The client takes a string from standard input,
+ * encodes it to binary and starts streaming it
+ * to the server byte by byte.
+ * The server receives the signals and decodes them.
+ * The server prints the received string.
+ */
+
 # include <signal.h>
 # include "../lib42/include/lib42.h"
 

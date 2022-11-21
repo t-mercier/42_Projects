@@ -12,16 +12,39 @@
 
 #include "minitalk.h"
 
+int	g_bit_control;
+
 void	usage(void)
 {
 	write(1, "usage: ./client [server-pid] [message]\n", 39);
 	exit(0);
 }
 
-int	g_bit_control;
+int kill(pidt pid, int sig);
+
+//https://www.usna.edu/Users/cs/wcbrown/courses/IC221/classes/L12/Class.html
 
 void	send_char(char c, pid_t pid)
 {
+	int	bit;
+
+	bit = __CHAR_BIT__ * sizeof(c) - 1;
+	while (bit >= 0)
+	{
+		if (kill(pid, 0) < 0)
+		{
+			ft_printf("ERROR : cant send sig to pid : %d\n", pid);
+			exit(EXIT_FAILURE);
+		}
+		g_bit_control = 0;
+		if (c & (1 << bit))
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
+		bit--;
+		while (g_bit_control != 1)
+			usleep(10);
+	}
 
 }
 
@@ -38,15 +61,14 @@ void	send_str(char *str, pid_t pid)
 	send_char(0, pid);
 }
 
-void	sig_usr(int sig)
+void sig_set_handler(int sign, void *handler)
 {
-	if (sig == SIGUSR1)
-		g_bit_control = 1;
-	else if (sig == SIGUSR2)
-	{
-		ft_printf("Message received !\n");
-		exit(EXIT_SUCCESS);
-	}
+	struct sigaction act;
+
+	act.sa_sigaction = handler;
+	act.sa_flags = SA_SIGINFO;
+
+	sigaction(sign, &act, NULL);
 }
 
 int	main(int argc, char **argv)
@@ -58,13 +80,14 @@ int	main(int argc, char **argv)
 		ft_printf("Usage : ./client <pid> <string to send>\n");
 		exit(EXIT_FAILURE);
 	}
-	signal(SIGUSR1, &sig_usr);
-	signal(SIGUSR2, &sig_usr);
 	pid = ft_atoi(argv[1]);
 	if (!pid)
 		usage();
+	signal(SIGUSR1, success);
+	g_bit_control = 1;
 	send_str(argv[2], pid);
+	sig_set_handler(pid, argv[2]);
 	while (1)
-		sleep(1);
+		usleep (1000);
 }
 
