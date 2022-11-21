@@ -16,7 +16,16 @@ int	g_bit_control;
 
 void	usage(void)
 {
-	write(1, "usage: ./client [server-pid] [message]\n", 39);
+	char *s;
+
+	s = "usage: ./client [server-pid] [message]\n";
+	write(1, s, ft_strlen(s));
+	exit(0);
+}
+
+void	invalid_pid(char *s)
+{
+	ft_printf("%s is an invalid pid\n", s);
 	exit(0);
 }
 
@@ -60,34 +69,43 @@ void	send_str(char *str, pid_t pid)
 	}
 	send_char(0, pid);
 }
+//
+//void sig_set_handler(int sign, void *handler)
+//{
+//	struct sigaction act;
+//
+//	act.sa_sigaction = handler;
+//	act.sa_flags = SA_SIGINFO;
+//
+//	sigaction(sign, &act, NULL);
+//}
 
-void sig_set_handler(int sign, void *handler)
+//sig_handler(getpid(), SIGUSR1, av[1])
+void	sig_usr(int sig)
 {
-	struct sigaction act;
-
-	act.sa_sigaction = handler;
-	act.sa_flags = SA_SIGINFO;
-
-	sigaction(sign, &act, NULL);
+	if (sig == SIGUSR1)
+		g_bit_control = 1;
+	else if (sig == SIGUSR2)
+	{
+		ft_printf("Message received !\n");
+		exit(EXIT_SUCCESS);
+	}
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **av)
 {
 	pid_t	pid;
 
 	if (argc != 3)
-	{
-		ft_printf("Usage : ./client <pid> <string to send>\n");
-		exit(EXIT_FAILURE);
-	}
-	pid = ft_atoi(argv[1]);
-	if (!pid)
 		usage();
-	signal(SIGUSR1, success);
-	g_bit_control = 1;
-	send_str(argv[2], pid);
-	sig_set_handler(pid, argv[2]);
+	signal(SIGUSR1, &sig_usr);
+	signal(SIGUSR2, &sig_usr);
+	pid = ft_atoi(av[1]);
+	if (!pid)
+		invalid_pid(av[1]);
+	send_str(av[2], pid);
 	while (1)
-		usleep (1000);
+		sleep(1);
+
 }
 
