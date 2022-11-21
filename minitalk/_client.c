@@ -31,7 +31,7 @@ void	invalid_pid(char *s)
 
 int kill(pidt pid, int sig);
 
-//https://www.usna.edu/Users/cs/wcbrown/courses/IC221/classes/L12/Class.html
+//https://www.folkstalk.com/tech/kill-sigusr2-with-code-examples/
 
 void	send_char(char c, pid_t pid)
 {
