@@ -12,12 +12,28 @@
 
 #include "../include/fdf.h"
 
-void	hook(t_fdf *fdf)
+static void	_rotate(t_fdf *fdf)
 {
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(fdf->mlx);
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
-		mlx_delete_image(fdf->mlx, fdf->img);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
+		fdf->r.roll += 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
+		fdf->r.roll -= 10;
+	if (mlx_is_key_down(fdf->mlx,  MLX_KEY_A))
+		fdf->r.pitch += 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
+		fdf->r.pitch -= 10;
+//	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Z))
+//		fdf->r.yaw += 10;
+//	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
+//		fdf->r.yaw -= 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
+		fdf->angle -= 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
+		fdf->angle += 10;
+}
+
+static void	_move(t_fdf *fdf)
+{
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
 		fdf->y_offset -= 10;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
@@ -26,25 +42,27 @@ void	hook(t_fdf *fdf)
 		fdf->x_offset -= 10;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
 		fdf->x_offset += 10;
+}
+
+static void	_zoom(t_fdf *fdf)
+{
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_ADD))
 		fdf->tile_size += 2;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_SUBTRACT))
 		fdf->tile_size -= 2;
-	//	if (press.key == 333 || fdf->press.key == 45)
-	//		fdf->map.zoom -= 0.02;
-	//	if (press.key == MLX_KEY_KP_ADD)
-	//		fdf->map.zoom += 0.02;
-	projection(fdf->map, fdf);
 }
 
-//void scrollhook(double xdelta, double ydelta, t_fdf *fdf)
-//{
-//	(void) xdelta;
-//	if (ydelta > 0)
-//		fdf->img->instances[0].z -= 1;
-//	else if (ydelta < 0)
-//		fdf->img->instances[0].z += 1;
-//	projection(fdf->map, &fdf);
-//
-//
-//}
+static void	_close(t_fdf *fdf)
+{
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(fdf->mlx);
+}
+
+void	hook(t_fdf *fdf)
+{
+	_close(fdf);
+	_zoom(fdf);
+	_move(fdf);
+	_rotate(fdf);
+	project(fdf->map, fdf);
+}

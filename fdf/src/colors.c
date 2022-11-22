@@ -12,43 +12,33 @@
 
 
 #include "../include/fdf.h"
+#define DEG2RAD (360.0 * M_PI / 180)
 
-//t_rgb color_converter(int hex)
-//{
-//	t_rgb c;
-//	c.r = ((hex >> 16) & 0xff) / 255.0;  // Extract the RR byte
-//	c.g = ((hex >> 8) & 0xff) / 255.0;   // Extract the GG byte
-//	c.b = ((hex) & 0xff) / 255.0;        // Extract the BB byte
-//
-//	return (c);
-//}
-//
-//double get_rgba(t_rgb c)
-//{
-//	return (c.r << 24 | c.g << 16 | c.b << 8 | c.a);
-//}
-//
-//int get_rgba()
-//{
-//	return (R << 24 | G << 16 | B << 8 | A);
-//}
+static int	_color(int color)
+{
 
-//void	init(t_fdf *fdf, char *filename)
-//	fdf->map.heightmap = NULL;
-//	fdf->width = 1000;
-//	fdf->height = 1000;
-//	fdf->zoom = fdf->width / 2;
-//	fdf->rgb = 0xFF0000;
-//}
+	unsigned char a = 0xFF & (color >> 24);
+	unsigned char r = 0xFF & (color >> 16);
+	unsigned char g = 0xFF & (color >> 8);
+	unsigned char b = 0xFF & (color);
+	return (a << 24 | r << 16 | g << 8 | b);
+}
 
-//int		get_color(t_vertex *p1)
-//{
-//	int	r;
-//	int	g;
-//	int	b;
-//
-//	r = (p1->color & 0xFF0000) >> 16;
-//	g = (p1->color & 0x00FF00) >> 8;
-//	b = p1->color & 0x0000FF;
-//	return ((r << 16) + (g << 8) + b);
-//}
+int			color(t_vertex _0, t_vertex _1)
+{
+	int h;
+
+	h = _0.z - _1.z;
+	if (h == 0)
+		return (0xFFFFFFFF);
+	else if (h >= 15)
+		return (0xff4000FF);
+	else if (h < 0)
+		return (0x191970FF);
+	else if (h > 0 && h < 5)
+		return (0xffa500FF);
+	else if (h >= 5 && h < 15)
+		return (0xff8000FF);
+	else
+		return (0xFFFFFF);
+}

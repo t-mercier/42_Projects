@@ -20,3 +20,12 @@ void	usage(void)
 	write(1, s, ft_strlen(s));
 	exit(0);
 }
+
+double	degree_to_radians(int degree)
+{
+	if (degree < 0)
+		degree = 360;
+	else if (degree > 360)
+		degree = 0;
+	return (degree * M_PI / 180);
+}
