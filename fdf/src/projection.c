@@ -47,6 +47,8 @@ static t_rotate matrix_to_angle(t_matrice a)
 }
 
 
+
+
 static void init_rotate(t_fdf *fdf, t_rotate *c, t_rotate *s)
 {
 	c->x = (float) cos(fdf->r.roll * DEG2RAD);
@@ -59,42 +61,6 @@ static void init_rotate(t_fdf *fdf, t_rotate *c, t_rotate *s)
 }
 
 
-static void rotate_x(t_fdf *fdf, t_vertex *p)
-{
-	t_vertex t;
-	double angle;
-
-	t = *p;
-	angle = degree_to_radians(fdf->r.yaw);
-	p->x = t.x;
-	p->y = t.y * cos(angle) + t.z * -sin(angle);
-	p->z = t.y * sin(angle) + t.z * cos(angle);
-}
-
-static void rotate_y(t_fdf *fdf, t_vertex *p)
-{
-	t_vertex t;
-	double angle;
-
-	t = *p;
-	angle = degree_to_radians(fdf->r.pitch);
-	p->x = t.x * cos(angle) + t.z * sin(angle);
-	p->y = t.y;
-	p->z = t.x * -sin(angle) + t.z * cos(angle);
-}
-
-static void rotate_z(t_fdf *fdf, t_vertex *p)
-{
-	t_vertex t;
-	double angle;
-
-	t = *p;
-	angle = degree_to_radians(fdf->r.roll);
-	p->x = t.x * cos(angle) + t.y * -sin(angle);
-	p->z = t.x * sin(angle) + t.y * cos(angle);
-	p->y = t.z;
-}
-
 static void projection_down(t_fdf *fdf, t_vertex _0, t_vertex p)
 {
 	t_rotate 	d;
@@ -104,38 +70,7 @@ static void projection_down(t_fdf *fdf, t_vertex _0, t_vertex p)
 	t_vertex	_1;
 	t_matrice a = (t_matrice){};
 
-//	init_rotate(fdf, &c, &s);
-	rotate_x(fdf, &c);
-	a.r11 = c.y * c.z;
-	a.r12 = s.x * s.y * c.z - c.x * s.z;
-	a.r13 = s.x * s.z + c.x * s.y * c.z;
-	rotate_y(fdf, &c);
-	a.r21 = c.y * s.z;
-	a.r22 = c.x * c.z + s.x * s.y* s.z;
-	a.r23 = c.x * s.y * s.z - s.x * c.z;
-	rotate_z(fdf, &c);
-	a.r31 = -s.y;
-	a.r32 = s.x * c.y;
-	a.r33 = c.x * c.y;
-
-	t_rotate angle;
-
-	angle.pitch = -asin( a.r31 );
-	if( a.r31 == 1 ){
-		angle.yaw = 0.0;             //yaw = 0
-		angle.roll = atan2( -a.r12, -a.r13 );    //Roll
-	}
-
-		//Gymbal lock: pitch = 90
-	else if( a.r31 == -1 ){
-		angle.yaw = 0.0;             //yaw = 0
-		angle.roll = atan2( a.r12, a.r13 );    //Roll
-	}
-		//General solution
-	else{
-		angle.yaw = atan2(  a.r21, a.r11 );
-		angle.roll = atan2(  a.r32, a.r33 );
-	}
+	matrix_to_angle(a);
 
 	t.x = (p.x * fdf->tile_size);
 	t.y = ((p.y + 1) * fdf->tile_size);
@@ -160,19 +95,18 @@ static void	projection_right(t_fdf *fdf, t_vertex _0, t_vertex p)
 	t_vertex	_1;
 	t_matrice a = (t_matrice){};
 
-	rotate_x(fdf, &c);
 	a.r11 = c.y * c.z;
 	a.r12 = s.x * s.y * c.z - c.x * s.z;
 	a.r13 = s.x * s.z + c.x * s.y * c.z;
-	rotate_y(fdf, &c);
+
 	a.r21 = c.y * s.z;
 	a.r22 = c.x * c.z + s.x * s.y* s.z;
 	a.r23 = c.x * s.y * s.z - s.x * c.z;
-	rotate_z(fdf, &c);
+
 	a.r31 = -s.y;
 	a.r32 = s.x * c.y;
 	a.r33 = c.x * c.y;
-//	fdf->r = matrix_to_angle(a);
+	fdf->r = matrix_to_angle(a);
 
 	t.x = ((p.x + 1) * fdf->tile_size);
 	t.y = (p.y * fdf->tile_size);
