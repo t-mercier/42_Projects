@@ -18,17 +18,16 @@ void	calibration(t_fdf *fdf)
 {
 	fdf->width = WIDTH;
 	fdf->tile_size = 20;
-	fdf->x_offset  = WIDTH - (WIDTH / 2);
-	fdf->y_offset  = HEIGHT - (HEIGHT / 2);
+	fdf->x_offset = WIDTH - (WIDTH / 2);
+	fdf->y_offset = HEIGHT - (HEIGHT / 2);
 	fdf->rgb = 0xFF0000;
 	fdf->r.yaw = 10;
 	fdf->r.pitch = 30;
 	fdf->r.roll = 0;
 }
 
-void render(t_fdf *fdf, int fd)
+void	render(t_fdf *fdf, int fd)
 {
-
 }
 
 int32_t	main(int ac, char **av)

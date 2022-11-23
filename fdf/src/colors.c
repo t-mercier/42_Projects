@@ -10,21 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../include/fdf.h"
 #define DEG2RAD (360.0 * M_PI / 180)
 
 static int	_color(int color)
 {
+	unsigned char	a;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 
-	unsigned char a = 0xFF & (color >> 24);
-	unsigned char r = 0xFF & (color >> 16);
-	unsigned char g = 0xFF & (color >> 8);
-	unsigned char b = 0xFF & (color);
+	a = 0xFF & (color >> 24);
+	r = 0xFF & (color >> 16);
+	g = 0xFF & (color >> 8);
+	b = 0xFF & (color);
 	return (a << 24 | r << 16 | g << 8 | b);
 }
 
-int			color(t_vertex _0, t_vertex _1)
+int	color(t_vertex _0, t_vertex _1)
 {
 	int h;
 

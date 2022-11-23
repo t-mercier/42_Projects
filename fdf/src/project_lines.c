@@ -18,7 +18,6 @@ static void	_projection_down(t_fdf *fdf, t_vertex _0, t_vertex p)
 	t_vertex	t;
 	t_vertex	d;
 
-//	t_matrice m = build_matrice(fdf->r);
 	d.x = (p.x * fdf->tile_size);
 	d.y = ((p.y + 1) * fdf->tile_size);
 	d.z = p.z * (fdf->tile_size / 3);
@@ -66,8 +65,6 @@ static void	_project_0(t_fdf *fdf, t_vector *row, t_vertex *_0, t_vertex p)
 	t_vertex	t;
 	t_vertex	d;
 
-//	fdf->m = build_matrice(fdf->r);
-
 	p.z = ((int *)row->item)[p.x];
 	d.x = p.x * fdf->tile_size;
 	d.y = p.y * fdf->tile_size;
@@ -86,8 +83,8 @@ void	project(t_fdf *fdf, t_vector *map)
 	mlx_image_to_window(fdf->mlx, fdf->img, 0, 0);
 	_0 = (t_vertex){};
 	fdf->m = build_matrice(fdf->r);
-	ft_memset(fdf->img->pixels, 0, sizeof(int) * \
-	fdf->img->width * fdf->img->height);
+	ft_memset(fdf->img->pixels, 0, sizeof(int) * fdf->img->width
+			* fdf->img->height);
 	p.y = 0;
 	while (p.y < fdf->map->len)
 	{
@@ -101,5 +98,4 @@ void	project(t_fdf *fdf, t_vector *map)
 		}
 		p.y++;
 	}
-
 }

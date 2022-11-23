@@ -12,16 +12,15 @@
 
 #include "../include/fdf.h"
 
-
 void	_rotate(t_fdf *fdf)
 {
+	t_vertex	p;
 
-		t_vertex	p;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
 		fdf->r.yaw += 10;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
 		fdf->r.yaw -= 10;
-	if (mlx_is_key_down(fdf->mlx,  MLX_KEY_A))
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
 		fdf->r.pitch += 10;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
 		fdf->r.pitch -= 10;

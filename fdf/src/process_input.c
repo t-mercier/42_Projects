@@ -18,7 +18,7 @@ t_vector	*open_read_file(int fd)
 	char		*line;
 	t_vector	*map;
 	t_vector	*row;
-	int 		data;
+	int			data;
 
 	map = vector_init(sizeof(t_vector *));
 	while (1)

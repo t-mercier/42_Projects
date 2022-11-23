@@ -43,7 +43,7 @@ typedef struct s_fdf
 	int			x_offset;
 	int			y_offset;
 	int			tile_size;
-	int 		width;
+	int			width;
 	mlx_t		*mlx;
 	t_rotate	r;
 	t_vector	*map;
@@ -52,16 +52,16 @@ typedef struct s_fdf
 	mlx_image_t	*img;
 }				t_fdf;
 
-void	project(t_fdf *fdf, t_vector *map);
+void			project(t_fdf *fdf, t_vector *map);
 void			hook(t_fdf *fdf);
 void			usage(void);
 void			calibration(t_fdf *fdf);
 t_vector		*open_read_file(int fd);
 void			exit_message(char *s, int code);
 int				get_color(t_vertex _0, t_vertex _1);
-int				_trgb(unsigned char t, unsigned char r, unsigned char g, \
+int				_trgb(unsigned char t, unsigned char r, unsigned char g,
 					unsigned char b);
-int			color(t_vertex _0, t_vertex _1);
-void render(t_fdf *fdf, int fd);
+int				color(t_vertex _0, t_vertex _1);
+void			render(t_fdf *fdf, int fd);
 
 #endif

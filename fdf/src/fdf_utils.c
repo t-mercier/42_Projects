@@ -14,7 +14,7 @@
 
 void	usage(void)
 {
-	char *s;
+	char	*s;
 
 	s = "usage: ./fdf maps/[map]\n";
 	write(1, s, ft_strlen(s));
