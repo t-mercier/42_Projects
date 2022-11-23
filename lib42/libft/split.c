@@ -16,7 +16,7 @@
  * i_ended by a NULL pointer.
  * Returns the array of new strings resulting from the split. */
 
-#include "../include/libft.h"
+#include "../_inc/libft.h"
 
 static char	**get_words(char **ptr, char const *s, char c)
 {

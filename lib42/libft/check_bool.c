@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../_inc/libft.h"
 
 bool	is_negative(int n)
 {

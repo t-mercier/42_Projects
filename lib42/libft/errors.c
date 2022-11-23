@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../_inc/libft.h"
 
 void	exit_message(char *s, int code)
 {

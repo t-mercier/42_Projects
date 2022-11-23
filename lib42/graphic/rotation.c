@@ -10,29 +10,44 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
-#define DEG2RAD (M_PI / 180)
+#include "../_inc/graphic.h"
 
-
-t_rotate rotate_point(t_matrice a, t_vertex p_in)     //Input coords in order (x,y,z)
+t_vertex rotate_x(t_vertex p, t_rotate r, void *param)
 {
-	t_rotate p_out;
+	t_vertex t;
+	double angle;
 
-	p_out.x = a.r11 * p_in.x + a.r12 * p_in.y + a.r13 * p_in.z;
-	p_out.y = a.r21 * p_in.x + a.r22 * p_in.y + a.r23 * p_in.z;
-	p_out.z = a.r31 * p_in.x + a.r32 * p_in.y + a.r33 * p_in.z;
-	return p_out; //Output coords in order (x,y,z)
+	t = p;
+	angle = deg_to_rad(r.yaw);
+	p.x = t.x;
+	p.y = t.y * cos(angle) + t.z * -sin(angle);
+	p.z = t.y * sin(angle) + t.z * cos(angle);
+
+	return p;
 }
 
-
-void init_cos_sin(t_fdf *fdf, t_rotate *c, t_rotate *s)
+void rotate_y(t_vertex *p, t_rotate r, void *param)
 {
-	c->x = (float) cos(fdf->r.roll * DEG2RAD);
-	s->x = (float) sin(fdf->r.roll * DEG2RAD);
-	c->y = (float) cos(fdf->r.pitch * DEG2RAD);
-	s->y = (float) sin(fdf->r.pitch * DEG2RAD);
-	c->z = (float) cos(fdf->r.yaw * DEG2RAD);
-	s->z = (float) sin(fdf->r.yaw * DEG2RAD);
+	t_vertex t;
+	double angle;
 
+	t = *p;
+	angle = deg_to_rad(r.pitch);
+	p->x = t.x * cos(angle) + t.z * sin(angle);
+	p->y = t.y;
+	p->z = t.x * -sin(angle) + t.z * cos(angle);
 }
+
+void rotate_z(t_vertex *p, t_rotate r, void *param)
+{
+	t_vertex t;
+	double angle;
+
+	t = *p;
+	angle = deg_to_rad(r.roll);
+	p->x = t.x * cos(angle) + t.y * -sin(angle);
+	p->z = t.x * sin(angle) + t.y * cos(angle);
+	p->y = t.z;
+}
+
 

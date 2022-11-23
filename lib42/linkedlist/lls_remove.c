@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/linkedlist.h"
+#include "../_inc/linkedlist.h"
 
 void	lls_delete_one(t_node *lst)
 {

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/linkedlist.h"
-#include "../include/storage_classes.h"
+#include "../_inc/linkedlist.h"
+#include "../_inc/storage_classes.h"
 
 void	llc_add_last(t_list **list, t_node *new)
 {

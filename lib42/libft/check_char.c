@@ -12,7 +12,7 @@
 
 /* Checks if c is a numric or alphabet character */
 
-#include "../include/libft.h"
+#include "../_inc/libft.h"
 
 int	ft_isalnum(int c)
 {

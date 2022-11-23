@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../_inc/libft.h"
 
 int	ft_islower(int c)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../_inc/libft.h"
 
 int	ft_putnbr_va_arg(va_list arg)
 {

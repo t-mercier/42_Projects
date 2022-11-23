@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/linkedlist.h"
+#include "../_inc/linkedlist.h"
 
 t_node	*llc_create_node(void *data)
 {

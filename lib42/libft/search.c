@@ -16,7 +16,7 @@
  * the functions locate the terminating `\0'.
  * Returns a pointer to the located character. */
 
-#include "../include/libft.h"
+#include "../_inc/libft.h"
 
 char	*ft_strchr(char const *s, int c)
 {

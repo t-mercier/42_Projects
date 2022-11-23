@@ -20,7 +20,7 @@
  */
 
 # include <signal.h>
-# include "../lib42/include/lib42.h"
+# include "../lib42/_inc/lib42.h"
 
 void	init_sig();
 void	printout_pid(void);

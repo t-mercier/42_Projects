@@ -17,6 +17,7 @@
 # include "linkedlist.h"
 # include "storage_classes.h"
 # include "vectors.h"
+# include "graphic.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 
 # define EXIT_FAILURE    1

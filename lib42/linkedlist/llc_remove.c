@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/linkedlist.h"
-#include "../include/storage_classes.h"
+#include "../_inc/linkedlist.h"
+#include "../_inc/storage_classes.h"
 
 void	llc_delete_first(t_list *list)
 {

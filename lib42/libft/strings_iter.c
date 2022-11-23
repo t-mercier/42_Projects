@@ -16,7 +16,7 @@
  * Each character is passed by address
  * to f to be modified if necessary */
 
-#include "../include/libft.h"
+#include "../_inc/libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {

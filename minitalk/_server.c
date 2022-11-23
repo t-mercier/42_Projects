@@ -50,6 +50,16 @@ int	main(int ac, char **av)
 	while (1)
 		sleep(20);
 }
+//
+//void sig_set_handler(int sign, void *handler)
+//{
+//	struct sigaction act;
+//
+//	act.sa_sigaction = handler;
+//	act.sa_flags = SA_SIGINFO;
+//
+//	sigaction(sign, &act, NULL);
+//}
 
 //int	main(void)
 //{

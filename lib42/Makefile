@@ -15,8 +15,8 @@ SHELL 			= /bin/sh
 # ---------------------------------- macros ---------------------------------- #
 
 OBJ_DIR			=	obj
-INC_DIR			=	./include
-LIB_DIR			=	ft_printf get_next_line libft linkedlist vectors
+INC_DIR			=	_inc
+LIB_DIR			=	ft_printf get_next_line libft linkedlist vectors graphic
 
 # ---------------------------------- MLX42 ----------------------------------- #
 
@@ -38,7 +38,7 @@ endif
 ifdef MLX
 	CFLAGS		+=	-I $(MLX_DIR)/include
 else
-	CFLAGS		+=	-Iinclude
+	CFLAGS		+=	-I_inc
 endif
 
 ifdef DEBUG
@@ -59,6 +59,7 @@ $(OBJ_DIR)/%.o: %.c $(HDR)
 	@$(CC) -o $@ -c $< $(CFLAGS)
 
 $(LIB42): $(OBJ)
+	@if [ -f $(LIB42MLX) ]; then rm -rf $(LIB42MLX); fi
 	@ar rc $@ $^
 	@printf "\n$(GREEN)---> $(LIB42_A) archive created ✔️$(RESET)\n"
 
@@ -69,15 +70,6 @@ $(LIB42MLX): $(OBJ)
 	@ar rcs $(LIB42MLX) $(OBJ)
 	@printf "\n$(GREEN)---> $(LIB42) & mlx42.a \
 	archives merged successfully ✔️ $(RESET)\n\n"
-
-#libmlx: $(OBJ) lib42
-#	@mv lib42.a lib42mlx.a
-#	@make -C $(MLX_DIR)
-#	@mv $(MLX42) lib42mlx.a
-#	@ar rcs lib42mlx.a $(OBJ)
-#	@printf "\n$(GREEN)---> $(LIB42) & mlx42.a \
-#	archives merged successfully ✔️ $(RESET)\n\n"
-# --------------------------------- clean ------------------------------------ #
 
 clean:
 	@printf "$(GREEN)\nobj folder cleaned\n"

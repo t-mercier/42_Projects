@@ -12,7 +12,7 @@
 
 #include "minitalk.h"
 
-int	g_bit_control;
+int s_received = 0;
 
 void	usage(void)
 {
@@ -33,58 +33,41 @@ int kill(pidt pid, int sig);
 
 //https://www.folkstalk.com/tech/kill-sigusr2-with-code-examples/
 
-void	send_char(char c, pid_t pid)
+void	handle_char(int pid, unsigned char c)
 {
-	int	bit;
+	int i;
+	unsigned char mask;
 
-	bit = __CHAR_BIT__ * sizeof(c) - 1;
-	while (bit >= 0)
+	i = 7;
+	mask = 1u << i;
+	while (mask)
 	{
-		if (kill(pid, 0) < 0)
-		{
-			ft_printf("ERROR : cant send sig to pid : %d\n", pid);
-			exit(EXIT_FAILURE);
-		}
-		g_bit_control = 0;
-		if (c & (1 << bit))
+		s_received = 0;
+		if (mask & c)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		bit--;
-		while (g_bit_control != 1)
-			usleep(10);
+		if (!s_received)
+			pause();
+		i--;
+		mask >>= 1;
 	}
-
 }
 
-void	send_str(char *str, pid_t pid)
+void	handle_string(int pid, char *msg)
 {
-	int	i;
+	int i;
 
-	i = 0;
-	while (str[i])
-	{
-		send_char(str[i], pid);
-		i++;
-	}
-	send_char(0, pid);
+	i = -1;
+	while (msg[++i])
+		handle_char(pid, msg[i]);
+	handle_char(pid, 0);
 }
-//
-//void sig_set_handler(int sign, void *handler)
-//{
-//	struct sigaction act;
-//
-//	act.sa_sigaction = handler;
-//	act.sa_flags = SA_SIGINFO;
-//
-//	sigaction(sign, &act, NULL);
-//}
 
-//sig_handler(getpid(), SIGUSR1, av[1])
 void	sig_usr(int sig)
 {
 	if (sig == SIGUSR1)
-		g_bit_control = 1;
+		s_received = 1;
 	else if (sig == SIGUSR2)
 	{
 		ft_printf("Message received !\n");
@@ -103,7 +86,7 @@ int	main(int argc, char **av)
 	pid = ft_atoi(av[1]);
 	if (!pid)
 		invalid_pid(av[1]);
-	send_str(av[2], pid);
+	handle_string(av[2], pid);
 	while (1)
 		sleep(1);
 

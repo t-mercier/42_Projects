@@ -15,7 +15,7 @@
  * allocated memory. The allocated memory is filled with bytes of value zero.
  * Returns a pointer to allocated memory. */
 
-#include "../include/libft.h"
+#include "../_inc/libft.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {

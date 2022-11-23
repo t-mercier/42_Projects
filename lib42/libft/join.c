@@ -19,7 +19,7 @@
  *
  * If the src and dst strings overlap, the behavior is undefined. */
 
-#include "../include/libft.h"
+#include "../_inc/libft.h"
 
 static size_t	ft_strnlen(char *s, size_t n)
 {
