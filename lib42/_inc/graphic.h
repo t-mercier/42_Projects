@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   4_utils.c                                          :+:    :+:            */
+/*   single_linkedlist.h                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/04 11:38:08 by tmercier      #+#    #+#                 */
-/*   Updated: 2022/10/16 21:07:55 by tmercier      ########   odam.nl         */
+/*   Created: 2022/10/11 19:18:04 by tmercier      #+#    #+#                 */
+/*   Updated: 2022/10/16 20:57:11 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#ifndef VECTORS_H
+# define VECTORS_H
 
-void	usage(void)
-{
-	char *s;
+# include <stdbool.h>
+# include <stddef.h>
+# include <stdlib.h>
 
-	s = "usage: ./fdf maps/[map]\n";
-	write(1, s, ft_strlen(s));
-	exit(0);
-}
+typedef struct s_matrice {
+	double		r11;
+	double		r12;
+	double		r13;
+	double		r21;
+	double		r22;
+	double		r23;
+	double		r31;
+	double		r32;
+	double		r33;
+}t_matrice;
+
+void build_matrice();
+
+
+#endif

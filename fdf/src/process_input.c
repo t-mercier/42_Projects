@@ -18,20 +18,19 @@ t_vector	*open_read_file(int fd)
 	char		*line;
 	t_vector	*map;
 	t_vector	*row;
-	t_data		data;
+	int 		data;
 
 	map = vector_init(sizeof(t_vector *));
 	while (1)
 	{
-		row = vector_init(sizeof(t_data));
+		row = vector_init(sizeof(int));
 		line = get_next_line(fd);
 		if (!line)
 			break ;
 		split = ft_split(line, ' ');
 		while (*split)
 		{
-			data.c = GREEN;
-			data.z = ft_atoi(*split++);
+			data = ft_atoi(*split++);
 			vector_append(row, &data);
 		}
 		vector_append(map, &row);

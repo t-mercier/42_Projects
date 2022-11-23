@@ -19,10 +19,21 @@ void	calibration(t_fdf *fdf)
 	fdf->x_offset  = WIDTH - (WIDTH / 2);
 	fdf->y_offset  = HEIGHT - (HEIGHT / 2);
 	fdf->tile_size = 20;
-	fdf->angle = degree_to_radians(30);
+	fdf->angle = deg_to_rad(30);
+	fdf->height = HEIGHT;
+	fdf->width = WIDTH;
+	fdf->zoom = fdf->width / 2;
+	fdf->rgb = 0xFF0000;
+	fdf->zh = 1.;
+	fdf->mv = 8.;
+	fdf->r.x = M_PI / fdf->mv;
+	fdf->r.y = 0;
+	fdf->r.z = (M_PI * 2) / fdf->mv;
+}
 
-	if (fdf->tile_size <= 0)
-		fdf->tile_size = 1;
+void render(t_fdf *fdf, int fd)
+{
+
 }
 
 int32_t	main(int ac, char **av)
@@ -38,14 +49,14 @@ int32_t	main(int ac, char **av)
 	if (fd < 0)
 		exit_message("[ ERROR FILE READING ]\n", 1);
 	fdf = (t_fdf){};
-	calibration(&fdf);
 	fdf.mlx = mlx_init(WIDTH, HEIGHT, "FDF", true);
 	if (!fdf.mlx)
 		exit(EXIT_FAILURE);
+	calibration(&fdf);
 	fdf.map = open_read_file(fd);
-	mlx_set_window_size(fdf.mlx, WIDTH, HEIGHT);
 	fdf.img = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);
-	project(fdf.map, &fdf);
+	mlx_set_window_size(fdf.mlx, WIDTH, HEIGHT);
+	project(&fdf);
 	mlx_loop_hook(fdf.mlx, (void *)&hook, &fdf);
 	mlx_loop(fdf.mlx);
 	mlx_delete_image(fdf.mlx, fdf.img);

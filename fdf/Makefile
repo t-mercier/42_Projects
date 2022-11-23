@@ -17,7 +17,7 @@ NAME 		=	fdf
 # ---------------------------------- FILES ---------------------------------- #
 
 SRD_DIR		=	src fdf.c
-INC_DIR		=	../lib42/include ./include
+INC_DIR		=	../lib42/_inc ./include
 OBJ_DIR 	= 	obj
 FDF			=	.
 

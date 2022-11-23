@@ -13,63 +13,26 @@
 #include "../include/fdf.h"
 
 
-static void rotate_x(t_fdf *fdf, t_vertex *p)
+void	_rotate(t_fdf *fdf)
 {
-	t_vertex t;
-	double angle;
 
-	t = *p;
-	angle = degree_to_radians(fdf->r.yaw);
-	p->x = t.x;
-	p->y = t.y * cos(angle) + t.z * -sin(angle);
-	p->z = t.y * sin(angle) + t.z * cos(angle);
-}
-
-static void rotate_y(t_fdf *fdf, t_vertex *p)
-{
-	t_vertex t;
-	double angle;
-
-	t = *p;
-	angle = degree_to_radians(fdf->r.pitch);
-	p->x = t.x * cos(angle) + t.z * sin(angle);
-	p->y = t.y;
-	p->z = t.x * -sin(angle) + t.z * cos(angle);
-}
-
-static void rotate_z(t_fdf *fdf, t_vertex *p)
-{
-	t_vertex t;
-	double angle;
-
-	t = *p;
-	angle = degree_to_radians(fdf->r.roll);
-	p->x = t.x * cos(angle) + t.y * -sin(angle);
-	p->z = t.x * sin(angle) + t.y * cos(angle);
-	p->y = t.z;
-}
-
-static void	_rotate(t_fdf *fdf)
-{
+		t_vertex	p;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
-	{
-		fdf->r.roll += 10;
-		rotate_x(fdf, p)
-	}
+		fdf->r.yaw += 10;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
-		fdf->r.roll -= 10;
+		fdf->r.yaw -= 10;
 	if (mlx_is_key_down(fdf->mlx,  MLX_KEY_A))
 		fdf->r.pitch += 10;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
 		fdf->r.pitch -= 10;
-//	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Z))
-//		fdf->r.yaw += 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Z))
+		fdf->r.roll += 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
+		fdf->r.roll -= 10;
 //	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
-//		fdf->r.yaw -= 10;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
-		fdf->angle -= 10;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
-		fdf->angle += 10;
+//		fdf->angle -= 10;
+//	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
+//		fdf->angle += 10;
 }
 
 static void	_move(t_fdf *fdf)
@@ -104,5 +67,5 @@ void	hook(t_fdf *fdf)
 	_zoom(fdf);
 	_move(fdf);
 	_rotate(fdf);
-	project(fdf->map, fdf);
+	project(fdf);
 }
