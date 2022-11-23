@@ -47,8 +47,6 @@ typedef struct s_fdf
 	int 		width;
 	int 		height;
 	int 		zoom;
-	float 		zh;
-	float 		mv;
 	t_vertex	_0;
 	t_vertex	_1;
 	t_vertex	p;
@@ -60,7 +58,7 @@ typedef struct s_fdf
 	t_matrice	m;
 }				t_fdf;
 
-void	project(t_fdf *fdf);
+void	project(t_fdf *fdf, t_vector *map);
 void			hook(t_fdf *fdf);
 void			usage(void);
 void			calibration(t_fdf *fdf);

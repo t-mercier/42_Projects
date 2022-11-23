@@ -24,11 +24,9 @@ void	calibration(t_fdf *fdf)
 	fdf->width = WIDTH;
 	fdf->zoom = fdf->width / 2;
 	fdf->rgb = 0xFF0000;
-	fdf->zh = 1.;
-	fdf->mv = 8.;
-	fdf->r.x = M_PI / fdf->mv;
-	fdf->r.y = 0;
-	fdf->r.z = (M_PI * 2) / fdf->mv;
+	fdf->r.yaw = 10;
+	fdf->r.pitch = 30;
+	fdf->r.roll = 0;
 }
 
 void render(t_fdf *fdf, int fd)
@@ -56,7 +54,7 @@ int32_t	main(int ac, char **av)
 	fdf.map = open_read_file(fd);
 	fdf.img = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);
 	mlx_set_window_size(fdf.mlx, WIDTH, HEIGHT);
-	project(&fdf);
+	project(&fdf, fdf.map);
 	mlx_loop_hook(fdf.mlx, (void *)&hook, &fdf);
 	mlx_loop(fdf.mlx);
 	mlx_delete_image(fdf.mlx, fdf.img);

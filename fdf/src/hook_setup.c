@@ -67,5 +67,5 @@ void	hook(t_fdf *fdf)
 	_zoom(fdf);
 	_move(fdf);
 	_rotate(fdf);
-	project(fdf);
+	project(fdf, fdf->map);
 }
