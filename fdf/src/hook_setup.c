@@ -29,22 +29,18 @@ void	_rotate(t_fdf *fdf)
 		fdf->r.roll += 10;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
 		fdf->r.roll -= 10;
-//	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
-//		fdf->angle -= 10;
-//	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
-//		fdf->angle += 10;
 }
 
 static void	_move(t_fdf *fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
-		fdf->y_offset -= 10;
+		fdf->y_offset -= 20;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
-		fdf->y_offset += 10;
+		fdf->y_offset += 20;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
-		fdf->x_offset -= 10;
+		fdf->x_offset -= 20;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
-		fdf->x_offset += 10;
+		fdf->x_offset += 20;
 }
 
 static void	_zoom(t_fdf *fdf)

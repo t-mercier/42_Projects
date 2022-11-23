@@ -68,7 +68,7 @@ static void	_project_0(t_fdf *fdf, t_vector *row, t_vertex *_0, t_vertex p)
 
 //	fdf->m = build_matrice(fdf->r);
 
-	p.z = ((int *)row->item)[fdf->p.x];
+	p.z = ((int *)row->item)[p.x];
 	d.x = p.x * fdf->tile_size;
 	d.y = p.y * fdf->tile_size;
 	d.z = p.z * (fdf->tile_size / 3);
