@@ -43,19 +43,13 @@ typedef struct s_fdf
 	int			x_offset;
 	int			y_offset;
 	int			tile_size;
-	double		angle;
 	int 		width;
-	int 		height;
-	int 		zoom;
-	t_vertex	_0;
-	t_vertex	_1;
-	t_vertex	p;
-	uint32_t	rgb;
 	mlx_t		*mlx;
 	t_rotate	r;
 	t_vector	*map;
-	mlx_image_t	*img;
+	uint32_t	rgb;
 	t_matrice	m;
+	mlx_image_t	*img;
 }				t_fdf;
 
 void	project(t_fdf *fdf, t_vector *map);

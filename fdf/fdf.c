@@ -16,13 +16,10 @@ mlx_image_t	*mlx_put_string(mlx_t *mlx, const char *str, int32_t x, int32_t y);
 
 void	calibration(t_fdf *fdf)
 {
+	fdf->width = WIDTH;
+	fdf->tile_size = 20;
 	fdf->x_offset  = WIDTH - (WIDTH / 2);
 	fdf->y_offset  = HEIGHT - (HEIGHT / 2);
-	fdf->tile_size = 20;
-	fdf->angle = deg_to_rad(30);
-	fdf->height = HEIGHT;
-	fdf->width = WIDTH;
-	fdf->zoom = fdf->width / 2;
 	fdf->rgb = 0xFF0000;
 	fdf->r.yaw = 10;
 	fdf->r.pitch = 30;
