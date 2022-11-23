@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-#define DEG2RAD (360.0 * M_PI / 180)
 
 static int	_color(int color)
 {
@@ -29,7 +28,7 @@ static int	_color(int color)
 
 int	color(t_vertex _0, t_vertex _1)
 {
-	int h;
+	int	h;
 
 	h = _0.z - _1.z;
 	if (h == 0)
