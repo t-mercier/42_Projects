@@ -51,6 +51,9 @@ HDR			=	$(shell find $(INC_DIR) -name "*.h")
 
 all: $(NAME)
 
+mlx:
+	@MLX=1 make -C ../lib42
+
 $(OBJ_DIR)/%.o: %.c $(HDR)
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -o $@ -c $<

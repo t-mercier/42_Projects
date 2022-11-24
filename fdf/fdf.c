@@ -12,22 +12,43 @@
 
 #include "include/fdf.h"
 
-mlx_image_t	*mlx_put_string(mlx_t *mlx, const char *str, int32_t x, int32_t y);
 
-void	calibration(t_fdf *fdf)
+static void	insert_menu(t_fdf *fdf)
 {
-	fdf->width = WIDTH;
-	fdf->tile_size = 20;
-	fdf->x_offset = WIDTH - (WIDTH / 2);
-	fdf->y_offset = HEIGHT - (HEIGHT / 2);
-	fdf->rgb = 0xFF0000;
-	fdf->r.yaw = 10;
-	fdf->r.pitch = 30;
-	fdf->r.roll = 0;
+	int i;
+	t_vertex p;
+
+	i = 0;
+	p.x = 50;
+	p.y = 50;
+	mlx_put_string(fdf->mlx, "+ + + + + + + + + + + + + + + +\n", 50, 50);
+	mlx_put_string(fdf->mlx, "+\n", p.x, p.y);
+	while (i++ < 7)
+		mlx_put_string(fdf->mlx, "+\n", p.x, p.y += 25);
+	p.y = 25;
+	i = 0;
+	while (i++ < 7)
+		mlx_put_string(fdf->mlx, "+\n", 350, p.y += 25);
+	mlx_put_string(fdf->mlx, "+ + + + + + + + + + + + + + + +\n", 50, 225);
+	mlx_put_string(fdf->mlx, "Zoom in : + \n", 80, 60);
+	mlx_put_string(fdf->mlx, "Zoom ou : - \n", 80, 80);
+	mlx_put_string(fdf->mlx, "move up : ", 80, 100);
+	mlx_put_string(fdf->mlx, "move up :  \n", 80, 120);
+
 }
 
-void	render(t_fdf *fdf, int fd)
+static void	render(t_fdf *fdf, int fd)
 {
+	calibration(fdf);
+	fdf->map = open_read_file(fd);
+	fdf->img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
+	mlx_set_window_size(fdf->mlx, WIDTH, HEIGHT);
+	insert_menu(fdf);
+	project(fdf, fdf->map);
+	mlx_loop_hook(fdf->mlx, (void *)hook, fdf);
+	mlx_loop(fdf->mlx);
+	mlx_delete_image(fdf->mlx, fdf->img);
+	mlx_terminate(fdf->mlx);
 }
 
 int32_t	main(int ac, char **av)
@@ -46,14 +67,6 @@ int32_t	main(int ac, char **av)
 	fdf.mlx = mlx_init(WIDTH, HEIGHT, "FDF", true);
 	if (!fdf.mlx)
 		exit(EXIT_FAILURE);
-	calibration(&fdf);
-	fdf.map = open_read_file(fd);
-	fdf.img = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);
-	mlx_set_window_size(fdf.mlx, WIDTH, HEIGHT);
-	project(&fdf, fdf.map);
-	mlx_loop_hook(fdf.mlx, (void *)&hook, &fdf);
-	mlx_loop(fdf.mlx);
-	mlx_delete_image(fdf.mlx, fdf.img);
-	mlx_terminate(fdf.mlx);
+	render(&fdf, fd);
 	return (EXIT_SUCCESS);
 }

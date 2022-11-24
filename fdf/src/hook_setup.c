@@ -12,34 +12,60 @@
 
 #include "../include/fdf.h"
 
-void	_rotate(t_fdf *fdf)
+static void	_rotate(t_fdf *fdf)
 {
-	t_vertex	p;
-
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
-		fdf->r.yaw += 10;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
-		fdf->r.yaw -= 10;
+	{
+		if (fdf->r.yaw == 360)
+			fdf->r.yaw = 0;
+		fdf->r.yaw += 10.;
+
+	}
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
+	{
+		if (fdf->r.yaw == 0)
+			fdf->r.yaw = 360;
+		fdf->r.yaw -= 10.;
+	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
-		fdf->r.pitch += 10;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
-		fdf->r.pitch -= 10;
+	{
+		if (fdf->r.pitch == 360)
+			fdf->r.pitch = 0;
+		fdf->r.pitch += 10.;
+	}
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
+	{
+		if (fdf->r.pitch == 0)
+			fdf->r.pitch = 360;
+		fdf->r.pitch -= 10.;
+	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Z))
-		fdf->r.roll += 10;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
-		fdf->r.roll -= 10;
+		fdf->r.roll += 10.;
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
+		fdf->r.roll -= 10.;
+}
+
+static void	_perspective(t_fdf *fdf)
+{
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
+	{
+		fdf->isometry = false;
+		fdf->angle = 120;
+	}
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
+		fdf->isometry = true;
 }
 
 static void	_move(t_fdf *fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
-		fdf->y_offset -= 20;
+		fdf->offset.y -= 20;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
-		fdf->y_offset += 20;
+		fdf->offset.y += 20;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
-		fdf->x_offset -= 20;
+		fdf->offset.x -= 20;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
-		fdf->x_offset += 20;
+		fdf->offset.x += 20;
 }
 
 static void	_zoom(t_fdf *fdf)
@@ -62,5 +88,6 @@ void	hook(t_fdf *fdf)
 	_zoom(fdf);
 	_move(fdf);
 	_rotate(fdf);
+	_perspective(fdf);
 	project(fdf, fdf->map);
 }

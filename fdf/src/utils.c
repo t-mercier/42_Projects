@@ -12,11 +12,25 @@
 
 #include "../include/fdf.h"
 
+void	calibration(t_fdf *fdf)
+{
+	fdf->width = WIDTH;
+	fdf->tile_size = 20;
+	fdf->offset.x = WIDTH - (WIDTH / 2);
+	fdf->offset.y = HEIGHT - (HEIGHT / 2);
+	fdf->rgb = 0xFF0000;
+	fdf->r.yaw = 0;
+	fdf->r.pitch = 0;
+	fdf->r.roll = 0;
+	fdf->angle = 35.264;
+	fdf->isometry = true;
+}
+
 void	usage(void)
 {
 	char	*s;
 
-	s = "usage: ./fdf maps/[map]\n";
+	s = "usage: ./fdf maps/[ map.fdf ] \n";
 	write(1, s, ft_strlen(s));
 	exit(0);
 }
