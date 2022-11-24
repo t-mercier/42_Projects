@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../_inc/linkedlist.h"
 #include "../_inc/libft.h"
+#include "../_inc/linkedlist.h"
 
 bool	lls_is_empty(t_node *list)
 {

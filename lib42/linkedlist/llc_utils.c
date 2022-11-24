@@ -36,4 +36,3 @@ int	llc_list_size(t_list *list)
 		current = current->next;
 	return (i);
 }
-

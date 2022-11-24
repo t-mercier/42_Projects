@@ -42,9 +42,9 @@ else
 endif
 
 ifdef DEBUG
-	CFLAGS		+=	-fsanitize=address
+	CFLAGS		+=	-g3 -fsanitize=address
 else
-	CFLAGS		+=	-g3
+	CFLAGS		+=
 endif
 
 SRC				=	$(shell find $(LIB_DIR) -name "*.c")

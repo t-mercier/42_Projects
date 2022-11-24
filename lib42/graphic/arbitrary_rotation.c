@@ -12,25 +12,28 @@
 
 #include "../_inc/graphic.h"
 
-t_vertex rotate_x(t_vertex p, t_rotate r, void *param)
+t_vertex	rotate_x(t_vertex p, t_rotate r, void *param)
 {
-	t_vertex t;
-	double angle;
+	t_vertex	t;
+	double		angle;
 
+	if (!param)
+		param = NULL;
 	t = p;
 	angle = deg_to_rad(r.yaw);
 	p.x = t.x;
 	p.y = t.y * cos(angle) + t.z * -sin(angle);
 	p.z = t.y * sin(angle) + t.z * cos(angle);
-
-	return p;
+	return (p);
 }
 
-void rotate_y(t_vertex *p, t_rotate r, void *param)
+void	rotate_y(t_vertex *p, t_rotate r, void *param)
 {
-	t_vertex t;
-	double angle;
+	t_vertex	t;
+	double		angle;
 
+	if (!param)
+		param = NULL;
 	t = *p;
 	angle = deg_to_rad(r.pitch);
 	p->x = t.x * cos(angle) + t.z * sin(angle);
@@ -38,16 +41,16 @@ void rotate_y(t_vertex *p, t_rotate r, void *param)
 	p->z = t.x * -sin(angle) + t.z * cos(angle);
 }
 
-void rotate_z(t_vertex *p, t_rotate r, void *param)
+void	rotate_z(t_vertex *p, t_rotate r, void *param)
 {
-	t_vertex t;
-	double angle;
+	t_vertex	t;
+	double		angle;
 
+	if (!param)
+		param = NULL;
 	t = *p;
 	angle = deg_to_rad(r.roll);
 	p->x = t.x * cos(angle) + t.y * -sin(angle);
 	p->z = t.x * sin(angle) + t.y * cos(angle);
 	p->y = t.z;
 }
-
-

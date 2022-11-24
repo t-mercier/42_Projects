@@ -22,13 +22,5 @@
 
 # define EXIT_FAILURE    1
 
-static void	mlx_error_exit(void)
-{
-	char    *s;
-
-	s = ft_strdup(mlx_strerror(mlx_errno));
-	ft_putendl_fd(s, STDERR_FILENO);
-	exit(EXIT_FAILURE);
-}
 
 #endif 

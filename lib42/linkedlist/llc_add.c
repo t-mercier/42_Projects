@@ -40,7 +40,7 @@ void	llc_add_last_silent(t_list **list, t_node *new)
 		(*list)->tail = new;
 		return ;
 	}
-		(*list)->tail->next = new;
-		(*list)->tail = new->next;
-		new->next = (*list)->head;
+	(*list)->tail->next = new;
+	(*list)->tail = new->next;
+	new->next = (*list)->head;
 }

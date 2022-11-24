@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../_inc/vectors.h"
 #include "../_inc/libft.h"
+#include "../_inc/vectors.h"
 
 void	free_vector(t_vector *v)
 {

@@ -65,3 +65,8 @@ void	*ft_realloc(void *ptr, size_t size, size_t old_s)
 	ft_memcpy(new_p, ptr, old_s);
 	return (new_p);
 }
+
+void	ft_bzero(void *s, size_t len)
+{
+	ft_memset((s), '\0', (len));
+}

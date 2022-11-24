@@ -17,38 +17,35 @@
 
 #include "../_inc/graphic.h"
 
-t_matrice build_matrice(t_rotate r)
+t_matrice	build_matrice(t_rotate r)
 {
-	t_matrice a = (t_matrice){};
+	t_matrice	m;
 
+	m = (t_matrice){};
 	init_cos_sin(&r, NULL);
-	a.r11 = r.cy * r.cz;
-	a.r12 = r.sx * r.sy * r.cz - r.cx * r.sz;
-	a.r13 = r.sx * r.sz + r.cx * r.sy * r.cz;
-
-	a.r21 = r.cy * r.sz;
-	a.r22 = r.cx * r.cz + r.sx * r.sy* r.sz;
-	a.r23 = r.cx * r.sy * r.sz - r.sx * r.cz;
-
-	a.r31 = -r.sy;
-	a.r32 = r.sx * r.cy;
-	a.r33 = r.cx * r.cy;
-
-	return a;
+	m.r11 = r.cy * r.cz;
+	m.r12 = r.sx * r.sy * r.cz - r.cx * r.sz;
+	m.r13 = r.sx * r.sz + r.cx * r.sy * r.cz;
+	m.r21 = r.cy * r.sz;
+	m.r22 = r.cx * r.cz + r.sx * r.sy * r.sz;
+	m.r23 = r.cx * r.sy * r.sz - r.sx * r.cz;
+	m.r31 = -r.sy;
+	m.r32 = r.sx * r.cy;
+	m.r33 = r.cx * r.cy;
+	return (m);
 }
 
-t_rotate matrix_to_angle(t_matrice a)
+t_rotate	matrix_to_angle(t_matrice a)
 {
-	t_rotate r;
+	t_rotate	r;
 
-	r.pitch = -asin( a.r31 );
-
+	r.pitch = -asin(a.r31);
 	if (a.r31 == 1)
 	{
 		r.yaw = 0.0;
-		r.roll = atan2( -a.r12, -a.r13 );
+		r.roll = atan2(-a.r12, -a.r13);
 	}
-	else if (a.r31 == -1 )
+	else if (a.r31 == -1)
 	{
 		r.yaw = 0.0;
 		r.roll = atan2(a.r12, a.r13);
@@ -58,15 +55,17 @@ t_rotate matrix_to_angle(t_matrice a)
 		r.yaw = atan2(a.r21, a.r11);
 		r.roll = atan2(a.r32, a.r33);
 	}
-	return r;   //Euler angles in order yaw, pitch, roll
+	return (r);
 }
 
-t_vertex matrice_to_px(t_matrice a, t_vertex p_in, void *param)
+t_vertex	matrice_to_px(t_matrice a, t_vertex p_in, void *param)
 {
 	t_vertex p_out;
 
+	if (!param)
+		param = NULL;
 	p_out.x = a.r11 * p_in.x + a.r12 * p_in.y + a.r13 * p_in.z;
 	p_out.y = a.r21 * p_in.x + a.r22 * p_in.y + a.r23 * p_in.z;
 	p_out.z = a.r31 * p_in.x + a.r32 * p_in.y + a.r33 * p_in.z;
-	return p_out; //Output coords in order (x,y,z)
+	return (p_out);
 }
