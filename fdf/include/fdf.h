@@ -42,8 +42,9 @@ typedef struct s_fdf
 {
 	bool		display_usage;
 	bool		isometry;
+	bool		render;
 	int			tile_size;
-	int			width;
+	double		depth;
 	double 		angle;
 	t_offset 	offset;
 	mlx_t		*mlx;
@@ -52,7 +53,8 @@ typedef struct s_fdf
 	uint32_t	rgb;
 	t_matrice	m;
 	mlx_image_t	*img;
-	mlx_image_t	*img_usage[12];
+	mlx_image_t	*usage[12];
+	mlx_image_t	*baseline;
 }				t_fdf;
 
 /*
@@ -76,9 +78,10 @@ void			project(t_fdf *fdf, t_vector *map);
 void			usage(void);
 void			calibration(t_fdf *fdf);
 int				color(t_vertex _0, t_vertex _1);
-void	rotate(t_fdf *fdf);
-void	build_usage(t_fdf *fdf);
-bool	display_usage(t_fdf *fdf);
-
+bool	rotate(t_fdf *fdf);
+void	display_usage(t_fdf *fdf);
+void disable_usage(t_fdf *fdf);
+void unable_usage(t_fdf *fdf);
+void	display_baseline(t_fdf *fdf);
 
 #endif

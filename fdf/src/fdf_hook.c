@@ -6,61 +6,74 @@
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 11:38:08 by tmercier      #+#    #+#                 */
-/*   Updated: 2022/11/25 20:22:31 by tmercier      ########   odam.nl         */
+/*   Updated: 2022/11/25 22:47:59 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static void	_perspective(t_fdf *fdf)
+static bool	_perspective(t_fdf *fdf)
 {
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
+	fdf->r.yaw = 0;
+	fdf->r.pitch = 0;
+	fdf->r.roll = 0;
+	fdf->depth = 1;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_DIVIDE))
 	{
-		fdf->isometry = false;
-		fdf->angle = 120;
+		fdf->r.yaw = 315.;
+		fdf->r.pitch = 0.;
+		fdf->r.roll = 315.;
+		fdf->depth = 0;
+		return true;
 	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
-		fdf->isometry = true;
+	else
+		return false;
 }
 
-static void	_move(t_fdf *fdf)
+static bool	_move(t_fdf *fdf)
 {
-
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
-		fdf->offset.y -= 20;
+		return (fdf->offset.y -= 20, true);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
-		fdf->offset.y += 20;
+		return (fdf->offset.y += 20, true);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
-		fdf->offset.x -= 20;
+		return (fdf->offset.x -= 20, true);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
-		fdf->offset.x += 20;
+		return (fdf->offset.x += 20, true);
+	return false;
 	
 }
 
-static void	_zoom(t_fdf *fdf)
+static bool	_zoom(t_fdf *fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_ADD))
-		fdf->tile_size += 2;
+		return (fdf->tile_size += 2, true);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_SUBTRACT))
-		fdf->tile_size -= 2;
+		return (fdf->tile_size -= 2, true);
+	return false;
 }
 
-static void	_close(t_fdf *fdf)
+static bool _depth(t_fdf *fdf)
 {
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(fdf->mlx);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT_BRACKET))
+		return (fdf->depth += 0.3, true);	
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT_BRACKET))
+		return (fdf->depth -= 0.3, true);
+	return false;	
 }
 
 void	hook(t_fdf *fdf, mlx_key_data_t keydata)
 {
-	_close(fdf);
 	_zoom(fdf);
 	_move(fdf);
-	rotate(fdf);
 	_perspective(fdf);
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_HOME))
-		disable_usage(fdf);
-	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_END))
+	rotate(fdf);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_SPACE))
 		unable_usage(fdf);
-	project(fdf, fdf->map);
+	else
+		disable_usage(fdf);
+	if (fdf->render)
+		project(fdf, fdf->map);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(fdf->mlx);
 }
