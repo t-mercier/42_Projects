@@ -40,8 +40,7 @@ typedef struct s_rgb
 
 typedef struct s_fdf
 {
-//	int			x_offset;
-//	int			y_offset;
+	bool		display_usage;
 	bool		isometry;
 	int			tile_size;
 	int			width;
@@ -53,12 +52,13 @@ typedef struct s_fdf
 	uint32_t	rgb;
 	t_matrice	m;
 	mlx_image_t	*img;
+	mlx_image_t	*img_usage[12];
 }				t_fdf;
 
 /*
 **			hook_setup.c
 ** ------------------------------------------ */
-void			hook(t_fdf *fdf);
+void	hook(t_fdf *fdf, mlx_key_data_t keydata);
 
 /*
 **			process_input.c
@@ -76,5 +76,9 @@ void			project(t_fdf *fdf, t_vector *map);
 void			usage(void);
 void			calibration(t_fdf *fdf);
 int				color(t_vertex _0, t_vertex _1);
+void	rotate(t_fdf *fdf);
+void	build_usage(t_fdf *fdf);
+bool	display_usage(t_fdf *fdf);
+
 
 #endif

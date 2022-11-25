@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   0_input.c                                          :+:    :+:            */
+/*   fdf_process_input.c                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 11:38:08 by tmercier      #+#    #+#                 */
-/*   Updated: 2022/10/16 21:07:55 by tmercier      ########   odam.nl         */
+/*   Updated: 2022/11/25 19:01:50 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ t_vector	*open_read_file(int fd)
 	t_vector	*map;
 	t_vector	*row;
 	int			data;
+	int			width;
 
+	width = 0;
 	map = vector_init(sizeof(t_vector *));
 	while (1)
 	{
@@ -34,6 +36,9 @@ t_vector	*open_read_file(int fd)
 			vector_append(row, &data);
 		}
 		vector_append(map, &row);
+		// if (row->len > width)
+			// fdf->width = row->len;
+		// fdf->height = map->len;
 	}
 	free(line);
 	close(fd);

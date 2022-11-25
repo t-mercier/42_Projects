@@ -1,49 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   1_parse.c                                          :+:    :+:            */
+/*   fdf_hook.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 11:38:08 by tmercier      #+#    #+#                 */
-/*   Updated: 2022/10/16 21:07:55 by tmercier      ########   odam.nl         */
+/*   Updated: 2022/11/25 20:22:31 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
-static void	_rotate(t_fdf *fdf)
-{
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
-	{
-		if (fdf->r.yaw == 360)
-			fdf->r.yaw = 0;
-		fdf->r.yaw += 10.;
-
-	}
-	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
-	{
-		if (fdf->r.yaw == 0)
-			fdf->r.yaw = 360;
-		fdf->r.yaw -= 10.;
-	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
-	{
-		if (fdf->r.pitch == 360)
-			fdf->r.pitch = 0;
-		fdf->r.pitch += 10.;
-	}
-	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
-	{
-		if (fdf->r.pitch == 0)
-			fdf->r.pitch = 360;
-		fdf->r.pitch -= 10.;
-	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Z))
-		fdf->r.roll += 10.;
-	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
-		fdf->r.roll -= 10.;
-}
 
 static void	_perspective(t_fdf *fdf)
 {
@@ -58,6 +25,7 @@ static void	_perspective(t_fdf *fdf)
 
 static void	_move(t_fdf *fdf)
 {
+
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
 		fdf->offset.y -= 20;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
@@ -66,6 +34,7 @@ static void	_move(t_fdf *fdf)
 		fdf->offset.x -= 20;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
 		fdf->offset.x += 20;
+	
 }
 
 static void	_zoom(t_fdf *fdf)
@@ -82,12 +51,16 @@ static void	_close(t_fdf *fdf)
 		mlx_close_window(fdf->mlx);
 }
 
-void	hook(t_fdf *fdf)
+void	hook(t_fdf *fdf, mlx_key_data_t keydata)
 {
 	_close(fdf);
 	_zoom(fdf);
 	_move(fdf);
-	_rotate(fdf);
+	rotate(fdf);
 	_perspective(fdf);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_HOME))
+		disable_usage(fdf);
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_END))
+		unable_usage(fdf);
 	project(fdf, fdf->map);
 }

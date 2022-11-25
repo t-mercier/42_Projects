@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   4_utils.c                                          :+:    :+:            */
+/*   fdf_utils.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 11:38:08 by tmercier      #+#    #+#                 */
-/*   Updated: 2022/10/16 21:07:55 by tmercier      ########   odam.nl         */
+/*   Updated: 2022/11/25 19:12:37 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	calibration(t_fdf *fdf)
 {
-	fdf->width = WIDTH;
+	fdf->display_usage = false;
 	fdf->tile_size = 20;
 	fdf->offset.x = WIDTH - (WIDTH / 2);
 	fdf->offset.y = HEIGHT - (HEIGHT / 2);

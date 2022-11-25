@@ -6,7 +6,7 @@
 #    By: tmercier <tmercier@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/12/02 17:13:26 by tmercier      #+#    #+#                  #
-#    Updated: 2022/05/26 15:02:27 by tmercier      ########   odam.nl          #
+#    Updated: 2022/11/25 19:09:55 by tmercier      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME 		=	fdf
 
 # ---------------------------------- FILES ---------------------------------- #
 
-SRD_DIR		=	src fdf.c
+SRD_DIR		=	src 
 INC_DIR		=	../lib42/_inc ./include
 OBJ_DIR 	= 	obj
 FDF			=	.
