@@ -14,7 +14,6 @@
 
 void	calibration(t_fdf *fdf)
 {
-
 	fdf->r.yaw = 0;
 	fdf->r.pitch = 0;
 	fdf->r.roll = 0;

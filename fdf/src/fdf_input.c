@@ -37,7 +37,7 @@ t_vector	*open_read_file(int fd)
 		}
 		vector_append(map, &row);
 		// if (row->len > width)
-			// fdf->width = row->len;
+		// fdf->width = row->len;
 		// fdf->height = map->len;
 	}
 	free(line);

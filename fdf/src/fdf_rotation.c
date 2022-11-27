@@ -12,34 +12,34 @@
 
 #include "../include/fdf.h"
 
-// Rotate axe Z 
+// Rotate axe Z
 static void	rotate_yaw(t_fdf *fdf, double n, bool clockwise)
 {
-		if (clockwise && fdf->r.yaw == 360)
-			fdf->r.yaw = 0;
-		if (!clockwise && fdf->r.yaw == 0)
-			fdf->r.yaw = 360;
-		fdf->r.yaw += n;
+	if (clockwise && fdf->r.yaw == 360)
+		fdf->r.yaw = 0;
+	if (!clockwise && fdf->r.yaw == 0)
+		fdf->r.yaw = 360;
+	fdf->r.yaw += n;
 }
 
 // Rotate axe Y
 static void	rotate_pitch(t_fdf *fdf, double n, bool clockwise)
 {
-		if (clockwise && fdf->r.pitch == 360)
-			fdf->r.pitch = 0;
-		if (!clockwise && fdf->r.pitch == 0)
-			fdf->r.pitch = 360;
-		fdf->r.pitch += n;
+	if (clockwise && fdf->r.pitch == 360)
+		fdf->r.pitch = 0;
+	if (!clockwise && fdf->r.pitch == 0)
+		fdf->r.pitch = 360;
+	fdf->r.pitch += n;
 }
 
 // Rotate axe X
 static void	rotate_roll(t_fdf *fdf, double n, bool clockwise)
 {
-		if (clockwise && fdf->r.roll == 360)
-			fdf->r.roll = 0;
-		if (!clockwise && fdf->r.roll == 0)
-			fdf->r.roll = 360;
-		fdf->r.roll += n;
+	if (clockwise && fdf->r.roll == 360)
+		fdf->r.roll = 0;
+	if (!clockwise && fdf->r.roll == 0)
+		fdf->r.roll = 360;
+	fdf->r.roll += n;
 }
 
 bool	rotate(t_fdf *fdf)
@@ -61,14 +61,14 @@ bool	rotate(t_fdf *fdf)
 		rotate_pitch(fdf, -2., false);
 		rotate_roll(fdf, -2., false);
 		rotate_yaw(fdf, -2., false);
-		return true;
+		return (true);
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_PAGE_UP))
 	{
 		rotate_pitch(fdf, 2., true);
 		rotate_roll(fdf, 2., true);
 		rotate_yaw(fdf, 2., true);
-		return true;
+		return (true);
 	}
-	return false;
+	return (false);
 }

@@ -12,13 +12,11 @@
 
 #include "../include/fdf.h"
 
-
 static bool	_out_perimeter(t_fdf *fdf, t_vertex p)
 {
 	// return ((_0.x >= 0 && _1.x >= 1) || (_0.y >= 0 && _1.y >= 1) || \
 	// (_0.x <= img->width && _1.x <= img->width - 1) || \
 	// (_0.y <= img->height && _1.y <= img->height - 1));
-
 	// p.x += fdf->offset.x;
 	// p.y += fdf->offset.y;
 	if (p.x < 0 || p.x >= fdf->img->height)
@@ -36,8 +34,7 @@ static void	_projection_down(t_fdf *fdf, t_vertex _0, t_vertex p)
 
 	d.x = (p.x * fdf->tile_size);
 	d.y = ((p.y + 1) * fdf->tile_size);
-	d.z = p.z * (fdf->tile_size / 5) *  fdf->depth;
-
+	d.z = p.z * (fdf->tile_size / 5) * fdf->depth;
 	t = matrice_to_px(fdf->m, d, NULL);
 	_1 = isometry_projection(fdf->offset, &t, fdf->angle);
 	drawline(fdf->img, _0, _1, GREEN);
@@ -51,23 +48,19 @@ static void	_projection_right(t_fdf *fdf, t_vertex _0, t_vertex p)
 
 	d.x = ((p.x + 1) * fdf->tile_size);
 	d.y = (p.y * fdf->tile_size);
-	d.z = p.z * (fdf->tile_size / 5) *  fdf->depth;
-
+	d.z = p.z * (fdf->tile_size / 5) * fdf->depth;
 	t = matrice_to_px(fdf->m, d, NULL);
 	_1 = isometry_projection(fdf->offset, &t, fdf->angle);
 	drawline(fdf->img, _0, _1, GREEN);
-
 }
 
 static void	_project_1(t_fdf *fdf, t_vector *map, t_vertex _0, t_vertex p)
 {
 	t_vector	*row;
 
-
 	row = ((t_vector **)map->item)[p.y];
 	if (_out_perimeter(fdf, p))
 		return ;
-
 	if (p.x < row->len - 1 && p.x >= 0)
 	{
 		p.z = ((int *)row->item)[p.x + 1];
@@ -79,7 +72,6 @@ static void	_project_1(t_fdf *fdf, t_vector *map, t_vertex _0, t_vertex p)
 		p.z = ((int *)row->item)[p.x];
 		_projection_down(fdf, _0, p);
 	}
-
 }
 
 static void	_project_0(t_fdf *fdf, t_vector *row, t_vertex *_0, t_vertex p)
@@ -90,9 +82,8 @@ static void	_project_0(t_fdf *fdf, t_vector *row, t_vertex *_0, t_vertex p)
 	p.z = ((int *)row->item)[p.x];
 	d.x = p.x * fdf->tile_size;
 	d.y = p.y * fdf->tile_size;
-	d.z = p.z * (fdf->tile_size / 5) *  fdf->depth;
+	d.z = p.z * (fdf->tile_size / 5) * fdf->depth;
 	t = matrice_to_px(fdf->m, d, NULL);
-
 	*_0 = isometry_projection(fdf->offset, &t, fdf->angle);
 }
 

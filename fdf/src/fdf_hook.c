@@ -24,10 +24,9 @@ static bool	_perspective(t_fdf *fdf)
 		fdf->r.pitch = 0.;
 		fdf->r.roll = 315.;
 		fdf->depth = 0;
-		return true;
+		return (true);
 	}
-	else
-		return false;
+	return (false);
 }
 
 static bool	_move(t_fdf *fdf)
@@ -40,8 +39,7 @@ static bool	_move(t_fdf *fdf)
 		return (fdf->offset.x -= 20, true);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
 		return (fdf->offset.x += 20, true);
-	return false;
-	
+	return (false);
 }
 
 static bool	_zoom(t_fdf *fdf)
@@ -50,16 +48,16 @@ static bool	_zoom(t_fdf *fdf)
 		return (fdf->tile_size += 2, true);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_SUBTRACT))
 		return (fdf->tile_size -= 2, true);
-	return false;
+	return (false);
 }
 
-static bool _depth(t_fdf *fdf)
+static bool	_depth(t_fdf *fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT_BRACKET))
-		return (fdf->depth += 0.3, true);	
+		return (fdf->depth += 0.3, true);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT_BRACKET))
 		return (fdf->depth -= 0.3, true);
-	return false;	
+	return (false);
 }
 
 void	hook(t_fdf *fdf, mlx_key_data_t keydata)
