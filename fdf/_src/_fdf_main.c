@@ -10,21 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../_inc/fdf.h"
 
 static void	render(t_fdf *fdf, int fd)
 {
-	calibration(fdf);
-	fdf->map = open_read_file(fd);
+	fdf->map = open_read_file(fd, fdf);
+	fdf->width = fdf->row->len;
+	fdf->height = fdf->map->len;
 	fdf->img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
-	mlx_set_window_size(fdf->mlx, WIDTH, HEIGHT);
-	project(fdf, fdf->map);
-	display_usage(fdf);
-	display_baseline(fdf);
-	mlx_loop_hook(fdf->mlx, (void *)hook, fdf);
+	mlx_image_to_window(fdf->mlx, fdf->img, 0, 0);
+	init_usage(fdf);
+	resize_map(fdf);
+	project(fdf);
+	mlx_key_hook(fdf->mlx, (void *)k_hook, fdf);
+	mlx_loop_hook(fdf->mlx, (void *)l_hook, fdf);
 	mlx_loop(fdf->mlx);
-	mlx_delete_image(fdf->mlx, fdf->img);
-	mlx_terminate(fdf->mlx);
 }
 
 int32_t	main(int ac, char **av)
@@ -32,17 +32,15 @@ int32_t	main(int ac, char **av)
 	t_fdf	fdf;
 	int		fd;
 
-	if (ac != 2)
-		exit(EXIT_FAILURE);
-	if (ft_strlen(av[1]) - 4 <= 0)
-		usage();
-	fd = open(av[1], O_RDONLY);
-	if (fd < 0)
-		exit_message("[ ERROR FILE READING ]\n", 1);
 	fdf = (t_fdf){};
+	fd = check_error(ac, av);
+	mlx_set_setting(MLX_MAXIMIZED, true);
 	fdf.mlx = mlx_init(WIDTH, HEIGHT, "FDF", true);
 	if (!fdf.mlx)
-		exit(EXIT_FAILURE);
+		exit(1);
+	calibrate(&fdf);
 	render(&fdf, fd);
-	return (EXIT_SUCCESS);
+	clear(&fdf);
+	system("leaks fdf");
+	return (0);
 }

@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf_utils.c                                        :+:    :+:            */
+/*   fdf_process_input.c                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 11:38:08 by tmercier      #+#    #+#                 */
-/*   Updated: 2022/11/25 22:30:44 by tmercier      ########   odam.nl         */
+/*   Updated: 2022/11/25 19:01:50 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../_inc/fdf.h"
 
-void	calibration(t_fdf *fdf)
+t_vector	*open_read_file(int fd, t_fdf *fdf)
 {
-	fdf->r.yaw = 0;
-	fdf->r.pitch = 0;
-	fdf->r.roll = 0;
-	fdf->depth = 1;
-	fdf->render = true;
-	fdf->display_usage = false;
-	fdf->tile_size = 20;
-	fdf->offset.x = WIDTH - (WIDTH / 2);
-	fdf->offset.y = HEIGHT - (HEIGHT / 2);
-	fdf->rgb = 0xFF0000;
-	fdf->angle = 35.264;
-	fdf->isometry = true;
-}
+	static char	**split;
+	char		*line;
+	char		**tmp;
+	int			data;
 
-void	usage(void)
-{
-	char	*s;
-
-	s = "usage: ./fdf maps/[ map.fdf ] \n";
-	write(1, s, ft_strlen(s));
-	exit(0);
+	fdf->map = vector_init(sizeof(t_vector *));
+	while (1)
+	{
+		fdf->row = vector_init(sizeof(int));
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		split = ft_split(line, ' ');
+		tmp = split;
+		while (*tmp)
+		{
+			data = ft_atoi(*tmp++);
+			vector_append(fdf->row, &data);
+		}
+		free(line);
+		ft_free_2d_array(split);
+		vector_append(fdf->map, &fdf->row);
+	}
+	close(fd);
+	return (fdf->map);
 }

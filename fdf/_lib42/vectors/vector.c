@@ -1,46 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf_process_input.c                                :+:    :+:            */
+/*   growth_array.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 11:38:08 by tmercier      #+#    #+#                 */
-/*   Updated: 2022/11/25 19:01:50 by tmercier      ########   odam.nl         */
+/*   Updated: 2022/10/16 21:07:55 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../_inc/libft.h"
+#include "../_inc/vectors.h"
 
-t_vector	*open_read_file(int fd)
+void	free_vector(t_vector *v)
 {
-	static char	**split;
-	char		*line;
-	t_vector	*map;
-	t_vector	*row;
-	int			data;
-	int			width;
+	free(v->item);
+	free(v);
+}
 
-	width = 0;
-	map = vector_init(sizeof(t_vector *));
-	while (1)
+t_vector	*vector_init(size_t esz)
+{
+	t_vector	*v;
+
+	v = malloc(sizeof(t_vector));
+	if (!v)
+		exit(0);
+	v->len = 0;
+	v->size = 2;
+	v->esz = esz;
+	v->item = malloc(v->esz * v->size);
+	if (!v->item)
+		return (free_vector(v), NULL);
+	return (v);
+}
+
+void	vector_append(t_vector *v, void *x)
+{
+	if (v->len == v->size)
 	{
-		row = vector_init(sizeof(int));
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		split = ft_split(line, ' ');
-		while (*split)
-		{
-			data = ft_atoi(*split++);
-			vector_append(row, &data);
-		}
-		vector_append(map, &row);
-		// if (row->len > width)
-		// fdf->width = row->len;
-		// fdf->height = map->len;
+		v->item = ft_realloc(v->item, v->size * 2 * v->esz, v->esz * v->size);
+		v->size *= 2;
 	}
-	free(line);
-	close(fd);
-	return (map);
+	ft_memcpy(v->item + (v->len++) * v->esz, x, v->esz);
 }

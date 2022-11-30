@@ -16,9 +16,10 @@ NAME 		=	fdf
 
 # ---------------------------------- FILES ---------------------------------- #
 
-SRD_DIR		=	src 
-INC_DIR		=	../lib42/_inc ./include
-OBJ_DIR 	= 	obj
+FILES		=	_fdf_main.c colors_1.c colors_2.c input.c lines.c \
+				key_hooks.c loop_hooks.c rotation.c usage.c utils.c
+INC_DIR		=	_lib42/_inc ./_inc
+OBJ_DIR 	= 	_obj
 FDF			=	.
 
 # ----------------------------------- CC ------------------------------------ #
@@ -27,12 +28,14 @@ CC			=	gcc
 
 # ---------------------------------- LIB42 ---------------------------------- #
 
-LIB42		=	../lib42/lib42mlx.a
-LIB42_DIR	=	../lib42
+LIB42		=	_lib42/lib42mlx.a
+LIB42_DIR	=	_lib42
+
+L42FILES = $(shell find _lib42/ -name *.c)
 
 # ----------------------------------- debug ---------------------------------- #
 
-CFLAGS		=	-Iinclude
+CFLAGS		=	-I_inc
 
 ifdef DEBUG
 	CFLAGS +=	-fsanitize=address
@@ -45,39 +48,44 @@ endif
 GLFW		= 	-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 LFLAGS 		= 	-lm -lpthread -Wl -L$(LIB42_DIR) -l42mlx
 
-SRC 		=	$(shell find $(SRD_DIR) -name "*.c")
-OBJ			=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
-HDR			=	$(shell find $(INC_DIR) -name "*.h")
+#OBJ42		=
+OBJ			=	$(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))
+HDR			=	_inc/fdf.h
 
-all: $(NAME)
+all:
+	@$(MAKE) mlx
+	@$(MAKE) $(NAME)
+
 
 mlx:
-	@MLX=1 make -C ../lib42
+	@MLX=1 make -C _lib42
 
-$(OBJ_DIR)/%.o: %.c $(HDR)
+$(OBJ_DIR)/%.o: _src/%.c $(HDR) $(L42FILES)
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -o $@ -c $<
 
 $(NAME): $(LIB42) $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) $(GLFW) $(CFLAGS) -o $(NAME)
-	@printf "$(NO_COLOR)---> Executable $(NAME) created.$(_END) ✔️\n\n"
+	@printf "\n$(LIGHT_CYAN)-> Executable $(NAME) created.$(NO_COLOR) ✔️\n\n"
 	@make signature
 
-$(LIB42):
+$(LIB42): $(OBJ42)
 	@if ! [ -f $(LIB42) ]; then MLX=1 $(MAKE) -C $(LIB42_DIR); fi
-	#MLX=1 $(MAKE) -C $(LIB42_DIR)
 
 # -------------------------------- clean -------------------------------- #
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@printf "$(LIGHT_RED)\n-> obj files removed.\n"
+	@printf "\n$(LIGHT_RED)-> $(NAME) obj files removed.$(NO_COLOR)"
 
 fclean:	clean
 	@rm -rf $(NAME)
-	@printf "\n$(LIGHT_RED)-> executable removed.\n\n"
+	@printf "\n$(LIGHT_RED)-> $(NAME) executable removed.\n\n$(NO_COLOR)"
 
 re: fclean all
+
+cleanlib:
+	@make fclean -C _lib42
 
 signature:
 			@printf \
