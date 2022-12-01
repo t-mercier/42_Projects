@@ -13,7 +13,7 @@
 #include "../_inc/graphic.h"
 #include "../_inc/libft.h"
 
-double	deg_to_rad(int degree)
+double	deg_to_rad(double degree)
 {
 	if (degree < 0)
 		degree = 360;

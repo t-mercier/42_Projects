@@ -22,7 +22,7 @@ static void	define_usage(t_fdf *fdf)
 	fdf->usage.s[5] = "Rotation - X     [ Z ] [ X ]";
 	fdf->usage.s[6] = "Rotate all axes  [ page ^ ] [ page v ]";
 	fdf->usage.s[7] = "Switch color     [ 0 ] -> [ 7 ]";
-	fdf->usage.s[8] = "Switch color     [ 0 ] -> [ 7 ]";
+	fdf->usage.s[8] = "Random colors    [ 8 ]";
 	fdf->usage.s[9] = "Zoom +/-         [ + ] [ - ]";
 	fdf->usage.s[10] = "Depth +/-        [ I ] [ O ]";
 	fdf->usage.s[11] = "Top view         [ / ]";

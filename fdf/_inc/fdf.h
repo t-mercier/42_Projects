@@ -37,17 +37,12 @@ typedef struct s_index
 	int				z;
 }					t_index;
 
-typedef struct s_switch
-{
-	int				*key;
-	mlx_key_data_t	k;
-}					t_switch;
-
 typedef struct s_fdf
 {
 	size_t			width;
 	size_t			height;
-	int				palette;
+	int				scheme;
+	int				color;
 	double			depth;
 	double			tile_size;
 	double			angle;
@@ -55,13 +50,10 @@ typedef struct s_fdf
 	bool			_invert;
 	bool			_switch;
 	bool			_color;
-	bool			_usage;
 	bool			_view;
 	bool			_iso;
-	bool			_render;
 	t_point			p0;
 	t_point			p1;
-	t_switch		*table[8];
 	t_rgb			rgb;
 	t_offset		offset;
 	mlx_t			*mlx;
@@ -71,10 +63,9 @@ typedef struct s_fdf
 	t_matrix		m;
 	mlx_image_t		*img;
 	t_usage			usage;
-	int				color;
+	t_vertex		c;
 	mlx_image_t		*warning;
 	mlx_image_t		*baseline;
-	int				zzz;
 
 }					t_fdf;
 
@@ -118,7 +109,7 @@ void				l_hook(t_fdf *fdf);
 /*
 **			rotation.c
 ** ------------------------------------------ */
-bool				rotations(t_fdf *fdf);
+void				rotations(t_fdf *fdf);
 
 /*
 **			usage.c

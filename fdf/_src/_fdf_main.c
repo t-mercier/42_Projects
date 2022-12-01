@@ -41,6 +41,5 @@ int32_t	main(int ac, char **av)
 	calibrate(&fdf);
 	render(&fdf, fd);
 	clear(&fdf);
-	system("leaks fdf");
 	return (0);
 }

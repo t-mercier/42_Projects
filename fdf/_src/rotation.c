@@ -6,7 +6,7 @@
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 11:38:08 by tmercier      #+#    #+#                 */
-/*   Updated: 2022/11/25 14:46:10 by tmercier      ########   odam.nl         */
+/*   Updated: 2022/12/01 21:55:00 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,23 +49,22 @@ static void	_all(t_fdf *fdf, double n, bool clockwise)
 	_yaw(fdf, 10., clockwise);
 }
 
-bool	rotations(t_fdf *fdf)
+void	rotations(t_fdf *fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
-		return (_yaw(fdf, 10., true), true);
+		return (_yaw(fdf, 10., true), project(fdf));
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
-		return (_yaw(fdf, -10., false), true);
+		return (_yaw(fdf, -10., false), project(fdf));
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
-		return (_pitch(fdf, 10., true), true);
+		return (_pitch(fdf, 10., true), project(fdf));
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
-		return (_pitch(fdf, -10., false), true);
+		return (_pitch(fdf, -10., false), project(fdf));
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Z))
-		return (_roll(fdf, 10., true), true);
+		return (_roll(fdf, 10., true), project(fdf));
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
-		return (_roll(fdf, -10., false), true);
+		return (_roll(fdf, -10., false), project(fdf));
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_PAGE_DOWN))
-		return (_all(fdf, -10., false), true);
+		return (_all(fdf, -10., false), project(fdf));
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_PAGE_UP))
-		return (_all(fdf, 10., true), true);
-	return (false);
+		return (_all(fdf, 10., true), project(fdf));
 }

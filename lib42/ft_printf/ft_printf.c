@@ -15,15 +15,16 @@
 static int	ft_convert(const char *format, va_list arg)
 {
 	static int (*ft_ptr[128])(va_list) = {
-		['i'] = ft_putnbr_va_arg,
-		['d'] = ft_putnbr_va_arg,
-		['c'] = ft_putchar_va_arg,
-		['s'] = ft_putstr_va_arg,
-		['x'] = ft_lowerhex_va_arg,
-		['X'] = ft_upperhex_va_arg,
-		['u'] = ft_unsigned_va_arg,
-		['p'] = ft_print_address_va_arg,
+	['i'] = ft_putnbr_va_arg,
+	['d'] = ft_putnbr_va_arg,
+	['c'] = ft_putchar_va_arg,
+	['s'] = ft_putstr_va_arg,
+	['x'] = ft_lowerhex_va_arg,
+	['X'] = ft_upperhex_va_arg,
+	['u'] = ft_unsigned_va_arg,
+	['p'] = ft_print_address_va_arg,
 	};
+
 	if ((ft_ptr)[(int)*format] == NULL)
 	{
 		ft_putstr_fd("* Calling a flag that doesn't exist!? *", 1);

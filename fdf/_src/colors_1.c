@@ -20,21 +20,21 @@ uint32_t	color(t_fdf *fdf, int z0, int z1)
 
 uint32_t	get_color(t_fdf *fdf, int z)
 {
-	if (fdf->palette == 0)
+	if (fdf->scheme == 0)
 		fdf->color = WHITE;
-	if (fdf->palette == 1)
+	if (fdf->scheme == 1)
 		fdf->color = grey(z);
-	if (fdf->palette == 2)
+	if (fdf->scheme == 2)
 		fdf->color = forest(z);
-	if (fdf->palette == 3)
+	if (fdf->scheme == 3)
 		fdf->color = pastel(z);
-	if (fdf->palette == 4)
+	if (fdf->scheme == 4)
 		fdf->color = fire(z);
-	if (fdf->palette == 5)
+	if (fdf->scheme == 5)
 		fdf->color = midnight(z);
-	if (fdf->palette == 6)
+	if (fdf->scheme == 6)
 		fdf->color = grapes(z);
-	if (fdf->palette == 7)
+	if (fdf->scheme == 7)
 		fdf->color = dark(z);
 	return (fdf->color);
 }

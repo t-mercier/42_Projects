@@ -6,7 +6,7 @@
 #    By: tmercier <tmercier@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/12/02 17:13:26 by tmercier      #+#    #+#                  #
-#    Updated: 2022/11/25 19:09:55 by tmercier      ########   odam.nl          #
+#    Updated: 2022/12/01 22:24:38 by tmercier      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,12 +35,13 @@ L42FILES = $(shell find _lib42/ -name *.c)
 
 # ----------------------------------- debug ---------------------------------- #
 
-CFLAGS		=	-I_inc
-
+CFLAGS			+=	-I_inc -I $(MLX_DIR)/include -Wall -Wextra
 ifdef DEBUG
-	CFLAGS +=	-fsanitize=address
-else
-	CFLAGS +=	-g3
+	CFLAGS		+=	-g3 -fsanitize=address
+endif
+
+ifndef DEV
+	CFLAGS		+= -Werror
 endif
 
 # -------------------------------- Libraries -------------------------------- #
@@ -58,6 +59,7 @@ all:
 
 
 mlx:
+	git submodule update --init --recursive
 	@MLX=1 make -C _lib42
 
 $(OBJ_DIR)/%.o: _src/%.c $(HDR) $(L42FILES)
@@ -79,6 +81,7 @@ clean:
 	@printf "\n$(LIGHT_RED)-> $(NAME) obj files removed.$(NO_COLOR)"
 
 fclean:	clean
+	@make fclean -C _lib42
 	@rm -rf $(NAME)
 	@printf "\n$(LIGHT_RED)-> $(NAME) executable removed.\n\n$(NO_COLOR)"
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf_utils.c                                        :+:    :+:            */
+/*   utils.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 11:38:08 by tmercier      #+#    #+#                 */
-/*   Updated: 2022/11/25 22:30:44 by tmercier      ########   odam.nl         */
+/*   Updated: 2022/12/01 22:19:55 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 void	resize_map(t_fdf *fdf)
 {
-	if (fdf->width > 100 || fdf->height > 100)
+	int	size;
+
+	size = fdf->width * fdf->height;
+	if (size > 1000)
 		fdf->tile_size = 3.;
-	else if (fdf->width < 20 || fdf->height < 20)
+	else if (size < 500)
 		fdf->tile_size = 50.;
 	else
-		fdf->tile_size = 10.;
+		fdf->tile_size = 20.;
 }
 
 void	calibrate(t_fdf *fdf)
@@ -28,11 +31,10 @@ void	calibrate(t_fdf *fdf)
 	fdf->r.pitch = 0.;
 	fdf->r.roll = 0.;
 	fdf->depth = 1.;
-	fdf->palette = 1;
+	fdf->scheme = 1;
 	fdf->offset.x = (double)WIDTH * 40 / 100;
 	fdf->offset.y = (double)HEIGHT * 10 / 100;
-	fdf->angle = 35.264;
-	fdf->_invert = false;
+	fdf->angle = 30.264;
 	fdf->n = 1.;
 	fdf->rgb.r = 255;
 	fdf->rgb.g = 255;
@@ -55,6 +57,7 @@ void	clear(t_fdf *fdf)
 	mlx_delete_image(fdf->mlx, fdf->baseline);
 	mlx_delete_image(fdf->mlx, fdf->warning);
 	mlx_terminate(fdf->mlx);
+	system("leaks fdf");
 	exit(0);
 }
 

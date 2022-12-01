@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   single_linkedlist.h                                :+:    :+:            */
+/*   graphic.h                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 19:18:04 by tmercier      #+#    #+#                 */
-/*   Updated: 2022/10/16 20:57:11 by tmercier      ########   odam.nl         */
+/*   Updated: 2022/12/01 22:18:02 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ t_vertex		isometry_projection(t_offset offset, t_vertex *p, double angle);
 **			utils.c
 ** ------------------------------------------ */
 void			init_cos_sin(t_rotate *r, void *param);
-double			deg_to_rad(int degree);
+double			deg_to_rad(double degree);
 void			mlx_error_exit(void) __attribute__((unused));
 
 #endif

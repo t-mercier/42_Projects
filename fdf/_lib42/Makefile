@@ -6,7 +6,7 @@
 #    By: tmercier <tmercier@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/11/27 21:50:52 by tmercier      #+#    #+#                  #
-#    Updated: 2022/11/27 21:50:52 by tmercier      ########   odam.nl          #
+#    Updated: 2022/12/01 22:22:40 by tmercier      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,11 +43,13 @@ LIB42MLX		=	lib42mlx.a
 # --------------------------------- debug ------------------------------------ #
 
 
-CFLAGS			+=	-I_inc -I $(MLX_DIR)/include
+CFLAGS			+=	-I_inc -I $(MLX_DIR)/include -Werror -Wall -Wextra
 ifdef DEBUG
 	CFLAGS		+=	-g3 -fsanitize=address
-else
-	CFLAGS		+=
+endif
+
+ifdef DEV
+	CFLAGS		-= -Werror
 endif
 
 OBJ				=	$(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))

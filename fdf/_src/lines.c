@@ -26,9 +26,9 @@ static void	_projection_down(t_fdf *fdf, t_vertex _0, t_index i)
 	fdf->p0 = cast_points(_0);
 	fdf->p1 = cast_points(_1);
 	if (fdf->_color)
-		fdf->color = color(fdf, _0.z, _1.z);
+		fdf->color = (int)color(fdf, (int)fdf->c.z, (int)i.z);
 	else
-		fdf->color = get_color(fdf, (int)d.z);
+		fdf->color = (int)get_color(fdf, (int)i.z);
 	if (fdf->_invert)
 		fdf->color = INT32_MAX - fdf->color | 0xff;
 	drawline(fdf->img, fdf->p0, fdf->p1, fdf->color);
@@ -48,9 +48,9 @@ static void	_projection_right(t_fdf *fdf, t_vertex _0, t_index i)
 	fdf->p0 = cast_points(_0);
 	fdf->p1 = cast_points(_1);
 	if (fdf->_color)
-		fdf->color = color(fdf, _0.z, _1.z);
+		fdf->color = (int)color(fdf, (int)fdf->c.z, (int)i.z);
 	else
-		fdf->color = get_color(fdf, (int)d.z);
+		fdf->color = (int)get_color(fdf, (int)i.z);
 	if (fdf->_invert)
 		fdf->color = INT32_MAX - fdf->color | 0xff;
 	drawline(fdf->img, fdf->p0, fdf->p1, fdf->color);
@@ -66,6 +66,7 @@ static void	_project_0(t_fdf *fdf, t_vertex *_0, t_index i)
 	d.y = (double)i.y * fdf->tile_size;
 	d.z = (double)i.z * (fdf->tile_size / 5 * fdf->depth);
 	t = matrix_to_px(fdf->m, d, NULL);
+	fdf->c.z = d.z;
 	*_0 = isometry_projection(fdf->offset, &t, fdf->angle);
 }
 

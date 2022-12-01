@@ -22,12 +22,12 @@ t_vector	*open_read_file(int fd, t_fdf *fdf)
 	fdf->map = vector_init(sizeof(t_vector *));
 	while (1)
 	{
-		fdf->row = vector_init(sizeof(int));
 		line = get_next_line(fd);
 		if (!line)
 			break ;
 		split = ft_split(line, ' ');
 		tmp = split;
+		fdf->row = vector_init(sizeof(int));
 		while (*tmp)
 		{
 			data = ft_atoi(*tmp++);
