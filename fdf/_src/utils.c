@@ -34,6 +34,9 @@ void	calibrate(t_fdf *fdf)
 	fdf->angle = 35.264;
 	fdf->_invert = false;
 	fdf->n = 1.;
+	fdf->rgb.r = 255;
+	fdf->rgb.g = 255;
+	fdf->rgb.b = 255;
 }
 
 t_point	cast_points(t_vertex p)
@@ -61,10 +64,13 @@ int	check_error(int ac, char **av)
 
 	fd = open(av[1], O_RDONLY);
 	if (!fd || fd < 0)
-		exit_message("\n_FILE_ERROR_ >>> wrong file or file missing\n\n", 1);
+		exit_message("\n_FILE_ERROR_ >>> wrong file "
+			"or file missing\n\n", 1);
 	if (ac < 2 || ac > 2 || ft_strlen(av[1]) - 5 <= 0)
-		exit_message("\n_USAGE_ERROR_ >>> ./fdf _maps/*.fdf\n\n", 1);
+		exit_message("\n_USAGE_ERROR_ >>> "
+			"./fdf _maps/*.fdf\n\n", 1);
 	else if (ft_memcmp(av[1], "_maps/", 6) != 0)
-		exit_message("\n_ARGS_ERROR_ >>> ./fdf _maps/*.fdf\n\n", 1);
+		exit_message("\n_ARGS_ERROR_ >>> "
+			"./fdf _maps/*.fdf\n\n", 1);
 	return (fd);
 }

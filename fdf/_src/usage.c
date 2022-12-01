@@ -21,12 +21,13 @@ static void	define_usage(t_fdf *fdf)
 	fdf->usage.s[4] = "Rotation - Y     [ A ] [ S ]";
 	fdf->usage.s[5] = "Rotation - X     [ Z ] [ X ]";
 	fdf->usage.s[6] = "Rotate all axes  [ page ^ ] [ page v ]";
-	fdf->usage.s[7] = "Switch color     [ F1 ] -> [ F4 ]";
-	fdf->usage.s[8] = "Zoom             [ + ] [ - ]";
-	fdf->usage.s[9] = "Depth +/-        [ I ] [ O ]";
-	fdf->usage.s[10] = "View from top    [ / ]";
-	fdf->usage.s[11] = "WOW Calme toi! Or you will crash my fdf ^_^";
-	fdf->usage.s[12] = "disable/enable usage : [ space ]";
+	fdf->usage.s[7] = "Switch color     [ 0 ] -> [ 7 ]";
+	fdf->usage.s[8] = "Switch color     [ 0 ] -> [ 7 ]";
+	fdf->usage.s[9] = "Zoom +/-         [ + ] [ - ]";
+	fdf->usage.s[10] = "Depth +/-        [ I ] [ O ]";
+	fdf->usage.s[11] = "Top view         [ / ]";
+	fdf->usage.s[12] = "WOW Calme toi! Or you will crash my fdf ^_^";
+	fdf->usage.s[13] = "disable/enable usage : [ space ]";
 }
 
 void	init_usage(t_fdf *fdf)
@@ -40,18 +41,17 @@ void	init_usage(t_fdf *fdf)
 	x = fdf->mlx->width * 80 / 100;
 	y = fdf->mlx->height * 5 / 100;
 	define_usage(fdf);
-	len = ft_strlen(fdf->usage.s[11]) * (size_t)(fdf->tile_size);
-	fdf->warning = mlx_put_string(fdf->mlx, fdf->usage.s[11], WIDTH / 2 - len,
-			HEIGHT / 3);
-	fdf->baseline = mlx_put_string(fdf->mlx, fdf->usage.s[12], WIDTH * 5 / 100,
-			HEIGHT * 80 / 100);
+	len = ft_strlen(fdf->usage.s[12])
+		* (size_t)(fdf->tile_size);
+	fdf->warning = mlx_put_string(fdf->mlx,
+			fdf->usage.s[12], WIDTH / 2 - len, HEIGHT / 3);
+	fdf->baseline = mlx_put_string(fdf->mlx,
+			fdf->usage.s[13], WIDTH * 5 / 100, HEIGHT * 55 / 100);
 	fdf->warning->enabled = false;
-	while (i < 11)
+	while (i < 12)
 	{
 		fdf->usage.n[i] = mlx_put_string(fdf->mlx,
-											fdf->usage.s[i],
-											x,
-											y);
+				fdf->usage.s[i], x, y);
 		y += 25;
 		i++;
 	}

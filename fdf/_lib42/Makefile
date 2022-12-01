@@ -37,8 +37,8 @@ INC_DIR			=	_inc
 MLX42			=	MLX42/libmlx42.a
 MLX_DIR			=	MLX42
 
-LIB42			=	_lib42.a
-LIB42MLX		=	_lib42mlx.a
+LIB42			=	lib42.a
+LIB42MLX		=	lib42mlx.a
 
 # --------------------------------- debug ------------------------------------ #
 

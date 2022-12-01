@@ -26,100 +26,112 @@
 
 typedef struct s_usage
 {
-	char		*s[13];
-	mlx_image_t	*n[11];
-}				t_usage;
+	char			*s[14];
+	mlx_image_t		*n[12];
+}					t_usage;
 
 typedef struct s_index
 {
-	int			x;
-	int			y;
-	int			z;
-}				t_index;
+	int				x;
+	int				y;
+	int				z;
+}					t_index;
+
+typedef struct s_switch
+{
+	int				*key;
+	mlx_key_data_t	k;
+}					t_switch;
 
 typedef struct s_fdf
 {
-	size_t		width;
-	size_t		height;
-	int			palette;
-	double		depth;
-	double		tile_size;
-	double		angle;
-	double		n;
-	bool		_invert;
-	bool		_switch;
-	bool		_usage;
-	bool		_view;
-	bool		_iso;
-	bool		_render;
-	t_offset	offset;
-	mlx_t		*mlx;
-	t_rotate	r;
-	t_vector	*map;
-	t_vector	*row;
-	t_matrix	m;
-	mlx_image_t	*img;
-	t_usage		usage;
-	int			color;
-	mlx_image_t	*warning;
-	mlx_image_t	*baseline;
-	int			zzz;
+	size_t			width;
+	size_t			height;
+	int				palette;
+	double			depth;
+	double			tile_size;
+	double			angle;
+	double			n;
+	bool			_invert;
+	bool			_switch;
+	bool			_color;
+	bool			_usage;
+	bool			_view;
+	bool			_iso;
+	bool			_render;
+	t_point			p0;
+	t_point			p1;
+	t_switch		*table[8];
+	t_rgb			rgb;
+	t_offset		offset;
+	mlx_t			*mlx;
+	t_rotate		r;
+	t_vector		*map;
+	t_vector		*row;
+	t_matrix		m;
+	mlx_image_t		*img;
+	t_usage			usage;
+	int				color;
+	mlx_image_t		*warning;
+	mlx_image_t		*baseline;
+	int				zzz;
 
-}				t_fdf;
+}					t_fdf;
 
 /*
 **			colors_1.c
 ** ------------------------------------------ */
-uint32_t		get_color(t_fdf *fdf, int z);
-uint32_t		fire(int z);
-uint32_t		grey(int z);
-uint32_t		forest(int z);
+uint32_t			get_color(t_fdf *fdf, int z);
+uint32_t			fire(int z);
+uint32_t			grey(int z);
+uint32_t			forest(int z);
 
 /*
 **			colors_2.c
 ** ------------------------------------------ */
-uint32_t		pastel(int z);
-uint32_t		midnight(int z);
-uint32_t		grapes(int z);
-uint32_t		dark(int z);
+uint32_t			pastel(int z);
+uint32_t			midnight(int z);
+uint32_t			grapes(int z);
+uint32_t			dark(int z);
+uint32_t			color(t_fdf *fdf, int z0, int z1);
 
 /*
 **			input.c
 ** ------------------------------------------ */
-t_vector		*open_read_file(int fd, t_fdf *fdf);
+t_vector			*open_read_file(int fd, t_fdf *fdf);
 
 /*
 **			key_hook.c
 ** ------------------------------------------ */
-void			k_hook(mlx_key_data_t k, void *p);
+void				k_hook(mlx_key_data_t key, void *tmp);
 
 /*
 **			lines.c
 ** ------------------------------------------ */
-void			project(t_fdf *fdf);
+void				project(t_fdf *fdf);
 
 /*
 **			loop_hook.c
 ** ------------------------------------------ */
-void			l_hook(t_fdf *fdf);
+void				l_hook(t_fdf *fdf);
 
 /*
 **			rotation.c
 ** ------------------------------------------ */
-bool			rotations(t_fdf *fdf);
+bool				rotations(t_fdf *fdf);
 
 /*
 **			usage.c
 ** ------------------------------------------ */
-void			init_usage(t_fdf *fdf);
+void				init_usage(t_fdf *fdf);
 
 /*
 **			utils.c
 ** ------------------------------------------ */
-void			resize_map(t_fdf *fdf);
-void			calibrate(t_fdf *fdf);
-t_point			cast_points(t_vertex p);
-void			clear(t_fdf *fdf);
-int				check_error(int ac, char **av);
+void				resize_map(t_fdf *fdf);
+void				calibrate(t_fdf *fdf);
+t_point				cast_points(t_vertex p);
+void				clear(t_fdf *fdf);
+int					check_error(int ac, char **av);
 
 #endif

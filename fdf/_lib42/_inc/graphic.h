@@ -19,10 +19,17 @@
 # include <stddef.h>
 # include <stdlib.h>
 
+typedef struct s_rgb
+{
+	uint32_t	r;
+	uint32_t	g;
+	uint32_t	b;
+}				t_rgb;
+
 typedef struct s_offset
 {
-	double			x;
-	double			y;
+	double		x;
+	double		y;
 }				t_offset;
 
 typedef struct s_point
@@ -34,9 +41,9 @@ typedef struct s_point
 
 typedef struct s_vertex
 {
-	double			x;
-	double			y;
-	double			z;
+	double		x;
+	double		y;
+	double		z;
 }				t_vertex;
 
 typedef struct s_rotate
@@ -94,6 +101,9 @@ void			drawline(mlx_image_t *img, t_point _0, t_point _1,
 **			colors.c
 ** ------------------------------------------ */
 uint32_t		_color(int color);
+uint32_t		set_g(uint32_t trgb, uint8_t g);
+int				_trgb(unsigned char t, unsigned char r, unsigned char g,
+					unsigned char b);
 
 /*
 **			matrices.c

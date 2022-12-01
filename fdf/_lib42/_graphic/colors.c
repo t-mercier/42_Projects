@@ -26,7 +26,12 @@ uint32_t	_color(int color)
 	return (a << 24 | r << 16 | g << 8 | b);
 }
 
-int	set_g(int trgb, uint8_t g)
+uint32_t	set_g(uint32_t trgb, uint8_t g)
 {
-	return trgb & ((g >> 8) & 0xff);
+	return (trgb & ((g >> 8) & 0xff));
+}
+
+int	_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
+{
+	return (*(int *)(unsigned char [4]){b, g, r, t});
 }

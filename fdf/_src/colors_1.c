@@ -12,6 +12,12 @@
 
 #include "../_inc/fdf.h"
 
+uint32_t	color(t_fdf *fdf, int z0, int z1)
+{
+	return (_trgb(255, fdf->rgb.r - (z0 + z1),
+			fdf->rgb.g - z0, fdf->rgb.b - z1));
+}
+
 uint32_t	get_color(t_fdf *fdf, int z)
 {
 	if (fdf->palette == 0)
