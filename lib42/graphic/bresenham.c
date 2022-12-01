@@ -14,9 +14,9 @@
 
 static void	_init_s_d(t_vertex _0, t_vertex _1, t_bresenham *p)
 {
-	p->d.x = (double)abs(_1.x - _0.x);
+	p->d.x = (double)fabs(_1.x - _0.x);
 	p->s.x = (double)tern_int(_0.x < _1.x, 1, -1);
-	p->d.y = (double)-abs(_1.y - _0.y);
+	p->d.y = (double)-fabs(_1.y - _0.y);
 	p->s.y = (double)tern_int(_0.y < _1.y, 1, -1);
 	p->e = (double)(p->d.x + p->d.y);
 }

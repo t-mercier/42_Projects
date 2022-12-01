@@ -12,24 +12,24 @@
 
 # ---------------------------------- files ----------------------------------- #
 
-FILES =	get_next_line/get_next_line.c ft_printf/char_conversion.c \
-	ft_printf/ft_printf.c ft_printf/num_conversion.c \
-	graphic/arbitrary_rotation.c graphic/bresenham.c graphic/colors.c \
-	graphic/matrices.c graphic/perspectives.c graphic/projection.c \
-	graphic/utils.c \
-	libft/check_bool.c libft/check_case.c libft/check_char.c libft/compare.c \
-	libft/convert_char.c libft/convert_num.c libft/convert_str.c \
-	libft/copy.c libft/errors.c libft/free.c libft/join.c libft/length.c \
-	libft/memory.c libft/put_.c libft/search.c libft/split.c \
-	libft/strings_iter.c libft/ternaries.c \
-	linkedlist/llc_add.c linkedlist/llc_create.c linkedlist/llc_remove.c \
-	linkedlist/llc_utils.c linkedlist/lls_add.c linkedlist/lls_create.c \
-	linkedlist/lls_remove.c linkedlist/lls_utils.c \
-	vectors/vector.c
+FILES =	_get_next_line/get_next_line.c _ft_printf/char_conversion.c \
+	_ft_printf/ft_printf.c _ft_printf/num_conversion.c \
+	_graphic/arbitrary_rotation.c _graphic/bresenham.c _graphic/colors.c \
+	_graphic/matrices.c _graphic/perspectives.c \
+	_graphic/projection.c _graphic/utils.c \
+	_libft/check_bool.c _libft/check_case.c _libft/check_char.c _libft/compare.c \
+	_libft/convert_char.c _libft/convert_num.c _libft/convert_str.c \
+	_libft/copy.c _libft/errors.c _libft/free.c _libft/join.c _libft/length.c \
+	_libft/memory.c _libft/put_.c _libft/search.c _libft/split.c \
+	_libft/strings_iter.c _libft/ternaries.c \
+	_linkedlist/llc_add.c _linkedlist/llc_create.c _linkedlist/llc_remove.c \
+	_linkedlist/llc_utils.c _linkedlist/lls_add.c _linkedlist/lls_create.c \
+	_linkedlist/lls_remove.c _linkedlist/lls_utils.c \
+	_vectors/vector.c
 
 # ---------------------------------- obj ------------------------------------- #
 
-OBJ_DIR			=	obj
+OBJ_DIR			=	_obj
 INC_DIR			=	_inc
 
 # ---------------------------------- MLX42 ----------------------------------- #
@@ -37,24 +37,13 @@ INC_DIR			=	_inc
 MLX42			=	MLX42/libmlx42.a
 MLX_DIR			=	MLX42
 
-LIB42			=	lib42.a
-LIB42MLX		=	lib42mlx.a
-
-# ----------------------------------- NAME ----------------------------------- #
-ifdef MLX
-	NAME 		= 	$(LIB42MLX)
-else
-	NAME		= 	$(LIB42)
-endif
+LIB42			=	_lib42.a
+LIB42MLX		=	_lib42mlx.a
 
 # --------------------------------- debug ------------------------------------ #
 
-ifdef MLX
-	CFLAGS		+=	-I $(MLX_DIR)/include
-else
-	CFLAGS		+=	-I_inc
-endif
 
+CFLAGS			+=	-I_inc -I $(MLX_DIR)/include
 ifdef DEBUG
 	CFLAGS		+=	-g3 -fsanitize=address
 else
@@ -65,7 +54,7 @@ OBJ				=	$(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))
 HDR				=	_inc/lib42.h _inc/graphic.h _inc/libft.h \
 					_inc/linkedlist.h _inc/storage_classes.h _inc/vectors.h
 
-all: $(NAME)
+all: $(LIB42) $(LIB42MLX)
 
 $(OBJ_DIR)/%.o: %.c $(HDR)
 	@mkdir -p $(@D)
@@ -73,18 +62,18 @@ $(OBJ_DIR)/%.o: %.c $(HDR)
 	@$(CC) -o $@ -c $< $(CFLAGS)
 
 $(LIB42): $(OBJ)
-	@if [ -f $(LIB42MLX) ]; then rm -rf $(LIB42MLX); fi
 	@ar rc $@ $^
 	@printf "\n$(GREEN)-> $(LIB42_A) archive created ✔️$(RESET)\n"
 
 $(LIB42MLX): $(OBJ)
-	@if [ -f "lib42.a" ]; then mv lib42.a $(MLX42); fi
 	@make -C $(MLX_DIR)
 	@mv $(MLX42) $(LIB42MLX)
 	@ar rcs $(LIB42MLX) $(OBJ)
 	@printf "\n$(GREEN)-> $(LIB42) & mlx42.a archives merged successfully ✔️\
 	$(RESET)\n\n"
 
+norm:
+	norminette
 clean:
 	@if [ -d $(OBJ_DIR) ]; then rm -rf $(OBJ_DIR) && \
 		printf "$(GREEN)\n-> lib42/obj cleaned\n"; \

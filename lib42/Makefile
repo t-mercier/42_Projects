@@ -112,20 +112,3 @@ MAGENTA	:= \033[35;1m
 CYAN	:= \033[36;1m
 WHITE	:= \033[37;1m
 RESET	:= \033[0m
-
-
-################### BUILDING LIBRARIES PROCESS
-
-# 'ar rc' creates a static library named 'libft.a' and puts copies
-# of the object files in it. If the library file already exists, it has
-# the object files added to it, or replaced, if they are newer than
-# those inside the library.
-# The 'c' flag tells ar to create the library if it doesn't already exist.
-# The 'r' flag tells it to replace older object files in the library,
-# with the new object files.
-
-# After an archive is created, or modified, there is a need to index it.
-# This index is later used by the compiler to speed up symbol-lookup
-# inside the library, and to make sure that the order of the symbols
-# in the library won't matter during compilation.
-# The command used to create or update the index is called 'ranlib'.
