@@ -24,6 +24,7 @@ typedef struct s_rgb
 	uint32_t	r;
 	uint32_t	g;
 	uint32_t	b;
+	uint32_t	a;
 }				t_rgb;
 
 typedef struct s_offset

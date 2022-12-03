@@ -35,10 +35,12 @@ void	*ft_malloc(ssize_t esz)
 {
 	void	*ptr;
 
-	ptr = malloc(esz);
-	if (ptr != NULL)
-		return (ptr);
-	exit(EXIT_FAILURE);
+//	ptr = malloc(esz);
+	(void) esz;
+	ptr = NULL;
+	if (!ptr)
+		exit_message("[ MALLOC FAILED ]\n", 1);
+	return (ptr);
 }
 
 void	*ft_memset(void *b, int c, size_t len)

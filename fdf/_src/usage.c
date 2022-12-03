@@ -16,18 +16,27 @@ static void	define_usage(t_fdf *fdf)
 {
 	fdf->usage.s[0] = "Usage on / off   [ space ]";
 	fdf->usage.s[1] = "Close window     [ esc ]";
-	fdf->usage.s[2] = "Move             [ < ^ v > ]";
-	fdf->usage.s[3] = "Rotation - Z     [ Q ] [ W ]";
-	fdf->usage.s[4] = "Rotation - Y     [ A ] [ S ]";
-	fdf->usage.s[5] = "Rotation - X     [ Z ] [ X ]";
-	fdf->usage.s[6] = "Rotate all axes  [ page ^ ] [ page v ]";
-	fdf->usage.s[7] = "Switch color     [ 0 ] -> [ 7 ]";
-	fdf->usage.s[8] = "Random colors    [ 8 ]";
-	fdf->usage.s[9] = "Zoom +/-         [ + ] [ - ]";
-	fdf->usage.s[10] = "Depth +/-        [ I ] [ O ]";
-	fdf->usage.s[11] = "Top view         [ / ]";
-	fdf->usage.s[12] = "WOW Calme toi! Or you will crash my fdf ^_^";
-	fdf->usage.s[13] = "disable/enable usage : [ space ]";
+	fdf->usage.s[2] = "Switch View      [ / ]";
+	fdf->usage.s[3] = "\n";
+	fdf->usage.s[4] = "| MOVE";
+	fdf->usage.s[5] = "---------------------------------------";
+	fdf->usage.s[6] = "Move             [ < ^ v > ]";
+	fdf->usage.s[7] = "Zoom +/-         [ mouse scroll ]";
+	fdf->usage.s[8] = "Depth +/-        [ + ] [ - ]";
+	fdf->usage.s[9] = "\n";
+	fdf->usage.s[10] = "| ROTATION";
+	fdf->usage.s[11] = "---------------------------------------";
+	fdf->usage.s[12] = "Rotation - Z     [ Q ] [ W ]";
+	fdf->usage.s[13] = "Rotation - Y     [ A ] [ S ]";
+	fdf->usage.s[14] = "Rotation - X     [ Z ] [ X ]";
+	fdf->usage.s[15] = "Rotate all axes  [ page ^ ] [ page v ]";
+	fdf->usage.s[16] = "\n";
+	fdf->usage.s[17] = "| COLORS";
+	fdf->usage.s[18] = "---------------------------------------";
+	fdf->usage.s[19] = "Switch           [ 1 ] -> [ 8 ]";
+	fdf->usage.s[20] = "Motion           [ 9 ]";
+	fdf->usage.s[21] = "Blink            [ 0 ]";
+	fdf->usage.s[22] = "Reverse	         [ right shift ]";
 }
 
 void	init_usage(t_fdf *fdf)
@@ -35,20 +44,12 @@ void	init_usage(t_fdf *fdf)
 	int		y;
 	int		x;
 	int		i;
-	size_t	len;
 
 	i = 0;
-	x = fdf->mlx->width * 80 / 100;
-	y = fdf->mlx->height * 5 / 100;
+	x = fdf->win.w - 400;
+	y = fdf->win.h * 2 / 100;
 	define_usage(fdf);
-	len = ft_strlen(fdf->usage.s[12])
-		* (size_t)(fdf->tile_size);
-	fdf->warning = mlx_put_string(fdf->mlx,
-			fdf->usage.s[12], WIDTH / 2 - len, HEIGHT / 3);
-	fdf->baseline = mlx_put_string(fdf->mlx,
-			fdf->usage.s[13], WIDTH * 5 / 100, HEIGHT * 55 / 100);
-	fdf->warning->enabled = false;
-	while (i < 12)
+	while (i < 23)
 	{
 		fdf->usage.n[i] = mlx_put_string(fdf->mlx,
 				fdf->usage.s[i], x, y);

@@ -12,15 +12,21 @@
 
 #include "../_inc/fdf.h"
 
-uint32_t	color(t_fdf *fdf, int z0, int z1)
+uint32_t	_blink(t_fdf *fdf)
 {
-	return (_trgb(255, fdf->rgb.r - (z0 + z1),
-			fdf->rgb.g - z0, fdf->rgb.b - z1));
+	return (_trgb(fdf->rgb.a, fdf->rgb.r,
+			fdf->rgb.g, fdf->rgb.b));
+}
+
+uint32_t	_random(t_fdf *fdf, int p0, int p1)
+{
+	return (_trgb(fdf->rgb.a + p0, fdf->rgb.r - (p0 + p1),
+			fdf->rgb.g - p0, fdf->rgb.b - p1));
 }
 
 uint32_t	get_color(t_fdf *fdf, int z)
 {
-	if (fdf->scheme == 0)
+	if (fdf->scheme == 8)
 		fdf->color = WHITE;
 	if (fdf->scheme == 1)
 		fdf->color = grey(z);
@@ -85,21 +91,4 @@ uint32_t	grey(int z)
 	if (z > -20.)
 		return (0x212121FF);
 	return (0x3F3A63FF);
-}
-
-uint32_t	forest(int z)
-{
-	if (z > 100.)
-		return (0xFFFFE755);
-	if (z > 50.)
-		return (0xFFFFE755);
-	if (z > 30.)
-		return (0xD3E7A355);
-	if (z > 20.)
-		return (0x8baf7955);
-	if (z > 10.)
-		return (0x51704a55);
-	if (z > 0.)
-		return (0x3b503755);
-	return (0x51704a55);
 }

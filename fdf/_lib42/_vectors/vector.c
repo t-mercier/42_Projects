@@ -25,13 +25,13 @@ t_vector	*vector_init(size_t esz)
 
 	v = malloc(sizeof(t_vector));
 	if (!v)
-		exit(0);
+		exit_message("[ MALLOC FAIL ]\n", 1);
 	v->len = 0;
 	v->size = 2;
 	v->esz = esz;
 	v->item = malloc(v->esz * v->size);
 	if (!v->item)
-		return (free_vector(v), NULL);
+		exit_message("[ MALLOC FAIL ]\n", 1);
 	return (v);
 }
 
@@ -40,6 +40,8 @@ void	vector_append(t_vector *v, void *x)
 	if (v->len == v->size)
 	{
 		v->item = ft_realloc(v->item, v->size * 2 * v->esz, v->esz * v->size);
+		if (!v->item)
+			exit_message("[ MALLOC FAIL ]\n\n", 1);
 		v->size *= 2;
 	}
 	ft_memcpy(v->item + (v->len++) * v->esz, x, v->esz);

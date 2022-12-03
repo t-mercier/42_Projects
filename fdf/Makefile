@@ -31,11 +31,11 @@ CC			=	gcc
 LIB42		=	_lib42/lib42mlx.a
 LIB42_DIR	=	_lib42
 
-L42FILES = $(shell find _lib42/ -name *.c)
+#L42FILES = $(shell find _lib42/ -name *.c)
 
 # ----------------------------------- debug ---------------------------------- #
 
-CFLAGS			+=	-I_inc -I $(MLX_DIR)/include -Wall -Wextra
+CFLAGS			+=	-Ofast -I_inc -I $(MLX_DIR)/include -Wall -Wextra
 ifdef DEBUG
 	CFLAGS		+=	-g3 -fsanitize=address
 endif
@@ -49,7 +49,6 @@ endif
 GLFW		= 	-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 LFLAGS 		= 	-lm -lpthread -Wl -L$(LIB42_DIR) -l42mlx
 
-#OBJ42		=
 OBJ			=	$(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))
 HDR			=	_inc/fdf.h
 
@@ -59,8 +58,8 @@ all:
 
 
 mlx:
-	git submodule update --init --recursive
-	@MLX=1 make -C _lib42
+	@printf "$(LIGHT_CYAN)\nchecking update for submodule MLX42$(NO_COLOR)\n"
+	@$(CLONE_MLX)
 
 $(OBJ_DIR)/%.o: _src/%.c $(HDR) $(L42FILES)
 	@mkdir -p $(@D)
@@ -71,8 +70,8 @@ $(NAME): $(LIB42) $(OBJ)
 	@printf "\n$(LIGHT_CYAN)-> Executable $(NAME) created.$(NO_COLOR) ✔️\n\n"
 	@make signature
 
-$(LIB42): $(OBJ42)
-	@if ! [ -f $(LIB42) ]; then MLX=1 $(MAKE) -C $(LIB42_DIR); fi
+$(CLONE_MLX):
+	@if [ MLX=1 ]; then git submodule update --init --recursive && MLX=1 make -C _lib42; fi
 
 # -------------------------------- clean -------------------------------- #
 

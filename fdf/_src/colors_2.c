@@ -113,3 +113,20 @@ uint32_t	dark(int z)
 		return (0x21191cff);
 	return (0x0C080Aff);
 }
+
+uint32_t	forest(int z)
+{
+	if (z > 100.)
+		return (0xFFFFE755);
+	if (z > 50.)
+		return (0xFFFFE755);
+	if (z > 30.)
+		return (0xD3E7A355);
+	if (z > 20.)
+		return (0x8baf7955);
+	if (z > 10.)
+		return (0x51704a55);
+	if (z > 0.)
+		return (0x3b503755);
+	return (0x51704a55);
+}

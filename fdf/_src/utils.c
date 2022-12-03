@@ -12,33 +12,27 @@
 
 #include "../_inc/fdf.h"
 
-void	resize_map(t_fdf *fdf)
-{
-	int	size;
-
-	size = fdf->width * fdf->height;
-	if (size > 1000)
-		fdf->tile_size = 3.;
-	else if (size < 500)
-		fdf->tile_size = 50.;
-	else
-		fdf->tile_size = 20.;
-}
-
 void	calibrate(t_fdf *fdf)
 {
+	fdf->win.w = fdf->w * (int)fdf->t_s + 700;
+	fdf->win.h = fdf->h * (int)fdf->t_s + 700;
+	fdf->win.s = fdf->win.h * fdf->win.w;
+	fdf->map.w = fdf->w * (int)fdf->t_s;
+	fdf->map.h = fdf->h * (int)fdf->t_s;
+	fdf->map.s = fdf->map.h * fdf->map.w;
 	fdf->r.yaw = 0.;
 	fdf->r.pitch = 0.;
 	fdf->r.roll = 0.;
 	fdf->depth = 1.;
 	fdf->scheme = 1;
-	fdf->offset.x = (double)WIDTH * 40 / 100;
-	fdf->offset.y = (double)HEIGHT * 10 / 100;
+	fdf->offset.x = (fdf->win.w - fdf->map.w);
+	fdf->offset.y = (fdf->win.h - fdf->map.h) / 2;
 	fdf->angle = 30.264;
 	fdf->n = 1.;
 	fdf->rgb.r = 255;
 	fdf->rgb.g = 255;
 	fdf->rgb.b = 255;
+	fdf->rgb.a = 255;
 }
 
 t_point	cast_points(t_vertex p)
@@ -53,27 +47,31 @@ t_point	cast_points(t_vertex p)
 
 void	clear(t_fdf *fdf)
 {
+	free(fdf->title);
 	mlx_delete_image(fdf->mlx, fdf->img);
 	mlx_delete_image(fdf->mlx, fdf->baseline);
 	mlx_delete_image(fdf->mlx, fdf->warning);
 	mlx_terminate(fdf->mlx);
-	system("leaks fdf");
 	exit(0);
 }
 
-int	check_error(int ac, char **av)
+int	check_error(int ac, char *name)
 {
-	int	fd;
-
-	fd = open(av[1], O_RDONLY);
-	if (!fd || fd < 0)
-		exit_message("\n_FILE_ERROR_ >>> wrong file "
-			"or file missing\n\n", 1);
-	if (ac < 2 || ac > 2 || ft_strlen(av[1]) - 5 <= 0)
+	if (ac < 2 || ac > 2)
 		exit_message("\n_USAGE_ERROR_ >>> "
-			"./fdf _maps/*.fdf\n\n", 1);
-	else if (ft_memcmp(av[1], "_maps/", 6) != 0)
+			"./fdf *.fdf\n\n", 1);
+	else if (ft_strnstr(name, ".fdf", ft_strlen(name)) == 0)
 		exit_message("\n_ARGS_ERROR_ >>> "
-			"./fdf _maps/*.fdf\n\n", 1);
-	return (fd);
+			"./fdf maps/*.fdf\nAccepted files : *.fdf\n\n", 1);
+	return (0);
+}
+
+bool	in_perimeter(t_fdf *fdf)
+{
+	if ((fdf->p0.x <= fdf->win.w && fdf->p0.x >= 0
+			&& fdf->p0.y <= fdf->win.h && fdf->p0.y >= 0)
+		|| (fdf->p1.x <= fdf->win.w && fdf->p1.x >= 0
+			&& fdf->p1.y <= fdf->win.h && fdf->p1.y >= 0))
+		return (true);
+	return (false);
 }

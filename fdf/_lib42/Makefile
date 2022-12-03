@@ -43,13 +43,13 @@ LIB42MLX		=	lib42mlx.a
 # --------------------------------- debug ------------------------------------ #
 
 
-CFLAGS			+=	-I_inc -I $(MLX_DIR)/include -Werror -Wall -Wextra
+CFLAGS			+=	-I_inc -I $(MLX_DIR)/include -Wall -Wextra
 ifdef DEBUG
 	CFLAGS		+=	-g3 -fsanitize=address
 endif
 
-ifdef DEV
-	CFLAGS		-= -Werror
+ifndef DEV
+	CFLAGS		+= -Werror
 endif
 
 OBJ				=	$(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))

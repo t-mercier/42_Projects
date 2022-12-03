@@ -26,26 +26,14 @@ static void	_translate(t_fdf *fdf)
 
 static void	_zoom(t_fdf *fdf)
 {
-	if (fdf->tile_size > 10. && mlx_is_key_down(fdf->mlx, 334))
-		return (fdf->tile_size += 0.7, project(fdf));
-	else if (fdf->tile_size > 10. && mlx_is_key_down(fdf->mlx, 333))
-		return (fdf->tile_size -= 0.7, project(fdf));
-	else if (fdf->tile_size <= 10. && mlx_is_key_down(fdf->mlx, 334))
-		return (fdf->tile_size += 0.3, project(fdf));
-	else if (fdf->tile_size <= 10. && mlx_is_key_down(fdf->mlx, 333))
-		return (fdf->tile_size -= 0.3, project(fdf));
-	else if (fdf->tile_size < 5. && mlx_is_key_down(fdf->mlx, 334))
-		return (fdf->tile_size += 0.05, project(fdf));
-	else if (fdf->tile_size < 5. && mlx_is_key_down(fdf->mlx, 333))
-		return (fdf->tile_size -= 0.05, project(fdf));
-	else if (fdf->tile_size < 1. && mlx_is_key_down(fdf->mlx, 334))
-		return (fdf->tile_size += 0.01, project(fdf));
-	else if (fdf->tile_size < 1. && mlx_is_key_down(fdf->mlx, 333))
-		return (fdf->tile_size -= 0.01, project(fdf));
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
-		return (fdf->depth += 0.5, project(fdf));
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
-		return (fdf->depth -= 0.5, project(fdf));
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_ADD))
+		return (fdf->depth += 0.1, project(fdf));
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_SUBTRACT))
+		return (fdf->depth -= 0.1, project(fdf));
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_ADD))
+		return (fdf->depth += 0.1, project(fdf));
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_SUBTRACT))
+		return (fdf->depth -= 0.1, project(fdf));
 }
 
 static void	_switch(t_fdf *fdf)
@@ -55,16 +43,16 @@ static void	_switch(t_fdf *fdf)
 		MLX_KEY_4, MLX_KEY_5, MLX_KEY_6, MLX_KEY_7};
 
 	i = 0;
-	while (i < sizeof(n) / sizeof(int))
+	while (i < (int)(sizeof(n) / sizeof(int)))
 		if (mlx_is_key_down(fdf->mlx, n[i++]))
 			return (fdf->scheme = i, project(fdf));
 }
 
 static void	_warning(t_fdf *fdf)
 {
-	if (fdf->width > 50 && fdf->tile_size >= 40.)
+	if (fdf->w > 50 && fdf->t_s >= 40.)
 		return (fdf->warning->enabled = true, project(fdf));
-	if (fdf->width <= 50 && fdf->tile_size >= 70.)
+	if (fdf->h <= 50 && fdf->t_s >= 70.)
 		return (fdf->warning->enabled = true, project(fdf));
 }
 
@@ -77,9 +65,17 @@ void	l_hook(t_fdf *fdf)
 	_warning(fdf);
 	if (fdf->_color)
 	{
-		fdf->rgb.r += rand() % 3;
-		fdf->rgb.g -= rand() % 3;
-		fdf->rgb.b *= rand() % 3;
+		fdf->rgb.r -= rand() % 3;
+		fdf->rgb.g += rand() % 3;
+		fdf->rgb.b -= rand() % 3;
+		fdf->rgb.a += rand() % 3;
+		project(fdf);
+	}
+	else if (fdf->_blink)
+	{
+		fdf->rgb.r -= rand() % 30;
+		fdf->rgb.g -= rand() % 30;
+		fdf->rgb.b += rand() % 30;
 		project(fdf);
 	}
 }
