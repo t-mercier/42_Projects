@@ -53,8 +53,9 @@ OBJ			=	$(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))
 HDR			=	_inc/fdf.h
 
 all:
-	@$(MAKE) mlx
-	@$(MAKE) $(NAME)
+	@if [ $MLX=1 ]; then git submodule update --init --recursive _lib42/MLX42; fi
+	@make -C _lib42
+	@make $(NAME)
 
 
 mlx:
@@ -69,9 +70,6 @@ $(NAME): $(LIB42) $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) $(GLFW) $(CFLAGS) -o $(NAME)
 	@printf "\n$(LIGHT_CYAN)-> Executable $(NAME) created.$(RESET) ✔️\n\n"
 	@make signature
-
-$(CLONE_MLX):
-	@if [ MLX=1 ]; then git submodule update --init --recursive && MLX=1 make -C _lib42; fi
 
 # -------------------------------- clean -------------------------------- #
 
