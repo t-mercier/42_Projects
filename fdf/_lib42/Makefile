@@ -78,16 +78,16 @@ norm:
 	norminette
 clean:
 	@if [ -d $(OBJ_DIR) ]; then rm -rf $(OBJ_DIR) && \
-		printf "$(GREEN)\n-> lib42/obj cleaned\n"; \
-		else printf "$(GREEN)\n-> lib42/obj already cleaned\n"; fi
+		printf "$(GREEN)\n-> lib42/obj cleaned\n$(RESET)"; \
+		else printf "$(GREEN)\n-> lib42/obj already cleaned\n$(RESET)"; fi
 
 fclean: clean
 	@if [ -f "lib42.a" ]; then rm -rf lib42.a && \
-	printf "$(GREEN)-> lib42.a cleaned\n"; \
-	else printf "$(GREEN)\n-> lib42.a already cleaned\n"; fi
+	printf "$(GREEN)-> lib42.a cleaned\n$(RESET)"; \
+	else printf "$(GREEN)\n-> lib42.a already cleaned\n$(RESET)"; fi
 	@if [ -f "lib42mlx.a" ]; then rm -rf lib42mlx.a && \
 	printf "$(GREEN)-> lib42mlx.a cleaned\n $(RESET)"; \
-	else printf "$(GREEN)\n-> lib42mlx.a already cleaned\n"; fi
+	else printf "$(GREEN)\n-> lib42mlx.a already cleaned\n$(RESET)"; fi
 	@printf "\n"
 
 cleanmlx:
@@ -103,7 +103,7 @@ re:
 
 signature:
 	@$(LC) printf \
-	"+---------------------+ © tmercier@student.codam.nl +\n\n"
+	"+---------------------+ © tmercier@student.codam.nl +\n\n$(RESET)"
 
 .PHONY: clean fclean re graphic
 

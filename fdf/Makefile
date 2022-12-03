@@ -58,7 +58,7 @@ all:
 
 
 mlx:
-	@printf "$(LIGHT_CYAN)\nchecking update for submodule MLX42$(NO_COLOR)\n"
+	@printf "$(LIGHT_CYAN)\nchecking update for submodule MLX42$(RESET)\n"
 	@$(CLONE_MLX)
 
 $(OBJ_DIR)/%.o: _src/%.c $(HDR) $(L42FILES)
@@ -67,7 +67,7 @@ $(OBJ_DIR)/%.o: _src/%.c $(HDR) $(L42FILES)
 
 $(NAME): $(LIB42) $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) $(GLFW) $(CFLAGS) -o $(NAME)
-	@printf "\n$(LIGHT_CYAN)-> Executable $(NAME) created.$(NO_COLOR) ✔️\n\n"
+	@printf "\n$(LIGHT_CYAN)-> Executable $(NAME) created.$(RESET) ✔️\n\n"
 	@make signature
 
 $(CLONE_MLX):
@@ -77,12 +77,12 @@ $(CLONE_MLX):
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@printf "\n$(LIGHT_RED)-> $(NAME) obj files removed.$(NO_COLOR)"
+	@printf "\n$(LIGHT_RED)-> $(NAME) obj files removed.$(RESET)"
 
 fclean:	clean
 	@make fclean -C _lib42
 	@rm -rf $(NAME)
-	@printf "\n$(LIGHT_RED)-> $(NAME) executable removed.\n\n$(NO_COLOR)"
+	@printf "\n$(LIGHT_RED)-> $(NAME) executable removed.\n\n$(RESET)"
 
 re: fclean all
 
@@ -91,14 +91,14 @@ cleanlib:
 
 signature:
 			@printf \
-	"$(LIGHT_CYAN)+---------------------+ © tmercier@student.codam.nl +\n\n"
+	"$(LIGHT_CYAN)+---------------------+ © tmercier@student.codam.nl +\n\n$(RESET)"
 
 .PHONY: clean fclean re psclean leaks test f
 
 # -------------------------------- colors -------------------------------- #
 
-GREEN			=	\033[1;32m
-LIGHT_RED		=	\033[1;31m
-LIGHT_CYAN		=	\033[1;36m
-NO_COLOR		=	\033[0m
+GREEN			:=	\033[1;32m
+LIGHT_RED		:=	\033[1;31m
+LIGHT_CYAN		:=	\033[1;36m
+RESET			:= \033[0m
 
