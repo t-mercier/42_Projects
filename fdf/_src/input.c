@@ -32,6 +32,15 @@ static void	get_size(t_fdf *fdf)
 	resize_map(fdf);
 }
 
+
+static void get_max_min(t_fdf *fdf, int z)
+{
+	if (z > fdf->z_max)
+		fdf->z_max = z;
+	if (z < fdf->z_min)
+		fdf->z_min = z;
+}
+
 t_vector	*read_file(int fd, t_fdf *fdf)
 {
 	static char	**split;
@@ -50,6 +59,7 @@ t_vector	*read_file(int fd, t_fdf *fdf)
 		while (*tmp)
 		{
 			fdf->data = ft_atoi(*tmp++);
+			get_max_min(fdf, fdf->data);
 			vector_append(fdf->row, &fdf->data);
 		}
 		free(line);
@@ -57,6 +67,6 @@ t_vector	*read_file(int fd, t_fdf *fdf)
 		vector_append(fdf->grid, &fdf->row);
 		get_size(fdf);
 	}
-	close(fd);
+	fprintf(stderr, "max %d min %d\n",fdf->z_max, fdf->z_min);
 	return (fdf->grid);
 }

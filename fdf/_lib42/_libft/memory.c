@@ -35,9 +35,9 @@ void	*ft_malloc(ssize_t esz)
 {
 	void	*ptr;
 
-//	ptr = malloc(esz);
-	(void) esz;
-	ptr = NULL;
+	if (!esz)
+		exit_message("[ MALLOC FAILED ]\n", 1);
+	ptr = malloc(esz);
 	if (!ptr)
 		exit_message("[ MALLOC FAILED ]\n", 1);
 	return (ptr);

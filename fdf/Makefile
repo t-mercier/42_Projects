@@ -46,7 +46,11 @@ endif
 
 # -------------------------------- Libraries -------------------------------- #
 
-GLFW		= 	-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+ifdef HOME
+	GLFW	=	-lglfw -framework Cocoa -framework OpenGL -framework IOKit
+else
+	GLFW	= 	-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+endif
 LFLAGS 		= 	-lm -lpthread -Wl -L$(LIB42_DIR) -l42mlx
 
 OBJ			=	$(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))

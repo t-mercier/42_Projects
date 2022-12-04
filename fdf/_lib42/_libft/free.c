@@ -24,3 +24,11 @@ void	ft_free_2d_array(char **s)
 	}
 	free(s);
 }
+
+void	ft_free(void *ptr)
+{
+	if (!ptr)
+		return ;
+	free(ptr);
+	ptr = NULL;
+}

@@ -184,6 +184,5 @@ int		ft_print_address_va_arg(va_list arg);
 ** ------------------------------------------ */
 char	*ft_get_line(char *line, char *buff);
 char	*get_next_line(int fd);
-char	*ft_free(char **tmp, int line);
 
 #endif

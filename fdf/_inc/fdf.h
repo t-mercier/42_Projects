@@ -15,8 +15,6 @@
 
 # include "../_lib42/_inc/lib42.h"
 # define WHITE 0xFFFFFFFF
-# define FONT_WIDTH 10
-# define FONT_HEIGHT 20
 
 /*
 **		[ STRUCTURES ]
@@ -42,15 +40,18 @@ typedef struct s_index
 	int			x;
 	int			y;
 	int			z;
+	int 		c;
 }				t_index;
 
 typedef struct s_fdf
 {
 	int			w;
 	int			h;
-	int			scheme;
+	int			palette;
 	int			color;
 	int			data;
+	int			z_min;
+	int			z_max;
 	char		*title;
 	double		depth;
 	double		t_s;
@@ -87,7 +88,7 @@ typedef struct s_fdf
 uint32_t		_blink(t_fdf *fdf);
 uint32_t		_random(t_fdf *fdf, int p0, int p1);
 uint32_t		get_color(t_fdf *fdf, int z);
-uint32_t		fire(int z);
+uint32_t		fire(t_fdf *fdf, int z);
 uint32_t		grey(int z);
 
 /*
@@ -98,6 +99,10 @@ uint32_t		midnight(int z);
 uint32_t		grapes(int z);
 uint32_t		dark(int z);
 uint32_t		forest(int z);
+
+uint32_t	g_color(t_fdf *fdf, t_point p0, t_point p1);
+int 	get_default_c(t_fdf *fdf, int z);
+
 
 /*
 **			input.c
@@ -134,9 +139,9 @@ void			init_usage(t_fdf *fdf);
 ** ------------------------------------------ */
 void			calibrate(t_fdf *fdf);
 t_point			cast_points(t_vertex p);
-void			clear(t_fdf *fdf);
 int				check_error(int ac, char *av);
 void			scrollhook(double xdelta, double ydelta, void *param);
 bool			in_perimeter(t_fdf *fdf);
+double	get_percent(int n1, int n2, int current);
 
 #endif

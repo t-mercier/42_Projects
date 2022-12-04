@@ -16,13 +16,13 @@ static void	define_usage(t_fdf *fdf)
 {
 	fdf->usage.s[0] = "Usage on / off   [ space ]";
 	fdf->usage.s[1] = "Close window     [ esc ]";
-	fdf->usage.s[2] = "Switch View      [ / ]";
-	fdf->usage.s[3] = "\n";
-	fdf->usage.s[4] = "| MOVE";
-	fdf->usage.s[5] = "---------------------------------------";
-	fdf->usage.s[6] = "Move             [ < ^ v > ]";
-	fdf->usage.s[7] = "Zoom +/-         [ mouse scroll ]";
-	fdf->usage.s[8] = "Depth +/-        [ + ] [ - ]";
+	fdf->usage.s[2] = "\n";
+	fdf->usage.s[3] = "| MOVE";
+	fdf->usage.s[4] = "---------------------------------------";
+	fdf->usage.s[5] = "Move             [ < ^ v > ]";
+	fdf->usage.s[6] = "Zoom +/-         [ mouse scroll ]";
+	fdf->usage.s[7] = "Depth +/-        [ + ] [ - ]";
+	fdf->usage.s[8] = "Flatten          [ / ]";
 	fdf->usage.s[9] = "\n";
 	fdf->usage.s[10] = "| ROTATION";
 	fdf->usage.s[11] = "---------------------------------------";

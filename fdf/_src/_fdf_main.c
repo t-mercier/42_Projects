@@ -12,9 +12,20 @@
 
 #include "../_inc/fdf.h"
 
+static void	clear(t_fdf *fdf)
+{
+	free(fdf->title);
+	mlx_delete_image(fdf->mlx, fdf->img);
+	mlx_delete_image(fdf->mlx, fdf->baseline);
+	mlx_delete_image(fdf->mlx, fdf->warning);
+	mlx_terminate(fdf->mlx);
+	exit(0);
+}
+
 static void	render(t_fdf *fdf, int fd)
 {
 	fdf->grid = read_file(fd, fdf);
+	close(fd);
 	calibrate(fdf);
 	fdf->mlx = mlx_init((int32_t)fdf->win.w,
 			(int32_t)fdf->win.h, fdf->title, true);
@@ -22,7 +33,7 @@ static void	render(t_fdf *fdf, int fd)
 		exit(1);
 	fdf->img = mlx_new_image(fdf->mlx, fdf->win.w, fdf->win.h);
 	if (mlx_image_to_window(fdf->mlx, fdf->img, 0, 0) < 0)
-		exit(0);
+		exit(1);
 	init_usage(fdf);
 	project(fdf);
 	mlx_key_hook(fdf->mlx, (void *)k_hook, fdf);
@@ -34,8 +45,8 @@ static void	render(t_fdf *fdf, int fd)
 int32_t	main(int ac, char **av)
 {
 	t_fdf	fdf;
+	size_t	len;
 	int		fd;
-	int		len;
 	int		n;
 
 	fdf = (t_fdf){};

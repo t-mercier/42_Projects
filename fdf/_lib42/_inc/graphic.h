@@ -38,6 +38,7 @@ typedef struct s_point
 	int			x;
 	int			y;
 	int			z;
+	int			c;
 }				t_point;
 
 typedef struct s_vertex
@@ -102,9 +103,9 @@ void			drawline(mlx_image_t *img, t_point _0, t_point _1,
 **			colors.c
 ** ------------------------------------------ */
 uint32_t		_color(int color);
-uint32_t		set_g(uint32_t trgb, uint8_t g);
 int				_trgb(unsigned char t, unsigned char r, unsigned char g,
 					unsigned char b);
+uint32_t		gradient_color(t_rgb rgb, t_point p0, t_point p1);
 
 /*
 **			matrices.c

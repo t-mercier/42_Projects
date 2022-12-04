@@ -15,7 +15,7 @@
 uint32_t	_blink(t_fdf *fdf)
 {
 	return (_trgb(fdf->rgb.a, fdf->rgb.r,
-			fdf->rgb.g, fdf->rgb.b));
+				  fdf->rgb.g, fdf->rgb.b));
 }
 
 uint32_t	_random(t_fdf *fdf, int p0, int p1)
@@ -26,50 +26,42 @@ uint32_t	_random(t_fdf *fdf, int p0, int p1)
 
 uint32_t	get_color(t_fdf *fdf, int z)
 {
-	if (fdf->scheme == 8)
-		fdf->color = WHITE;
-	if (fdf->scheme == 1)
+	if (fdf->palette == 1)
 		fdf->color = grey(z);
-	if (fdf->scheme == 2)
+	if (fdf->palette == 2)
 		fdf->color = forest(z);
-	if (fdf->scheme == 3)
+	if (fdf->palette == 3)
 		fdf->color = pastel(z);
-	if (fdf->scheme == 4)
-		fdf->color = fire(z);
-	if (fdf->scheme == 5)
+	if (fdf->palette == 4)
+		fdf->color = fire(fdf, z);
+	if (fdf->palette == 5)
 		fdf->color = midnight(z);
-	if (fdf->scheme == 6)
+	if (fdf->palette == 6)
 		fdf->color = grapes(z);
-	if (fdf->scheme == 7)
+	if (fdf->palette == 7)
 		fdf->color = dark(z);
+	if (fdf->palette == 8)
+		fdf->color = WHITE;
 	return (fdf->color);
 }
 
-uint32_t	fire(int z)
+uint32_t	fire(t_fdf *fdf, int z)
 {
-	if (z > 100)
-		return (0xFFDF8DFF);
-	if (z > 75)
-		return (0xFFDE7AFF);
-	if (z > 50)
-		return (0xFFC568FF);
-	if (z > 25)
-		return (0xFD996BFF);
-	if (z > 15)
-		return (0xF7856CFF);
-	if (z > 10)
-		return (0xF06E6CFF);
-	if (z > 5)
-		return (0xD9576BFF);
-	if (z >= 0)
-		return (0xA44369FF);
-	if (z > -10)
-		return (0x833F68FF);
-	if (z > -20)
-		return (0x833F68FF);
-	if (z > -50)
-		return (0x5E3C65FF);
-	return (0x3F3A63FF);
+	double	pct;
+
+	pct = get_percent(fdf->z_min, fdf->z_max, z);
+	if (pct < 0.2)
+		return (0xA10100FF);
+	else if (pct < 0.3)
+		return (0xDA1F05FF);
+	else if (pct < 0.4)
+		return (0xF33C04FF);
+	else if (pct < 0.6)
+		return (0xFE650DFF);
+	else if (pct < 0.8)
+		return (0xFFC11FFF);
+	else
+		return (0x6B1F20FF);
 }
 
 uint32_t	grey(int z)

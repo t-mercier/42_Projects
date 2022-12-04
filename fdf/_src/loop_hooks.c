@@ -39,13 +39,13 @@ static void	_zoom(t_fdf *fdf)
 static void	_switch(t_fdf *fdf)
 {
 	int			i;
-	const int	n[] = {MLX_KEY_0, MLX_KEY_1, MLX_KEY_2, MLX_KEY_3,
-		MLX_KEY_4, MLX_KEY_5, MLX_KEY_6, MLX_KEY_7};
+	const int	n[] = {MLX_KEY_1, MLX_KEY_2, MLX_KEY_3,
+		MLX_KEY_4, MLX_KEY_5, MLX_KEY_6, MLX_KEY_7, MLX_KEY_8};
 
 	i = 0;
 	while (i < (int)(sizeof(n) / sizeof(int)))
 		if (mlx_is_key_down(fdf->mlx, n[i++]))
-			return (fdf->scheme = i, project(fdf));
+			return (fdf->palette = i, project(fdf));
 }
 
 static void	_warning(t_fdf *fdf)

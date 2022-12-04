@@ -24,9 +24,9 @@ void	calibrate(t_fdf *fdf)
 	fdf->r.pitch = 0.;
 	fdf->r.roll = 0.;
 	fdf->depth = 1.;
-	fdf->scheme = 1;
-	fdf->offset.x = (fdf->win.w - fdf->map.w);
-	fdf->offset.y = (fdf->win.h - fdf->map.h) / 2;
+	fdf->palette = 1;
+	fdf->offset.x = (double)(fdf->win.w - fdf->map.w);
+	fdf->offset.y = (double)(fdf->win.h - fdf->map.h) / 5;
 	fdf->angle = 30.264;
 	fdf->n = 1.;
 	fdf->rgb.r = 255;
@@ -43,16 +43,6 @@ t_point	cast_points(t_vertex p)
 	_p.y = (int)p.y;
 	_p.z = (int)p.z;
 	return (_p);
-}
-
-void	clear(t_fdf *fdf)
-{
-	free(fdf->title);
-	mlx_delete_image(fdf->mlx, fdf->img);
-	mlx_delete_image(fdf->mlx, fdf->baseline);
-	mlx_delete_image(fdf->mlx, fdf->warning);
-	mlx_terminate(fdf->mlx);
-	exit(0);
 }
 
 int	check_error(int ac, char *name)
@@ -74,4 +64,16 @@ bool	in_perimeter(t_fdf *fdf)
 			&& fdf->p1.y <= fdf->win.h && fdf->p1.y >= 0))
 		return (true);
 	return (false);
+}
+
+double	get_percent(int n1, int n2, int current)
+{
+	double	p;
+	double	d;
+
+	p = current - n1;
+	d = n2 - n1;
+	if (d == 0)
+		return (1.0);
+	return (p / d);
 }
