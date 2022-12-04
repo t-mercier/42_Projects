@@ -7,3 +7,6 @@
 [submodule "fdf/_lib42/MLX42"]
 	path = fdf/_lib42/MLX42
 	url = git@github.com:codam-coding-college/MLX42.git
+[submodule "minishell"]
+	path = minishell
+	url = git@github.com:t-mercier/42_Projects.git
