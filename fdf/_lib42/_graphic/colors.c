@@ -26,25 +26,17 @@ static double	get_percent(int p0, int p1, int current)
 
 static int	get_light(int p0, int p1, double pct)
 {
-//	t_rgb rgb;
-//
-//	rgb.a = (int)((1 - pct) * p0 + pct * p1);
-//	rgb.r = (int)((1 - pct) * p0 + pct * p1);
-//	rgb.g = (int)((1 - pct) * p0 + pct * p1);
-//	rgb.b = (int)((1 - pct) * p0 + pct * p1);
-//	return (rgb);
 	return ((int)((1 - pct) * p0 + pct * p1));
 }
-
-static uint32_t	get_rgb(t_rgb rgb, int c)
-{
-	rgb.a = 0xFF & (c >> 24);
-	rgb.r = 0xFF & (c >> 16);
-	rgb.g = 0xFF & (c >> 8);
-	rgb.b = 0xFF & (c);
-	return (rgb.a << 24 | rgb.r << 16 | rgb.g << 8 | rgb.b);
-//	return (a << 24 | r << 16 | g << 8 | b);
-}
+//
+//static uint32_t	get_rgb(t_rgb rgb, int c)
+//{
+//	rgb.a = 0xFF & (c >> 24);
+//	rgb.r = 0xFF & (c >> 16);
+//	rgb.g = 0xFF & (c >> 8);
+//	rgb.b = 0xFF & (c);
+//	return (rgb.a << 24 | rgb.r << 16 | rgb.g << 8 | rgb.b);
+//}
 
 int	_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
 {
@@ -66,13 +58,9 @@ uint32_t	gradient_color(t_rgb rgb, t_point p0, t_point p1)
 		pct = get_percent(p0.x, p1.x, curr.x);
 	else
 		pct = get_percent(p0.y, p1.y, curr.y);
-	p0.c = (int)get_rgb(rgb, p0.c);
-	p1.c = (int)get_rgb(rgb, p1.c);
-//	rgb = get_light(p0.c, p1.c, pct);
 	rgb.a = get_light(p0.c, p1.c, pct);
 	rgb.r = get_light((p0.c >> 16) & 0xFF, (p1.c >> 16) & 0xFF, pct);
 	rgb.g = get_light((p0.c >> 8) & 0xFF, (p1.c >> 8) & 0xFF, pct);
 	rgb.b = get_light(p0.c & 0xFF, p1.c & 0xFF, pct);
-	return (_trgb(rgb.a, rgb.r,
-				  rgb.g, rgb.b));
+	return (rgb.a, rgb.r, rgb.g, rgb.b);
 }
