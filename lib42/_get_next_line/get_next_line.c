@@ -13,7 +13,7 @@
 #include "../_inc/libft.h"
 #include "stdio.h"
 
-char	*ft_free(char **tmp, int line)
+static char	*_free(char **tmp, int line)
 {
 	char	*res;
 
@@ -63,6 +63,6 @@ char	*get_next_line(int fd)
 	else if (b > 0)
 		return (get_next_line(fd));
 	else if (ft_strchr(dl, '\0') && *dl)
-		return (ft_free(&dl, 0));
-	return (ft_free(&dl, 1));
+		return (_free(&dl, 0));
+	return (_free(&dl, 1));
 }

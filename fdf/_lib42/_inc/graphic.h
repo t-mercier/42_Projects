@@ -46,6 +46,7 @@ typedef struct s_vertex
 	double		x;
 	double		y;
 	double		z;
+	int 		c;
 }				t_vertex;
 
 typedef struct s_rotate

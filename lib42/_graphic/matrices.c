@@ -17,11 +17,11 @@
 
 #include "../_inc/graphic.h"
 
-t_matrice	build_matrice(t_rotate r)
+t_matrix	build_matrix(t_rotate r)
 {
-	t_matrice	m;
+	t_matrix	m;
 
-	m = (t_matrice){};
+	m = (t_matrix){};
 	init_cos_sin(&r, NULL);
 	m.r11 = r.cy * r.cz;
 	m.r12 = r.sx * r.sy * r.cz - r.cx * r.sz;
@@ -35,7 +35,7 @@ t_matrice	build_matrice(t_rotate r)
 	return (m);
 }
 
-t_rotate	matrix_to_angle(t_matrice a)
+t_rotate	matrix_to_angle(t_matrix a)
 {
 	t_rotate	r;
 
@@ -58,9 +58,9 @@ t_rotate	matrix_to_angle(t_matrice a)
 	return (r);
 }
 
-t_vertex	matrice_to_px(t_matrice a, t_vertex p_in, void *param)
+t_vertex	matrix_to_px(t_matrix a, t_vertex p_in, void *param)
 {
-	t_vertex p_out;
+	t_vertex	p_out;
 
 	if (!param)
 		param = NULL;

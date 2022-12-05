@@ -33,8 +33,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	char		*d;
 	char const	*s;
 
-	if (dst == 0 && src == 0)
-		exit(EXIT_FAILURE);
+	if (dst == 0 || src == 0)
+		return (0);
 	d = (char *)dst;
 	s = (char const *)src;
 	while (n--)

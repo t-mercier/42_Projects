@@ -18,6 +18,20 @@
 
 #include "../_inc/libft.h"
 
+static char	**ft_free_split(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		free(s[i]);
+		i++;
+	}
+	free(s);
+	return (0);
+}
+
 static char	**get_words(char **ptr, char const *s, char c)
 {
 	size_t	j;
@@ -35,7 +49,7 @@ static char	**get_words(char **ptr, char const *s, char c)
 				j++;
 			ptr[count] = ft_substr(s, i, j);
 			if (!ptr[count])
-				return (ft_free_doublearr(ptr));
+				return (ft_free_split(ptr));
 			i += j;
 			count++;
 		}

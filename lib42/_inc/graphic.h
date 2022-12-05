@@ -1,46 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   single_linkedlist.h                                :+:    :+:            */
+/*   graphic.h                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 19:18:04 by tmercier      #+#    #+#                 */
-/*   Updated: 2022/10/16 20:57:11 by tmercier      ########   odam.nl         */
+/*   Updated: 2022/12/01 22:18:02 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHIC_H
 # define GRAPHIC_H
 
+# include "../MLX42/include/MLX42/MLX42.h"
+# include <math.h>
 # include <stdbool.h>
 # include <stddef.h>
 # include <stdlib.h>
-# include <math.h>
-# include "../MLX42/include/MLX42/MLX42.h"
 
-typedef struct 	s_offset
+typedef struct s_rgb
+{
+	uint32_t	r;
+	uint32_t	g;
+	uint32_t	b;
+	uint32_t	a;
+}				t_rgb;
+
+typedef struct s_offset
+{
+	double		x;
+	double		y;
+}				t_offset;
+
+typedef struct s_point
 {
 	int			x;
 	int			y;
-}				t_offset;
+	int			z;
+	int			c;
+}				t_point;
 
 typedef struct s_vertex
 {
-	int 		x;
-	int			y;
-	int			z;
+	double		x;
+	double		y;
+	double		z;
+	int 		c;
 }				t_vertex;
 
-typedef struct	s_rotate
+typedef struct s_rotate
 {
-	double 		x;
-	double 		y;
-	double 		z;
-	double 		cx;
+	double		x;
+	double		y;
+	double		z;
+	double		cx;
 	double		cy;
 	double		cz;
-	double 		sx;
+	double		sx;
 	double		sy;
 	double		sz;
 	double		roll;
@@ -48,16 +65,16 @@ typedef struct	s_rotate
 	double		yaw;
 }				t_rotate;
 
-typedef struct 	s_bresenham
+typedef struct s_bresenham
 {
-	t_vertex	d;
-	t_vertex	s;
+	t_point		d;
+	t_point		s;
 	int			e;
 	int			e2;
 
 }				t_bresenham;
 
-typedef struct 	s_matrice
+typedef struct s_matrice
 {
 	double		r11;
 	double		r12;
@@ -68,43 +85,46 @@ typedef struct 	s_matrice
 	double		r31;
 	double		r32;
 	double		r33;
-}				t_matrice;
+}				t_matrix;
 
 /*
 **			arbitrary_rotation.c
 ** ------------------------------------------ */
-t_vertex	rotate_x(t_vertex p, t_rotate r, void *param);
-void		rotate_y(t_vertex *p, t_rotate r, void *param);
-void		rotate_z(t_vertex *p, t_rotate r, void *param);
+t_vertex		rotate_x(t_vertex p, t_rotate r, void *param);
+t_vertex		rotate_y(t_vertex p, t_rotate r, void *param);
+t_vertex		rotate_z(t_vertex p, t_rotate r, void *param);
 
 /*
 **			bresenham.c
 ** ------------------------------------------ */
-void		drawline(mlx_image_t *img, t_vertex _0, t_vertex _1, uint32_t color);
+void			drawline(mlx_image_t *img, t_point _0, t_point _1,
+					uint32_t color);
 
 /*
 **			colors.c
 ** ------------------------------------------ */
-uint32_t	_color(int color);
+uint32_t		_color(int color);
+int				_trgb(unsigned char t, unsigned char r, unsigned char g,
+					unsigned char b);
+uint32_t		gradient_color(t_rgb rgb, t_vertex p0, t_vertex p1);
 
 /*
 **			matrices.c
 ** ------------------------------------------ */
-t_matrice	build_matrice(t_rotate r);
-t_rotate	matrix_to_angle(t_matrice a);
-t_vertex	matrice_to_px(t_matrice a, t_vertex p_in, void *param);
+t_matrix		build_matrix(t_rotate r);
+t_rotate		matrix_to_angle(t_matrix a);
+t_vertex		matrix_to_px(t_matrix a, t_vertex p_in, void *param);
 
 /*
 **			perspectives.c
 ** ------------------------------------------ */
-t_vertex	isometry_projection(t_offset offset, t_vertex *p, double angle);
-t_vertex	parallel_projection(t_offset offset, t_vertex *p, double angle);
+t_vertex		isometry_projection(t_offset offset, t_vertex *p, double angle);
 
 /*
 **			utils.c
 ** ------------------------------------------ */
-void		init_cos_sin(t_rotate *r, void *param);
-double		deg_to_rad(int degree);
-void		mlx_error_exit(void)__attribute__((unused));
+void			init_cos_sin(t_rotate *r, void *param);
+double			deg_to_rad(double degree);
+void			mlx_error_exit(void) __attribute__((unused));
 
 #endif

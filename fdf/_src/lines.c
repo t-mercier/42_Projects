@@ -27,15 +27,14 @@ static void	_projection_down(t_fdf *fdf, t_vertex _0, t_index i)
 	_1 = isometry_projection(fdf->offset, &t, fdf->angle);
 	fdf->p0 = cast_points(_0);
 	fdf->p1 = cast_points(_1);
-	fdf->p1.c = get_default_c(fdf, fdf->p1.z);
-	fdf->p0.c = get_default_c(fdf, fdf->p0.z);
+	fdf->p1.c = (int)fire(fdf, i.z);
 	if (fdf->_blink)
-//		fdf->color = (int)_blink(fdf);
-		fdf->color = (int)gradient_color(fdf->rgb, fdf->p0, fdf->p1);
+		fdf->color = (int)_blink(fdf);
 	else if (fdf->_color)
 		fdf->color = (int)_random(fdf, fdf->p0.z, i.z);
-	else if (!fdf->_color && !fdf->_blink)
-		fdf->color = (int)get_color(fdf, i.z);
+//	else
+	fdf->color = (int)gradient_color(fdf->rgb, fdf->p0, fdf->p1);
+//		fdf->color = (int)get_color(fdf, i.z);
 	if (fdf->_invert)
 		fdf->color = INT32_MAX - fdf->color | 0xff;
 	if (in_perimeter(fdf))
@@ -57,15 +56,13 @@ static void	_projection_right(t_fdf *fdf, t_vertex _0, t_index i)
 	_1 = isometry_projection(fdf->offset, &t, fdf->angle);
 	fdf->p0 = cast_points(_0);
 	fdf->p1 = cast_points(_1);
-	fdf->p1.c = get_default_c(fdf, fdf->p1.z);
-	fdf->p0.c = get_default_c(fdf, fdf->p0.z);
+	fdf->p1.c = (int)fire(fdf, i.z);
 	if (fdf->_blink)
-//		fdf->color = (int)_blink(fdf);
-		fdf->color = (int)gradient_color(fdf->rgb, fdf->p0, fdf->p1);
+		fdf->color = (int)_blink(fdf);
 	else if (fdf->_color)
 		fdf->color = (int)_random(fdf, fdf->p0.z, i.z);
-	else if (!fdf->_color && !fdf->_blink)
-		fdf->color = (int)get_color(fdf, i.z);
+//	else
+	fdf->color = (int)gradient_color(fdf->rgb, fdf->p0, fdf->p1);
 	if (fdf->_invert)
 		fdf->color = INT32_MAX - fdf->color | 0xff;
 	if (in_perimeter(fdf))
@@ -83,7 +80,7 @@ static void	_project_0(t_fdf *fdf, t_vertex *_0, t_index i)
 	d.z = (double)i.z * (fdf->t_s / 5 * fdf->depth);
 	t = matrix_to_px(fdf->m, d, NULL);
 	fdf->_0.z = i.z;
-	fdf->p0.c = get_default_c(fdf, i.z);
+	fdf->p0.c = (int)fire(fdf, i.z);
 	*_0 = isometry_projection(fdf->offset, &t, fdf->angle);
 }
 

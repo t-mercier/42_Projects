@@ -52,8 +52,8 @@ size_t	ft_strlcat(char *dst, char *src, size_t size)
 
 char	*ft_strjoin(char *s1, char const *s2)
 {
-	size_t l;
-	char *s;
+	size_t	l;
+	char	*s;
 
 	if (!s1 && !s2)
 		return (0);

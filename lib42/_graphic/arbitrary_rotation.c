@@ -11,34 +11,48 @@
 /* ************************************************************************** */
 
 #include "../_inc/graphic.h"
-#include "../_inc/libft.h"
 
-double	deg_to_rad(int degree)
+t_vertex	rotate_x(t_vertex p, t_rotate r, void *param)
 {
-		if (degree < 0)
-			degree = 360;
-		else if (degree > 360)
-			degree = 0;
-	return (degree * M_PI / 180);
-}
+	t_vertex	t;
+	double		angle;
 
-void	init_cos_sin(t_rotate *r, void *param)
-{
 	if (!param)
 		param = NULL;
-	r->cx = (float)cos(deg_to_rad(r->roll));
-	r->sx = (float)sin(deg_to_rad(r->roll));
-	r->cy = (float)cos(deg_to_rad(r->pitch));
-	r->sy = (float)sin(deg_to_rad(r->pitch));
-	r->cz = (float)cos(deg_to_rad(r->yaw));
-	r->sz = (float)sin(deg_to_rad(r->yaw));
+	t = p;
+	angle = deg_to_rad(r.yaw);
+	p.x = t.x;
+	p.y = t.y * cos(angle) + t.z * -sin(angle);
+	p.z = t.y * sin(angle) + t.z * cos(angle);
+	return (p);
 }
 
-void	mlx_error_exit(void)
+t_vertex	rotate_y(t_vertex p, t_rotate r, void *param)
 {
-	char    *s;
+	t_vertex	t;
+	double		angle;
 
-	s = ft_strdup(mlx_strerror(mlx_errno));
-	ft_putendl_fd(s, STDERR_FILENO);
-	exit(EXIT_FAILURE);
+	if (!param)
+		param = NULL;
+	t = p;
+	angle = deg_to_rad(r.pitch);
+	p.x = t.x * cos(angle) + t.z * sin(angle);
+	p.y = t.y;
+	p.z = t.x * -sin(angle) + t.z * cos(angle);
+	return (p);
+}
+
+t_vertex	rotate_z(t_vertex p, t_rotate r, void *param)
+{
+	t_vertex	t;
+	double		angle;
+
+	if (!param)
+		param = NULL;
+	t = p;
+	angle = deg_to_rad(r.roll);
+	p.x = t.x * cos(angle) + t.y * -sin(angle);
+	p.z = t.x * sin(angle) + t.y * cos(angle);
+	p.y = t.z;
+	return (p);
 }

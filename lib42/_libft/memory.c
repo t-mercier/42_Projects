@@ -35,10 +35,12 @@ void	*ft_malloc(ssize_t esz)
 {
 	void	*ptr;
 
+	if (!esz)
+		exit_message("[ MALLOC FAILED ]\n", 1);
 	ptr = malloc(esz);
-	if (ptr != NULL)
-		return (ptr);
-	exit(EXIT_FAILURE);
+	if (!ptr)
+		exit_message("[ MALLOC FAILED ]\n", 1);
+	return (ptr);
 }
 
 void	*ft_memset(void *b, int c, size_t len)
@@ -63,6 +65,7 @@ void	*ft_realloc(void *ptr, size_t size, size_t old_s)
 		return (ptr);
 	new_p = malloc(size);
 	ft_memcpy(new_p, ptr, old_s);
+	free(ptr);
 	return (new_p);
 }
 

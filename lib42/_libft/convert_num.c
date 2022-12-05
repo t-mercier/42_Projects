@@ -57,9 +57,9 @@ void	ft_itoa_str(long n, int radix, char *str)
 
 int	ft_hextodeci(char *hex)
 {
-	int n;
-	int x;
-	size_t len;
+	int		n;
+	int		x;
+	size_t	len;
 
 	n = 0;
 	len = ft_strlen(hex);

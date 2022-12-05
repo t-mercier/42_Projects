@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   free_and_errors.c                                  :+:    :+:            */
+/*   perspectives.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/11/13 10:48:50 by tmercier      #+#    #+#                 */
-/*   Updated: 2022/11/13 10:48:50 by tmercier      ########   odam.nl         */
+/*   Created: 2022/11/24 14:05:26 by tmercier      #+#    #+#                 */
+/*   Updated: 2022/11/24 14:05:26 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../_inc/libft.h"
+#include "../_inc/graphic.h"
 
-void	exit_message(char *s, int code)
+t_vertex	isometry_projection(t_offset offset, t_vertex *p, double angle)
 {
-	ft_putendl_fd(s, STDERR_FILENO);
-	exit(code);
-}
+	t_vertex	t;
 
-bool	ft_error_va(char *errmsg, ...)
-{
-	va_list args;
-	char *arg = errmsg;
-
-	write(2, errmsg, ft_strlen(errmsg));
-	va_start(args, errmsg);
-	while ((arg = va_arg(args, char *)))
-		write(2, arg, ft_strlen(arg));
-	write(2, "\n", 1);
-	va_end(args);
-	return (false);
+	t = *p;
+	p->x = ((double)(t.x - t.y)) * cos(deg_to_rad(angle));
+	p->y = -(double)t.z + ((double)(t.x + t.y)) * sin(deg_to_rad(angle));
+	p->x += offset.x;
+	p->y += offset.y;
+	return (*p);
 }

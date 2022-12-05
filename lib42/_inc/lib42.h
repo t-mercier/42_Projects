@@ -13,14 +13,13 @@
 #ifndef LIB42_H
 # define LIB42_H
 
+# include "../MLX42/include/MLX42/MLX42.h"
+# include "graphic.h"
 # include "libft.h"
 # include "linkedlist.h"
 # include "storage_classes.h"
 # include "vectors.h"
-# include "graphic.h"
-# include "../MLX42/include/MLX42/MLX42.h"
 
-# define EXIT_FAILURE    1
+# define EXIT_FAILURE 1
 
-
-#endif 
+#endif

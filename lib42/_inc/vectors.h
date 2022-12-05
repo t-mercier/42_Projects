@@ -25,15 +25,14 @@
 
 typedef struct s_vector
 {
-	void			*item;
-	size_t			size;
-	size_t			len;
-	size_t			esz;
-}					t_vector;
+	void	*item;
+	size_t	size;
+	size_t	len;
+	size_t	esz;
+}			t_vector;
 
-
-t_vector			*vector_init(size_t size);
-void				vector_append(t_vector *v, void *x);
-void				free_vector(t_vector *v);
+t_vector	*vector_init(size_t size);
+void		vector_append(t_vector *v, void *x);
+void		free_vector(t_vector *v);
 
 #endif

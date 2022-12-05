@@ -24,6 +24,24 @@ uint32_t	_random(t_fdf *fdf, int p0, int p1)
 			fdf->rgb.g - p0, fdf->rgb.b - p1));
 }
 
+//
+//int	get_default_c(t_fdf *fdf, int z)
+//{
+//	double	percentage;
+//
+//	percentage = percent(map->z_min, map->z_max, z);
+//	if (percentage < 0.2)
+//		return ();
+//	else if (percentage < 0.4)
+//		return ();
+//	else if (percentage < 0.6)
+//		return ();
+//	else if (percentage < 0.8)
+//		return ();
+//	else
+//		return ();
+//}
+
 uint32_t	get_color(t_fdf *fdf, int z)
 {
 	if (fdf->palette == 1)

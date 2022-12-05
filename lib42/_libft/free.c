@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   colors.c                                           :+:    :+:            */
+/*   free.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmercier <tmercier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/11/24 12:52:36 by tmercier      #+#    #+#                 */
-/*   Updated: 2022/11/24 12:52:36 by tmercier      ########   odam.nl         */
+/*   Created: 2022/11/13 11:56:48 by tmercier      #+#    #+#                 */
+/*   Updated: 2022/11/13 11:56:48 by tmercier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../_inc/graphic.h"
+#include "../_inc/libft.h"
 
-uint32_t	_color(int color)
+void	ft_free_2d_array(char **s)
 {
-	unsigned char	a;
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
+	int	i;
 
-	a = 0xFF & (color >> 24);
-	r = 0xFF & (color >> 16);
-	g = 0xFF & (color >> 8);
-	b = 0xFF & (color);
-	return (a << 24 | r << 16 | g << 8 | b);
+	i = 0;
+	while (s[i])
+	{
+		free(s[i]);
+		i++;
+	}
+	free(s);
+}
+
+void	ft_free(void *ptr)
+{
+	if (!ptr)
+		return ;
+	free(ptr);
+	ptr = NULL;
 }

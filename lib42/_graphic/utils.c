@@ -11,46 +11,34 @@
 /* ************************************************************************** */
 
 #include "../_inc/graphic.h"
+#include "../_inc/libft.h"
 
-t_vertex	rotate_x(t_vertex p, t_rotate r, void *param)
+double	deg_to_rad(double degree)
 {
-	t_vertex	t;
-	double		angle;
-
-	if (!param)
-		param = NULL;
-	t = p;
-	angle = deg_to_rad(r.yaw);
-	p.x = t.x;
-	p.y = t.y * cos(angle) + t.z * -sin(angle);
-	p.z = t.y * sin(angle) + t.z * cos(angle);
-	return (p);
+	if (degree < 0)
+		degree = 360;
+	else if (degree > 360)
+		degree = 0;
+	return (degree * M_PI / 180);
 }
 
-void	rotate_y(t_vertex *p, t_rotate r, void *param)
+void	init_cos_sin(t_rotate *r, void *param)
 {
-	t_vertex	t;
-	double		angle;
-
 	if (!param)
 		param = NULL;
-	t = *p;
-	angle = deg_to_rad(r.pitch);
-	p->x = t.x * cos(angle) + t.z * sin(angle);
-	p->y = t.y;
-	p->z = t.x * -sin(angle) + t.z * cos(angle);
+	r->cx = (float)cos(deg_to_rad(r->roll));
+	r->sx = (float)sin(deg_to_rad(r->roll));
+	r->cy = (float)cos(deg_to_rad(r->pitch));
+	r->sy = (float)sin(deg_to_rad(r->pitch));
+	r->cz = (float)cos(deg_to_rad(r->yaw));
+	r->sz = (float)sin(deg_to_rad(r->yaw));
 }
 
-void	rotate_z(t_vertex *p, t_rotate r, void *param)
+void	mlx_error_exit(void)
 {
-	t_vertex	t;
-	double		angle;
+	char	*s;
 
-	if (!param)
-		param = NULL;
-	t = *p;
-	angle = deg_to_rad(r.roll);
-	p->x = t.x * cos(angle) + t.y * -sin(angle);
-	p->z = t.x * sin(angle) + t.y * cos(angle);
-	p->y = t.z;
+	s = ft_strdup(mlx_strerror(mlx_errno));
+	ft_putendl_fd(s, STDERR_FILENO);
+	exit(EXIT_FAILURE);
 }

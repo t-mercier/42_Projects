@@ -14,7 +14,7 @@
 
 static int	ft_convert(const char *format, va_list arg)
 {
-	static int (*ft_ptr[128])(va_list) = {
+	static int	(*ft_ptr[128])(va_list) = {
 	['i'] = ft_putnbr_va_arg,
 	['d'] = ft_putnbr_va_arg,
 	['c'] = ft_putchar_va_arg,
